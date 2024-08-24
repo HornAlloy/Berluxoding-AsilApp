@@ -8,10 +8,10 @@
     android:backgroundTint="#FFFFFF">
 
     <TextView
-        android:id="@+id/txtPatologia1"
+        android:id="@+id/txtSpesa1"
         android:layout_width="410dp"
         android:layout_height="45dp"
-        android:text="@string/patologia_1"
+        android:text="@string/Spesa1"
         android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAggiungi"
@@ -28,7 +28,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btnAggiorna"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia1"
+        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
@@ -40,12 +40,12 @@
         android:backgroundTint="#000000"
         android:text="@string/aggiorna"
         android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancella"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia1"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
-        android:id="@+id/btnCancella"
+        android:id="@+id/button7"
         android:layout_width="110dp"
         android:layout_height="70dp"
         android:layout_marginTop="4dp"
@@ -53,7 +53,7 @@
         android:text="@string/cancella"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia1"
+        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
@@ -67,10 +67,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtPatologia2"
+        android:id="@+id/txtMisurazione2"
         android:layout_width="410dp"
         android:layout_height="45dp"
-        android:text="@string/patologia2"
+        android:text="@string/Spesa2"
         android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAggiorna"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btnAggiorna2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
 
     <Button
         android:id="@+id/btnAggiorna2"
@@ -100,7 +100,7 @@
         android:text="@string/aggiorna"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/btnCancella2"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
 
     <Button
         android:id="@+id/btnCancella2"
@@ -111,5 +111,5 @@
         android:text="@string/cancella"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPatologia2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

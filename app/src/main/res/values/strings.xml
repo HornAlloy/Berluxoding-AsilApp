@@ -51,5 +51,30 @@
     <string name="Patologie">Patologie</string>
     <string name="Misurazioni">Misurazioni</string>
     <string name="Spese">Spese</string>
+    <string name="aggiungi">Aggiungi</string>
+    <string name="Aggiungi">Aggiungi</string>
+    <string name="patologia_1">Patologia 1</string>
+    <string name="vedi">Vedi</string>
+    <string name="aggiorna">Aggiorna</string>
+    <string name="cancella">Cancella</string>
+    <string name="patologia2">Patologia2</string>
+    <string name="misurazione1">Misurazione1</string>
+    <string name="misurazione2">Misurazione2</string>
+    <string name="Spesa1">Spesa1</string>
+    <string name="Spesa2">Spesa2</string>
+    <string name="Utente">Utente</string>
+    <string name="Centro">Centro</string>
+    <string name="Luogo">Luogo</string>
+    <string name="Altro">Altro</string>
+    <string name="Strumenti">Strumenti</string>
+    <string name="Esci">Esci</string>
+    <string name="Risultato">Risultato</string>
+    <string name="Conferma_la_tua_password">Conferma la tua password</string>
+    <string name="Avanti">Avanti</string>
+    <string name="Nome">Nome</string>
+    <string name="Cognome">Cognome</string>
+    <string name="Paese_di_provenienza">Paese di Provenienza</string>
+    <string name="Registra">Registra</string>
+    <string name="Conferma_password">Conferma Password</string>
 
 </resources>

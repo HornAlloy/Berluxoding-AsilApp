@@ -13,11 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:backgroundTint="#000000"
         android:text="@string/strumento"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/button2"
@@ -25,6 +27,7 @@
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:backgroundTint="#000000"
         android:text="@string/strumento"
         android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="@id/button"
@@ -36,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:backgroundTint="#000000"
         android:text="@string/strumento"
         android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="@id/button"

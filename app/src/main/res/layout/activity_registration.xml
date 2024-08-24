@@ -10,38 +10,42 @@
     <!-- Schermata 1: Inserimento dati -->
     <LinearLayout
         android:id="@+id/inserimentoDati"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="407dp"
+        android:layout_height="237dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/editTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:inputType="text"/>
+            android:hint="@string/Nome"
+            android:inputType="text"
+            tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/editTextCognome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cognome"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:inputType="text"/>
+            android:hint="@string/Cognome"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/editTextPaeseDiProvenienza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:hint="Paese di Provenienza"
+            android:hint="@string/Paese_di_provenienza"
             android:inputType="text"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            tools:ignore="Autofill,TextContrastCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,7 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="GG"
-                android:inputType="number" />
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
             <EditText
                 android:id="@+id/editTextMese"
@@ -62,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="MM"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
             <EditText
                 android:id="@+id/editTextAnno"
@@ -70,14 +77,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="AAAA"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registra" />
+            android:backgroundTint="#000000"
+            android:text="@string/Registra"
+            tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
 
     <!-- Schermata 2: Richiesta di conferma della password -->
@@ -94,20 +104,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conferma la tua password" />
+            android:text="@string/Conferma_la_tua_password" />
 
         <EditText
             android:id="@+id/editTextConfermaPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Conferma Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="Autofill,HardcodedText" />
 
         <Button
             android:id="@+id/buttonConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conferma Password" />
+            android:text="@string/Conferma_password" />
     </LinearLayout>
 
     <!-- Schermata 3: Benvenuto -->
@@ -124,13 +135,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Benvenuto!" />
+            android:text="Benvenuto!"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/buttonAvanti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Avanti" />
+            android:text="@string/Avanti" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

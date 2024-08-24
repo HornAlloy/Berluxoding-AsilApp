@@ -5,51 +5,94 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformationActivity">
+    android:background="#FFFFFF"
+    tools:context=".InformationActivity" >
 
+    <ImageButton
+        android:id="@+id/imgBtnCentro"
+        android:layout_width="190dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnUtente"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_home_24"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/utente"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/txtCentro"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/Centro"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/txtUtente"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnCentro"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/imgBtnUtente"
+        android:layout_width="190dp"
+        android:layout_height="265dp"
+        android:backgroundTint="#FFFFFF"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_person_24"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtUtente"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/Utente"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnUtente"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/imgBtnLuogo"
+        android:layout_width="190dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnAltro"
+        app:layout_constraintTop_toBottomOf="@+id/txtUtente"
+        app:srcCompat="@drawable/baseline_place_24"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtLuogo"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="76dp"
+        android:text="@string/Luogo"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnAltro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnLuogo"
+        tools:ignore="TextSizeCheck" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/centro"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        android:id="@+id/btnAltro"
+        android:layout_width="195dp"
+        android:layout_height="310dp"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/Altro"
+        android:textColor="#000000"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCentro" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/luogo"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/button2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/altro"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/button3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
