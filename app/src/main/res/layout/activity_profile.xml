@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/txtLnome"
-        android:layout_width="68dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
@@ -21,7 +21,7 @@
         tools:ignore="TextSizeCheck" />
 
     <TextView
-        android:id="@+id/txtNome"
+        android:id="@+id/text_view"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginStart="25dp"
@@ -33,18 +33,18 @@
 
     <TextView
         android:id="@+id/txtLCognome"
-        android:layout_width="101dp"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
         android:text="@string/cognome"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNome"
+        app:layout_constraintTop_toBottomOf="@+id/text_view"
         tools:ignore="TextSizeCheck" />
 
     <TextView
-        android:id="@+id/txtCognome"
+        android:id="@+id/text_view2"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginStart="25dp"
@@ -56,18 +56,18 @@
 
     <TextView
         android:id="@+id/txtLDataNascita"
-        android:layout_width="147dp"
+        android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
-        android:text="@string/data_di_nascita"
+        android:text="@string/luogo_di_nascita"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCognome"
+        app:layout_constraintTop_toBottomOf="@+id/text_view2"
         tools:ignore="TextSizeCheck" />
 
     <TextView
-        android:id="@+id/txtDataNascita"
+        android:id="@+id/text_view3"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginStart="25dp"
@@ -77,9 +77,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLDataNascita" />
 
+    <TextView
+        android:id="@+id/txtLLuogoNascita"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/data_di_nascita"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view3"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/text_view4"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLLuogoNascita" />
+
 
     <ImageButton
-        android:id="@+id/imgBtnPatologie"
+        android:id="@+id/button"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="15dp"
@@ -89,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDataNascita"
+        app:layout_constraintTop_toBottomOf="@+id/text_view4"
         app:srcCompat="@drawable/baseline_personal_injury_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -101,11 +124,11 @@
         android:text="@string/Patologie"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnPatologie"
+        app:layout_constraintTop_toBottomOf="@+id/button"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
-        android:id="@+id/imgBtnMisurazioni"
+        android:id="@+id/button2"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="145dp"
@@ -115,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDataNascita"
+        app:layout_constraintTop_toBottomOf="@+id/text_view4"
         app:srcCompat="@drawable/baseline_device_thermostat_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -128,11 +151,11 @@
         android:text="@string/Misurazioni"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnMisurazioni"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
-        android:id="@+id/imgBtnSpese"
+        android:id="@+id/button3"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="275dp"
@@ -142,7 +165,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDataNascita"
+        app:layout_constraintTop_toBottomOf="@+id/text_view4"
         app:srcCompat="@drawable/baseline_attach_money_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -155,7 +178,7 @@
         android:text="@string/Spese"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnSpese"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
         tools:ignore="TextSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

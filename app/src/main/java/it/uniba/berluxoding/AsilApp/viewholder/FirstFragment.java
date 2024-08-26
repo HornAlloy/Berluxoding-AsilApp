@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {

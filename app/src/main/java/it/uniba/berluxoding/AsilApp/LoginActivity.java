@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private  EditText et2;
 
     private final String TAG = "LOGIN_ACTIVITY";
-
+    private boolean value;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -206,19 +206,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean checkRegistration (String userId) {
-        final boolean[] value = {true};
+        boolean[] value = {};
         // Aggiungi un listener per recuperare il valore del nodo
-        mDatabase.child("AsilApp").child("Utenti").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            boolean returnValue = true;
+        mDatabase.child("AsilApp/" + userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Object valore = snapshot.getValue();
                     if (valore != null) {
-                        returnValue = false;
+                        setValue(false);
+                    }
+                    else {
+                        setValue(true);
                     }
                 }
-                value[0] = returnValue;
+                else {
+                    setValue(true);
+                }
             }
 
             @Override
@@ -226,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
                 System.err.println("Errore durante la verifica: " + error.getMessage());
             }
         });
-        return value[0];
+        return getValue();
     }
 
     private void writeNewUser(String userId, String name, String email) {
@@ -244,5 +248,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void setValue (boolean value) {
+        this.value = value;
+    }
 
+    private boolean getValue () {
+        return value;
+    }
 }

@@ -76,5 +76,7 @@
     <string name="Paese_di_provenienza">Paese di Provenienza</string>
     <string name="Registra">Registra</string>
     <string name="Conferma_password">Conferma Password</string>
+    <string name="luogo_di_nascita">Luogo di Nascita</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
 
 </resources>

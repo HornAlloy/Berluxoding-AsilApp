@@ -10,7 +10,7 @@
     <!-- Schermata 1: Inserimento dati -->
     <LinearLayout
         android:id="@+id/inserimentoDati"
-        android:layout_width="407dp"
+        android:layout_width="300dp"
         android:layout_height="237dp"
         android:orientation="vertical"
         android:visibility="visible"
