@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -11,7 +12,7 @@
     <LinearLayout
         android:id="@+id/inserimentoDati"
         android:layout_width="300dp"
-        android:layout_height="237dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +82,15 @@
                 tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/editMedboxCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Medbox_PIN"
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:ignore="Autofill,TextContrastCheck" />
+
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
@@ -88,61 +98,6 @@
             android:backgroundTint="#000000"
             android:text="@string/Registra"
             tools:ignore="VisualLintButtonSize" />
-    </LinearLayout>
-
-    <!-- Schermata 2: Richiesta di conferma della password -->
-    <LinearLayout
-        android:id="@+id/confermaPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Conferma_la_tua_password" />
-
-        <EditText
-            android:id="@+id/editTextConfermaPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Conferma Password"
-            android:inputType="textPassword"
-            tools:ignore="Autofill,HardcodedText" />
-
-        <Button
-            android:id="@+id/buttonConfirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Conferma_password" />
-    </LinearLayout>
-
-    <!-- Schermata 3: Benvenuto -->
-    <LinearLayout
-        android:id="@+id/benvenuto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Benvenuto!"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/buttonAvanti"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Avanti" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

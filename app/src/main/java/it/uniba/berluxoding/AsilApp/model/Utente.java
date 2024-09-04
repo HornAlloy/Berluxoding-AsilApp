@@ -7,7 +7,7 @@ public class Utente {
     private String nome;
     private String cognome;
     private String dataNascita;
-    private String luogoNascita;
+    private String luogoProvenienza;
     private String pin;
     private String username;
     private String email;
@@ -35,8 +35,8 @@ public class Utente {
     public void setDateNascita (Date dataNascita) {
         setDataNascita (sdf.format(dataNascita));
     }
-    public void setLuogoNascita (String luogoNascita) {
-        this.luogoNascita = luogoNascita;
+    public void setLuogoProvenienza(String luogo) {
+        this.luogoProvenienza = luogo;
     }
     public void setPin (String pin) {
         this.pin = pin;
@@ -51,8 +51,11 @@ public class Utente {
     public String getDataNascita() {
         return dataNascita;
     }
-    public String getLuogoNascita() {
-        return luogoNascita;
+    public String getLuogoProvenienza () {
+        return luogoProvenienza;
+    }
+    public String getPin() {
+        return pin;
     }
 
 

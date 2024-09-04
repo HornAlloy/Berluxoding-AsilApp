@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/txtLnome"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:text="@string/nome"
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/text_view"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/txtLCognome"
         android:layout_width="wrap_content"
-        android:layout_height="31dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
         android:text="@string/cognome"
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/text_view2"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,10 +57,10 @@
     <TextView
         android:id="@+id/txtLDataNascita"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
-        android:text="@string/luogo_di_nascita"
+        android:text="@string/data_di_nascita"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view2"
@@ -68,8 +68,8 @@
 
     <TextView
         android:id="@+id/text_view3"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,12 +78,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLDataNascita" />
 
     <TextView
-        android:id="@+id/txtLLuogoNascita"
+        android:id="@+id/txtLLuogoProvenienza"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
-        android:text="@string/data_di_nascita"
+        android:text="@string/luogo_di_provenienza"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view3"
@@ -91,14 +91,14 @@
 
     <TextView
         android:id="@+id/text_view4"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLLuogoNascita" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLLuogoProvenienza" />
 
 
     <ImageButton

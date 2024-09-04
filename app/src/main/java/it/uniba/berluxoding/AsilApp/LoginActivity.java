@@ -1,6 +1,6 @@
 package it.uniba.berluxoding.AsilApp;
 
-import static androidx.fragment.app.FragmentManager.TAG;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.fragment.NavHostFragment;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.berluxoding.AsilApp.model.Utente;
-import it.uniba.berluxoding.AsilApp.models.User;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -165,16 +166,21 @@ public class LoginActivity extends AppCompatActivity {
         // Go to MainFragment
        // NavHostFragment.findNavController(this).navigate(R.id.action_SignInFragment_to_MainFragment);
 
-        if (checkRegistration(user.getUid())) {
-            Intent openPage = new Intent(LoginActivity.this, RegistrationActivity.class);
-            // passo all'attivazione dell'activity page1.java
+        checkRegistration(user.getUid()).addOnSuccessListener(isRegistered -> {
+            Intent openPage;
+            if (isRegistered) {
+                // L'utente è registrato, apri l'activity RegistrationActivity
+                openPage = new Intent(LoginActivity.this, HomeActivity.class);
+            } else {
+                // L'utente non è registrato, apri l'activity HomeActivity
+                openPage = new Intent(LoginActivity.this, RegistrationActivity.class);
+            }
+            // Avvia l'activity appropriata
             startActivity(openPage);
-        }
-        else {
-            Intent openPage = new Intent(LoginActivity.this, HomeActivity.class);
-            // passo all'attivazione dell'activity page1.java
-            startActivity(openPage);
-        }
+        }).addOnFailureListener(e -> {
+            // Gestisci eventuali errori che possono verificarsi durante il controllo della registrazione
+            Toast.makeText(LoginActivity.this, "Errore durante la verifica della registrazione: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        });
 
     }
 
@@ -205,32 +211,27 @@ public class LoginActivity extends AppCompatActivity {
         return result;
     }
 
-    private boolean checkRegistration (String userId) {
-        boolean[] value = {};
-        // Aggiungi un listener per recuperare il valore del nodo
-        mDatabase.child("AsilApp/" + userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Object valore = snapshot.getValue();
-                    if (valore != null) {
-                        setValue(false);
-                    }
-                    else {
-                        setValue(true);
-                    }
-                }
-                else {
-                    setValue(true);
-                }
-            }
+    public Task<Boolean> checkRegistration(String userId) {
+        TaskCompletionSource<Boolean> taskCompletionSource = new TaskCompletionSource<>();
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                System.err.println("Errore durante la verifica: " + error.getMessage());
-            }
-        });
-        return getValue();
+        mDatabase.child("AsilApp").child(userId).child("anagrafica")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.exists() && snapshot.getValue() != null) {
+                            taskCompletionSource.setResult(true); // Utente registrato
+                        } else {
+                            taskCompletionSource.setResult(false); // Utente non registrato
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        taskCompletionSource.setException(error.toException()); // Errore
+                    }
+                });
+
+        return taskCompletionSource.getTask();
     }
 
     private void writeNewUser(String userId, String name, String email) {

@@ -70,12 +70,12 @@ public class ProfileActivity extends AppCompatActivity {
                             // Usa l'oggetto User
                             Log.d("FirebaseData", "Nome: " + utente.getNome());
                             Log.d("FirebaseData", "Cognome: " + utente.getCognome());
-                            Log.d("FirebaseData", "Luogo di Nascita: " + utente.getLuogoNascita());
+                            Log.d("FirebaseData", "Luogo di Nascita: " + utente.getLuogoProvenienza());
                             Log.d("FirebaseData", "Data di Nascita" + utente.getDataNascita());
                             tv1.setText(utente.getNome());
                             tv2.setText(utente.getCognome());
-                            tv3.setText(utente.getLuogoNascita());
-                            tv4.setText(utente.getDataNascita());
+                            tv3.setText(utente.getDataNascita());
+                            tv4.setText(utente.getLuogoProvenienza());
                         } else {
                             Log.d("FirebaseData", "Utente non trovato");
                         }
