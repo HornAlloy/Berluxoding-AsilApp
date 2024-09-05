@@ -7,55 +7,6 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF">
 
-    <TextView
-        android:id="@+id/txtSpesa1"
-        android:layout_width="410dp"
-        android:layout_height="45dp"
-        android:text="@string/Spesa1"
-        android:textSize="35sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAggiungi"
-        tools:ignore="TextSizeCheck" />
-
-    <Button
-        android:id="@+id/btnVedi"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="#000000"
-        android:text="@string/vedi"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnAggiorna"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <Button
-        android:id="@+id/btnAggiorna"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="41dp"
-        android:backgroundTint="#000000"
-        android:text="@string/aggiorna"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="#000000"
-        android:text="@string/cancella"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSpesa1"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
     <Button
         android:id="@+id/btnAggiungi"
         android:layout_width="125dp"
@@ -66,50 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtMisurazione2"
-        android:layout_width="410dp"
-        android:layout_height="45dp"
-        android:text="@string/Spesa2"
-        android:textSize="35sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAggiorna"
-        tools:ignore="TextSizeCheck" />
-
-    <Button
-        android:id="@+id/btnVedi2"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="#000000"
-        android:text="@string/vedi"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnAggiorna2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
-
-    <Button
-        android:id="@+id/btnAggiorna2"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="41dp"
-        android:backgroundTint="#000000"
-        android:text="@string/aggiorna"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancella2"
-        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
-
-    <Button
-        android:id="@+id/btnCancella2"
-        android:layout_width="110dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="#000000"
-        android:text="@string/cancella"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMisurazione2" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="80dp"
+        tools:listitem="@layout/item_details_update_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

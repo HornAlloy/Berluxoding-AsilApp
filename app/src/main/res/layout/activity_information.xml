@@ -10,12 +10,13 @@
 
     <ImageButton
         android:id="@+id/imgBtnCentro"
-        android:layout_width="190dp"
-        android:layout_height="265dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/imgBtnUtente"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_home_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
@@ -34,8 +35,10 @@
 
     <ImageButton
         android:id="@+id/imgBtnUtente"
-        android:layout_width="190dp"
-        android:layout_height="265dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,14 +60,14 @@
 
     <ImageButton
         android:id="@+id/imgBtnLuogo"
-        android:layout_width="190dp"
-        android:layout_height="265dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/btnAltro"
-        app:layout_constraintTop_toBottomOf="@+id/txtUtente"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2"
         app:srcCompat="@drawable/baseline_place_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -85,14 +88,33 @@
 
     <Button
         android:id="@+id/btnAltro"
-        android:layout_width="195dp"
-        android:layout_height="310dp"
-        android:layout_marginTop="35dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
         android:backgroundTint="#FFFFFF"
         android:text="@string/Altro"
         android:textColor="#000000"
         android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCentro" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintGuide_percent="0.5"
+        tools:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"
+        tools:visibility="invisible"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

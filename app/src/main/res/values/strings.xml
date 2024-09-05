@@ -76,8 +76,9 @@
     <string name="Paese_di_provenienza">Paese di Provenienza</string>
     <string name="Registra">Registra</string>
     <string name="Conferma_password">Conferma Password</string>
-    <string name="luogo_di_provenienza">Luogo di Provenienza</string>
-    <string name="lorem_ipsum">Lorem Ipsum</string>
-    <string name="Medbox_PIN">Medbox PIN</string>
+    <string name="luogo_di_provenienza">Luogo_di:provenienza</string>
+    <string name="Medbox_PIN">Medbox_PIN</string>
+    <string name="Nomepatologia">NomePatologia</string>
+    <string name="lorem_ipsum">Aggiungi_una_patologia</string>
 
 </resources>
