@@ -80,5 +80,8 @@
     <string name="Medbox_PIN">Medbox_PIN</string>
     <string name="Nomepatologia">NomePatologia</string>
     <string name="lorem_ipsum">Aggiungi_una_patologia</string>
+    <string name="torna_indietro">Torna Indietro</string>
+    <string name="stile_di_vita_salutare">Stile di Vita Salutare</string>
+    <string name="altri_documenti_e_riferimenti_utili">Altri Documenti e Riferimenti Utili</string>
 
 </resources>
