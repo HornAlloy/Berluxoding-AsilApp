@@ -97,5 +97,11 @@
     <string name="assistenza_legale">Assistenza legale</string>
     <string name="supporto_linguistico">Supporto linguistico</string>
     <string name="indietro">Indietro</string>
+    <string name="valutazioni">Valutazioni</string>
+    <string name="valutaci">Valutaci</string>
+    <string name="valuta_il_tuo_centro_di_accoglienza">Valuta il tuo centro di accoglienza</string>
+    <string name="dai_un_feedback_descrittivo">Dai un feedback descrittivo</string>
+    <string name="valuta_asilapp">Valuta AsilApp</string>
+    <string name="invia">Invia</string>
 
 </resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Titolo -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valutaci"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Valutazione per il centro di accoglienza -->
+    <TextView
+        android:id="@+id/textViewCenterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valuta_il_tuo_centro_di_accoglienza"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"/>
+
+    <RatingBar
+        android:id="@+id/ratingBarCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="4"
+        android:layout_below="@id/textViewCenterTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCenterTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Commenti per il centro di accoglienza -->
+    <EditText
+        android:id="@+id/editTextCenterComments"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBarCenter"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/dai_un_feedback_descrittivo"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBarCenter"
+        tools:ignore="Autofill,DuplicateSpeakableTextCheck" />
+
+    <!-- Valutazione per l'app -->
+    <TextView
+        android:id="@+id/textViewAppTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valuta_asilapp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_below="@id/editTextCenterComments"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextCenterComments"/>
+
+    <RatingBar
+        android:id="@+id/ratingBarApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="4"
+        android:layout_below="@id/textViewAppTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewAppTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Commenti per l'app -->
+    <EditText
+        android:id="@+id/editTextAppComments"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/dai_un_feedback_descrittivo"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:layout_below="@id/ratingBarApp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/ratingBarApp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Bottone di invio -->
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/invia"
+        android:backgroundTint="#000000"
+        android:layout_below="@id/editTextAppComments"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextAppComments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
