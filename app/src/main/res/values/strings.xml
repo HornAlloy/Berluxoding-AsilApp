@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Firebase Database</string>
+    <string name="app_name">AsilApp</string>
     <string name="action_settings">Settings</string>
     <string name="menu_login">Log in</string>
     <string name="menu_logout">Log out</string>
@@ -51,7 +51,7 @@
     <string name="Patologie">Patologie</string>
     <string name="Misurazioni">Misurazioni</string>
     <string name="Spese">Spese</string>
-    <string name="aggiungi">Aggiungi</string>
+    <string name="aggiungi">+</string>
     <string name="Aggiungi">Aggiungi</string>
     <string name="patologia_1">Patologia 1</string>
     <string name="vedi">Vedi</string>
@@ -80,6 +80,7 @@
     <string name="Medbox_PIN">Medbox_PIN</string>
     <string name="Nomepatologia">NomePatologia</string>
     <string name="lorem_ipsum">Aggiungi_una_patologia</string>
+    <string name="dettagli">Dettagli</string>
     <string name="torna_indietro">Torna Indietro</string>
     <string name="stile_di_vita_salutare">Stile di Vita Salutare</string>
     <string name="altri_documenti_e_riferimenti_utili">Altri Documenti e Riferimenti Utili</string>
@@ -103,5 +104,6 @@
     <string name="dai_un_feedback_descrittivo">Dai un feedback descrittivo</string>
     <string name="valuta_asilapp">Valuta AsilApp</string>
     <string name="invia">Invia</string>
+
 
 </resources>

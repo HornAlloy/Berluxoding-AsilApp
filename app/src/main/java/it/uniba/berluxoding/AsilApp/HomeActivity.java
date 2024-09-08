@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         ibt1 = findViewById(R.id.button);
         ibt2 = findViewById(R.id.button2);
         ibt3 = findViewById(R.id.button3);
+
         ibt1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the profile button");

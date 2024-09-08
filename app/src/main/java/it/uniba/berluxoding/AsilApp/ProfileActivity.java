@@ -1,7 +1,9 @@
 package it.uniba.berluxoding.AsilApp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -87,6 +89,32 @@ public class ProfileActivity extends AppCompatActivity {
                         Log.e("FirebaseData", "Errore nella lettura del dato", databaseError.toException());
                     }
                 });
+
+        bt1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the profile button");
+                Intent openPage = new Intent(ProfileActivity.this,ListaPatologieActivity.class);
+                // passo all'attivazione dell'activity page1.java
+                startActivity(openPage);
+
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the information button");
+                Intent openPage = new Intent(ProfileActivity.this,ListaMisurazioniActivity.class);
+                // passo all'attivazione dell'activity page1.java
+                startActivity(openPage);
+            }
+        });
+        bt3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the medbox button");
+                Intent openPage = new Intent(ProfileActivity.this,ListaSpeseActivity.class);
+                // passo all'attivazione dell'activity page1.java
+                startActivity(openPage);
+            }
+        });
     }
 
 }
