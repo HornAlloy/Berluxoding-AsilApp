@@ -9,13 +9,14 @@
 
     <Button
         android:id="@+id/btnAggiungi"
-        android:layout_width="125dp"
-        android:layout_height="70dp"
-        android:backgroundTint="#000000"
-        android:text="@string/Aggiungi"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/plus"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck,VisualLintOverlap" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messagesList"
@@ -24,7 +25,7 @@
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_patologia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
