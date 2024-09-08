@@ -17,7 +17,7 @@
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:srcCompat="@drawable/baseline_home_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -25,24 +25,26 @@
         android:id="@+id/txtCentro"
         android:layout_width="85dp"
         android:layout_height="40dp"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="4dp"
         android:text="@string/Centro"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/txtUtente"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnCentro"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/imgBtnUtente"
         android:layout_width="150dp"
         android:layout_height="200dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:srcCompat="@drawable/baseline_person_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -50,12 +52,14 @@
         android:id="@+id/txtUtente"
         android:layout_width="85dp"
         android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="60dp"
         android:text="@string/Utente"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnUtente"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
@@ -114,6 +118,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5"
+        tools:visibility="invisible"
+        android:visibility="invisible"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0"
         tools:visibility="invisible"
         android:visibility="invisible"/>
 

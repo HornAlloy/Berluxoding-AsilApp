@@ -105,16 +105,15 @@
         android:id="@+id/button"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="65dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view4"
+        app:layout_constraintRight_toLeftOf="@id/button2"
         app:srcCompat="@drawable/baseline_personal_injury_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="15dp" />
 
     <TextView
         android:id="@+id/txtPatologie"
@@ -131,13 +130,12 @@
         android:id="@+id/button2"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="145dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/text_view4"
         app:srcCompat="@drawable/baseline_device_thermostat_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
@@ -158,13 +156,12 @@
         android:id="@+id/button3"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="275dp"
         android:layout_marginTop="65dp"
+        android:layout_marginStart="10dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/text_view4"
         app:srcCompat="@drawable/baseline_attach_money_24"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
@@ -180,5 +177,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
         tools:ignore="TextSizeCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintGuide_percent="0"
+        tools:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintGuide_percent="1"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

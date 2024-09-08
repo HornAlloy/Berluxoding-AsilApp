@@ -18,6 +18,7 @@
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
         android:src="@android:drawable/btn_star"
+        android:layout_centerHorizontal="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck"
