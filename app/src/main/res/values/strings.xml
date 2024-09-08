@@ -83,5 +83,19 @@
     <string name="torna_indietro">Torna Indietro</string>
     <string name="stile_di_vita_salutare">Stile di Vita Salutare</string>
     <string name="altri_documenti_e_riferimenti_utili">Altri Documenti e Riferimenti Utili</string>
+    <string name="informazioni_sui_centri_di_accoglienza">Informazioni sui Centri di Accoglienza</string>
+    <string name="questo_centro_offre_i_seguenti_servizi_alloggio_pasti_assistenza_sanitaria_e_supporto_legale">Questo centro offre i seguenti servizi: alloggio, pasti, assistenza sanitaria e supporto legale.</string>
+    <string name="servizi_offerti">Servizi Offerti:</string>
+    <string name="regolamento_e_norme_di_convivenza">Regolamento e Norme di Convivenza:</string>
+    <string name="_1_rispetto_reciproco_n2_pulizia_degli_spazi_comuni_n3_rispetto_degli_orari_dei_pasti_n4_collaborazione_con_il_personale">1. Rispetto reciproco\n2. Pulizia degli spazi comuni\n3. Rispetto degli orari dei pasti\n4. Collaborazione con il personale</string>
+    <string name="norme_di_buona_convivenza">Norme di Buona Convivenza:</string>
+    <string name="_1_rispettare_la_privacy_degli_altri_n2_non_fare_rumore_dopo_le_22_00_n3_segnalare_eventuali_problemi_al_personale">1. Rispettare la privacy degli altri\n2. Non fare rumore dopo le 22:00\n3. Segnalare eventuali problemi al personale</string>
+    <string name="questo_centro_ubicato_nel_centro_di_bari_e_offre_diversi_servizi_elencati_qui_sotto">Questo centro è ubicato nel centro di Bari e offre diversi servizi elencati qui sotto</string>
+    <string name="alloggio">Alloggio</string>
+    <string name="assistenza_sanitaria">Assistenza Sanitaria</string>
+    <string name="servizio_pasti">Servizio Pasti</string>
+    <string name="assistenza_legale">Assistenza legale</string>
+    <string name="supporto_linguistico">Supporto linguistico</string>
+    <string name="indietro">Indietro</string>
 
 </resources>
