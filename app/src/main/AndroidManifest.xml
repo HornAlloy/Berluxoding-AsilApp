@@ -8,6 +8,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AggiungiSpesaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModificaSpesaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DettagliSpesaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaSpeseActivity"
             android:exported="false" />
         <activity

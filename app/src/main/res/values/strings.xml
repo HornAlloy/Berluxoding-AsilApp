@@ -105,6 +105,9 @@
     <string name="valuta_asilapp">Valuta AsilApp</string>
     <string name="invia">Invia</string>
     <string name="plus">+</string>
+    <string name="ambito">Ambito</string>
+    <string name="data">Data di acquisto</string>
+    <string name="data2">Data di misurazione</string>
 
 
 </resources>
