@@ -30,9 +30,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button bt1;
 
     private EditText et1;
-    private  EditText et2;
+    private EditText et2;
     private EditText et3;
-    private  EditText et4;
+    private EditText et4;
     private EditText etg;
     private EditText etm;
     private EditText eta;
@@ -82,17 +82,17 @@ public class RegistrationActivity extends AppCompatActivity {
         String dataNascita = etg.getText().toString() + "/" + etm.getText().toString() + "/" +
                 eta.getText().toString();
 
-            Utente utente = new Utente();
-            utente.setNome(nome);
-            utente.setCognome(cognome);
-            utente.setLuogoProvenienza(luogoProvenienza);
-            utente.setDataNascita(dataNascita);
-            utente.setPin(medboxCode);
+        Utente utente = new Utente();
+        utente.setNome(nome);
+        utente.setCognome(cognome);
+        utente.setLuogoProvenienza(luogoProvenienza);
+        utente.setDataNascita(dataNascita);
+        utente.setPin(medboxCode);
 
-            mDatabase.child("AsilApp").child(mAuth.getCurrentUser().getUid()).child("anagrafica").setValue(utente);
-            Intent openPage = new Intent(RegistrationActivity.this, HomeActivity.class);
-            // passo all'attivazione dell'activity page1.java
-            startActivity(openPage);
+        mDatabase.child("AsilApp").child(mAuth.getCurrentUser().getUid()).child("anagrafica").setValue(utente);
+        Intent openPage = new Intent(RegistrationActivity.this, HomeActivity.class);
+        // passo all'attivazione dell'activity page1.java
+        startActivity(openPage);
     }
 
     private boolean validateForm() {

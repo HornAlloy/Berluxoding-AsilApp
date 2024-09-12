@@ -1,5 +1,8 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Spesa {
     private String id;
     private String data;
@@ -56,5 +59,17 @@ public class Spesa {
 
     public void setArticolo (String articolo) {
         this.articolo = articolo;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("ambito", ambito);
+        result.put("articolo", articolo);
+        result.put("costo", costo);
+        result.put("data", data);
+        result.put("orario", orario);
+
+        return result;
     }
 }

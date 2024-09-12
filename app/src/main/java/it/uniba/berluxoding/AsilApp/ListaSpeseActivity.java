@@ -29,7 +29,7 @@ import it.uniba.berluxoding.AsilApp.viewholder.SpesaViewHolder;
 
 public class ListaSpeseActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase, queryReference;
+    private DatabaseReference mDatabase;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
     private FirebaseRecyclerAdapter<Spesa, SpesaViewHolder> mAdapter;
@@ -81,7 +81,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
             @Override
             public SpesaViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new SpesaViewHolder(inflater.inflate(R.layout.item_post, viewGroup, false));
+                return new SpesaViewHolder(inflater.inflate(R.layout.item_spesa, viewGroup, false));
             }
 
             @Override
@@ -154,7 +154,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     public Query getQuery(DatabaseReference queryReference) {
         // My top posts by number of stars
-        Query mSpeseQuery = queryReference.orderByChild("data");
+        Query mSpeseQuery = queryReference.child("spese").child(getUid()).orderByChild("data");
 
         return mSpeseQuery;
     }
@@ -185,7 +185,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     private void eliminaSpesa(Spesa model) {
         // Elimina la spesa dal database Firebase
-        DatabaseReference spesaRef = mDatabase.child("spese").child(model.getId());
+        DatabaseReference spesaRef = mDatabase.child("spese").child(getUid()).child(model.getId());
+        spesaRef.removeValue();
+        spesaRef = mDatabase.child("spese-ambito").child(model.getAmbito()).child(getUid()).child(model.getId());
         spesaRef.removeValue();
     }
 

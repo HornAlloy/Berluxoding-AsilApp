@@ -108,6 +108,9 @@
     <string name="ambito">Ambito</string>
     <string name="data">Data di acquisto</string>
     <string name="data2">Data di misurazione</string>
+    <string name="articolo">Articolo</string>
+    <string name="costo">Costo</string>
+    <string name="salva">Salva</string>
 
 
 </resources>

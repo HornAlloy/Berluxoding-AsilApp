@@ -7,4 +7,120 @@
     android:layout_height="match_parent"
     tools:context=".AggiungiSpesaActivity">
 
+
+    <LinearLayout
+        android:id="@+id/inserimentoDati"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:id="@+id/editTextAmbito"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+            android:hint="@string/ambito"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editTextArticolo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+            android:hint="@string/articolo"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editTextCosto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:hint="@string/costo"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill,TextContrastCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextGiorno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="GG"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/editTextMese"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="MM"
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/editTextAnno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="AAAA"
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextOra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="oo"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/editTextMinuto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="mm"
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="@string/salva"
+            android:layout_marginTop="5dp"
+            tools:ignore="VisualLintButtonSize" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
