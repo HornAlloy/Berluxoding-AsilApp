@@ -7,4 +7,107 @@
     android:layout_height="match_parent"
     tools:context=".DettagliSpesaActivity">
 
+    <LinearLayout
+        android:id="@+id/inserimentoDati"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/txtAmbito"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/ambito"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill" />
+
+        <TextView
+            android:id="@+id/txArticolo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/articolo"
+            android:minHeight="48dp"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill" />
+
+        <TextView
+            android:id="@+id/txtCosto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/costo"
+            android:minHeight="48dp"
+            android:layout_marginTop="5dp"
+            tools:ignore="Autofill,TextContrastCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtGiorno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="GG"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/txtMese"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="MM"
+                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/txtAnno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="AAAA"
+                tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtOra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="oo"
+                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/txtMinuto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="mm"
+                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnIndietro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Indietro"
+            android:layout_marginTop="5dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

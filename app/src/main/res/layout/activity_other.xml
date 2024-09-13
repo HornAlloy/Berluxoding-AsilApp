@@ -33,26 +33,37 @@
 
         <Button
             android:id="@+id/btnAltriDoc"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
             android:text="Altri documenti e riferimenti utili"
-            tools:ignore="HardcodedText"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam"
             android:backgroundTint="#000000"
+            android:layout_marginStart="50dp"
+            app:layout_constraintStart_toStartOf="@id/guideline8"
             android:layout_marginTop="75dp"
             android:textStyle="bold"/>
         <Button
             android:id="@+id/btnValutazioni"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
             android:text="@string/valutazioni"
             tools:ignore="HardcodedText"
+            android:layout_marginStart="50dp"
             android:backgroundTint="#000000"
+            app:layout_constraintStart_toStartOf="@id/guideline8"
             android:layout_marginTop="25dp"
             android:textStyle="bold"/>
 
         <!-- Altri documenti e riferimenti utili -->
 
-
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintGuide_percent="0"
+            tools:visibility="invisible" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
