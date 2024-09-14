@@ -11,12 +11,13 @@
 
     <Button
         android:id="@+id/btnAggiungi"
-        android:layout_width="125dp"
-        android:layout_height="70dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="#000000"
         android:text="@string/aggiungi"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,7 +27,6 @@
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:layout_marginTop="80dp"
         tools:listitem="@layout/item_patologia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
