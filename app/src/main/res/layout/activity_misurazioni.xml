@@ -9,12 +9,13 @@
 
     <Button
         android:id="@+id/btnAggiungi"
-        android:layout_width="125dp"
-        android:layout_height="70dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:backgroundTint="#000000"
-        android:text="@string/Aggiungi"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_button"
+        android:text="@string/plus"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
