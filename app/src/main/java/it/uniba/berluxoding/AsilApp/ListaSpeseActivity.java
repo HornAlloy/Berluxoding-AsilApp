@@ -50,7 +50,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
 
-        RecyclerView mRecycler = findViewById(R.id.listaSpese);
+        mRecycler = findViewById(R.id.listaSpese);
         mRecycler.setHasFixedSize(true);
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));

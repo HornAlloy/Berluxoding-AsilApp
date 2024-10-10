@@ -1,11 +1,12 @@
 package it.uniba.berluxoding.AsilApp.model;
 
 public class Misurazione {
+    private String id;
     private String strumento;
     private String valore;
     private String data;
     private String orario;
-    private String id;
+
 
     public Misurazione () {
     }

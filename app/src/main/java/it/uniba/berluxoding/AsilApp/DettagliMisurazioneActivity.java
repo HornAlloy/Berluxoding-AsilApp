@@ -20,72 +20,73 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.berluxoding.AsilApp.model.Patologia;
-import it.uniba.berluxoding.AsilApp.model.Spesa;
+import it.uniba.berluxoding.AsilApp.model.Misurazione;
 
-public class DettagliPatologiaActivity extends AppCompatActivity {
+public class DettagliMisurazioneActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase, userRef;
-    private TextView nomeV, dataV, diagnostaV;
-    private String patologiaId;
+    private TextView strumentoV, valoreV, dataV, oraV;
     private Button btnIndietro;
-    final private String TAG = "DETTAGLI_PATOLOGIA_ACTIVITY";
-
+    private DatabaseReference mDatabase, userRef;
+    private String misurazioneId;
+    final private String TAG = "DETTAGLI_MISURAZIONE_ACTIVITY";
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dettagli_patologia);
+        setContentView(R.layout.activity_dettagli_misurazione);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Collegamento delle TextView dell'interfaccia
+        strumentoV = findViewById(R.id.strumento);
+        valoreV = findViewById(R.id.valore);
+        dataV = findViewById(R.id.dataMisurazione);
+        oraV = findViewById(R.id.oraMisurazione);
+        btnIndietro = findViewById(R.id.indietro);
+        // Inizializzazione Firebase Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
-
-        nomeV = findViewById(R.id.nomePatologia);
-        dataV = findViewById(R.id.dataDiagnosi);
-        diagnostaV = findViewById(R.id.diagnosta);
-        patologiaId = getIntent().getStringExtra(patologiaId);
-        btnIndietro = findViewById(R.id.indietro);
-
+        // Recupera lo spesaId passato tramite l'intent
+        misurazioneId = getIntent().getStringExtra("spesaId");
+        // Popola i dettagli della spesa
+        getMisurazione();
+        // Azione sul bottone Indietro
         btnIndietro.setOnClickListener(v -> {
             Log.d(TAG, "Back button pressed");
-            // Torna alla lista patologie
-            Intent intent = new Intent(DettagliPatologiaActivity.this, ListaPatologieActivity.class);
+            // Torna alla lista spese
+            Intent intent = new Intent(DettagliMisurazioneActivity.this, ListaMisurazioniActivity.class);
             startActivity(intent);
         });
-
-        getPatologia();
-
     }
 
-    private void getPatologia() {
-        DatabaseReference spesaRef = userRef.child("patologie").child(patologiaId);
+    private void getMisurazione() {
+        DatabaseReference spesaRef = userRef.child("misurazioni").child(misurazioneId);
 
         spesaRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Verifica se la patologia esiste
                 if (dataSnapshot.exists()) {
-                    Patologia patologia = dataSnapshot.getValue(Patologia.class);
+                    Misurazione misurazione = dataSnapshot.getValue(Misurazione.class);
 
                     // Popola le TextView con i dettagli della spesa
-                    if (patologia != null) {
-                        nomeV.setText(patologia.getNome());
-                        dataV.setText(patologia.getDataDiagnosi());
-                        diagnostaV.setText(patologia.getDataDiagnosi());
+                    if (misurazione != null) {
+                        strumentoV.setText(misurazione.getStrumento());
+                        valoreV.setText(misurazione.getValore());
+                        dataV.setText(misurazione.getData());
+                        oraV.setText(misurazione.getOrario());
                     }
                 } else {
-                    Log.e(TAG, "Patologia non trovata!");
+                    Log.e(TAG, "Misurazione non trovata!");
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAG, "Errore nel caricamento della patologia", databaseError.toException());
+                Log.e(TAG, "Errore nel caricamento della misurazione", databaseError.toException());
             }
         });
 
