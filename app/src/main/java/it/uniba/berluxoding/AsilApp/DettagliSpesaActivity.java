@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +27,9 @@ public class DettagliSpesaActivity extends AppCompatActivity {
 
     private TextView txtAmbito, txArticolo, txtCosto, txtGiorno, txtMese, txtAnno, txtOra, txtMinuto;
     private Button btnIndietro;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, userRef;
     private String spesaId;
+    final private String TAG = "DETTAGLI_SPESA_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +55,14 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         btnIndietro = findViewById(R.id.btnIndietro);
         // Inizializzazione Firebase Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        userRef = mDatabase.child("AsilApp").child(getUid());
         // Recupera lo spesaId passato tramite l'intent
         spesaId = getIntent().getStringExtra("spesaId");
         // Popola i dettagli della spesa
         loadSpesaDetails();
         // Azione sul bottone Indietro
         btnIndietro.setOnClickListener(v -> {
+            Log.d(TAG, "Back button pressed");
             // Torna alla lista spese
             Intent intent = new Intent(DettagliSpesaActivity.this, ListaSpeseActivity.class);
             startActivity(intent);
@@ -66,11 +70,8 @@ public class DettagliSpesaActivity extends AppCompatActivity {
     }
     // Metodo per caricare i dettagli della spesa da Firebase
     private void loadSpesaDetails() {
-        // Ottieni l'user ID dell'utente corrente
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         // Referenzia il nodo della spesa specifica
-        DatabaseReference spesaRef = mDatabase.child("spese").child(userId).child(spesaId);
+        DatabaseReference spesaRef = userRef.child("spese").child(spesaId);
 
         spesaRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -96,13 +97,19 @@ public class DettagliSpesaActivity extends AppCompatActivity {
                         txtMinuto.setText(orarioParts[1]);
                     }
                 } else {
-                    Log.e("DETTAGLI_SPESA", "Spesa non trovata!");
+                    Log.e(TAG, "Spesa non trovata!");
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("DETTAGLI_SPESA", "Errore nel caricamento della spesa", databaseError.toException());
+                Log.e(TAG, "Errore nel caricamento della spesa", databaseError.toException());
             }
         });
+    }
+
+    private String getUid() {
+        // Restituisce l'UID dell'utente attualmente loggato
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user != null ? user.getUid() : null;
     }
 }

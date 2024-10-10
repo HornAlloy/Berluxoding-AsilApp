@@ -4,6 +4,10 @@ public class Patologia {
     private String id;
     private String nome;
     private String dataDiagnosi;
+    /**
+     * Medico che ha diagnosticato la patologia.
+     */
+    private String diagnosta;
 
     public Patologia () {
 
@@ -31,5 +35,13 @@ public class Patologia {
 
     public void setNome (String nome) {
         this.nome = nome;
+    }
+
+    public String getDiagnosta () {
+        return diagnosta;
+    }
+
+    public void setDiagnosta (String diagnosta) {
+        this.diagnosta = diagnosta;
     }
 }

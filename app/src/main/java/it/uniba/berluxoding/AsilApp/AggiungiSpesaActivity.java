@@ -26,8 +26,10 @@ import it.uniba.berluxoding.AsilApp.model.Spesa;
 public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private Button salva;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, userRef;
+    private String userId;
     private EditText etAmbito, etArticolo, etCosto, anno, mese, giorno, ora, minuto;
+    final private String TAG = "AGGIUNGI_SPESA_ACTIVITY";
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         });
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userRef = mDatabase.child("AsilApp").child(userId);
 
         etAmbito = findViewById(R.id.editTextAmbito);
         etArticolo = findViewById(R.id.editTextArticolo);
@@ -61,7 +65,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         });
     }
     public void save() {
-        Log.d("AGGIUNGI_SPESA_ACTIVITY", "save");
+        Log.d(TAG, "save");
         if (!validateForm()) {
             return;
         }
@@ -79,16 +83,16 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         spesa.setData(dataSpesa);
         spesa.setOrario(orario);
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String spesaKey = mDatabase.child("AsilApp").child(userId).child("spese").push().getKey();
+        String spesaKey = userRef.child("spese").push().getKey();
         spesa.setId(spesaKey);
 
         Map<String, Object> spesaValues = spesa.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/spese/" + userId + "/" + spesaKey, spesaValues);
-        childUpdates.put("/spese-ambito/" + spesa.getAmbito() + "/" + userId + "/"  + spesaKey, spesaValues);
+        childUpdates.put("/AsilApp/" + userId + "/spese/" + spesaKey, spesaValues);
+        childUpdates.put("/AsilApp/" + userId + "/spese-ambito/" + spesa.getAmbito() + "/" + spesaKey, spesaValues);
         mDatabase.updateChildren(childUpdates);
+        Log.d(TAG, "spesa salvata");
 //        mDatabase.child("AsilApp").child(userId).child("spese").child(spesaKey).setValue(spesa);
 //        spesa.setId(spesaKey);
 //        mDatabase.child("AsilApp").child(userId).child("spese").child(spesa.getAmbito()).setValue(spesa);

@@ -111,6 +111,9 @@
     <string name="articolo">Articolo</string>
     <string name="costo">Costo</string>
     <string name="salva">Salva</string>
+    <string name="nome_patologia">Diabete</string>
+    <string name="data_diagnosi">99/99/9999</string>
+    <string name="dottore">Dr. Zivago</string>
 
 
 </resources>

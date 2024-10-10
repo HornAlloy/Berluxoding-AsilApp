@@ -29,7 +29,7 @@ import it.uniba.berluxoding.AsilApp.viewholder.SpesaViewHolder;
 
 public class ListaSpeseActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, userRef;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
     private FirebaseRecyclerAdapter<Spesa, SpesaViewHolder> mAdapter;
@@ -48,8 +48,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
         });
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        userRef = mDatabase.child("AsilApp").child(getUid());
 
-        RecyclerView mRecycler = findViewById(R.id.messagesList);
+        RecyclerView mRecycler = findViewById(R.id.listaSpese);
         mRecycler.setHasFixedSize(true);
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -61,7 +62,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
         mRecycler.setLayoutManager(mManager);
 
         // Ottieni la query dal database Firebase
-        Query spesaQuery = getQuery(mDatabase);
+        Query spesaQuery = getQuery(userRef);
 
         // Configura FirebaseRecyclerOptions
         FirebaseRecyclerOptions<Spesa> options = new FirebaseRecyclerOptions.Builder<Spesa>()
@@ -154,7 +155,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     public Query getQuery(DatabaseReference queryReference) {
         // My top posts by number of stars
-        Query mSpeseQuery = queryReference.child("spese").child(getUid()).orderByChild("data");
+        Query mSpeseQuery = queryReference.child("spese").orderByChild("data");
 
         return mSpeseQuery;
     }
@@ -163,10 +164,6 @@ public class ListaSpeseActivity extends AppCompatActivity {
         // Restituisce l'UID dell'utente attualmente loggato
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user != null ? user.getUid() : null;
-    }
-
-    private void onStarClicked(DatabaseReference postRef) {
-        // Implementa la logica per gestire il click sul like (stella)
     }
 
     private void mostraDettagli(Spesa model) {
@@ -185,9 +182,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     private void eliminaSpesa(Spesa model) {
         // Elimina la spesa dal database Firebase
-        DatabaseReference spesaRef = mDatabase.child("spese").child(getUid()).child(model.getId());
+        DatabaseReference spesaRef = userRef.child("spese").child(model.getId());
         spesaRef.removeValue();
-        spesaRef = mDatabase.child("spese-ambito").child(model.getAmbito()).child(getUid()).child(model.getId());
+        spesaRef = userRef.child("spese-ambito").child(model.getAmbito()).child(model.getId());
         spesaRef.removeValue();
     }
 
