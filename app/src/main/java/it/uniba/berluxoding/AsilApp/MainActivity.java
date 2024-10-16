@@ -54,7 +54,7 @@ public class  MainActivity extends AppCompatActivity {
                 // passo all'attivazione dell'activity page1.java
                 startActivity(openPage);
             }
-        }, 5000);
+        }, 2000);
 
 
 

@@ -7,42 +7,63 @@
     android:layout_height="match_parent"
     tools:context=".MedboxActivity">
 
+    <!-- Contenitore per il Fragment -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?android:attr/selectableItemBackground" >
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/button"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="#000000"
         android:text="@string/strumento"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:minWidth="300dp"
+        android:minHeight="70dp"
+        app:layout_constraintStart_toStartOf="@id/button2"
+        app:layout_constraintBottom_toTopOf="@id/button2"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#000000"
-        android:text="@string/strumento"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/button" />
-
-    <Button
         android:id="@+id/button3"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="#000000"
         android:text="@string/strumento"
         android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@id/button"
+        android:minWidth="300dp"
+        android:minHeight="70dp"
+        app:layout_constraintStart_toStartOf="@id/button2"
         app:layout_constraintTop_toBottomOf="@id/button2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:backgroundTint="#000000"
+        android:minWidth="300dp"
+        android:minHeight="70dp"
+        android:text="@string/strumento"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,32 +41,32 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Inizializzazione Firebase Database
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userRef = mDatabase.child("AsilApp").child(getUid());
         // Collegamento delle TextView dell'interfaccia
         strumentoV = findViewById(R.id.strumento);
         valoreV = findViewById(R.id.valore);
         dataV = findViewById(R.id.dataMisurazione);
         oraV = findViewById(R.id.oraMisurazione);
         btnIndietro = findViewById(R.id.indietro);
-        // Inizializzazione Firebase Database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        userRef = mDatabase.child("AsilApp").child(getUid());
-        // Recupera lo spesaId passato tramite l'intent
-        misurazioneId = getIntent().getStringExtra("spesaId");
-        // Popola i dettagli della spesa
+        // Recupera il misurazioneId passato tramite l'intent
+        misurazioneId = getIntent().getStringExtra("misurazioneId");
+        // Popola i dettagli della misurazione
         getMisurazione();
         // Azione sul bottone Indietro
         btnIndietro.setOnClickListener(v -> {
             Log.d(TAG, "Back button pressed");
-            // Torna alla lista spese
+            // Torna alla lista misurazioni
             Intent intent = new Intent(DettagliMisurazioneActivity.this, ListaMisurazioniActivity.class);
             startActivity(intent);
         });
     }
 
     private void getMisurazione() {
-        DatabaseReference spesaRef = userRef.child("misurazioni").child(misurazioneId);
+        DatabaseReference misurazioneRef = userRef.child("misurazioni").child(misurazioneId);
 
-        spesaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        misurazioneRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Verifica se la patologia esiste
