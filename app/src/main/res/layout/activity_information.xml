@@ -9,6 +9,30 @@
     tools:context=".InformationActivity" >
 
     <ImageButton
+        android:id="@+id/imgBtnAltro"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2"
+        app:srcCompat="@drawable/baseline_more_horiz_24"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+    <TextView
+        android:id="@+id/txtAltro"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/Altro"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnAltro"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
         android:id="@+id/imgBtnCentro"
         android:layout_width="150dp"
         android:layout_height="200dp"
@@ -81,27 +105,11 @@
         android:layout_height="40dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="76dp"
         android:text="@string/Luogo"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnAltro"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnLuogo"
         tools:ignore="TextSizeCheck" />
-
-    <Button
-        android:id="@+id/btnAltro"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/Altro"
-        android:textColor="#000000"
-        android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
