@@ -11,10 +11,10 @@
         android:id="@+id/btnAggiungi"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="#004071"
         android:background="@drawable/rounded_button"
         android:text="@string/plus"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

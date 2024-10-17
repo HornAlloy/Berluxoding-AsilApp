@@ -3,14 +3,14 @@
     <!-- Stato quando il bottone è premuto -->
     <item android:state_pressed="true">
         <shape android:shape="oval">
-            <solid android:color="@color/BluUniba" />
+            <solid android:color="#3A7FB3" />
             <size android:width="75dp" android:height="75dp" />
         </shape>
     </item>
     <!-- Stato predefinito -->
     <item>
         <shape android:shape="oval">
-            <solid android:color="#3A7FB3" />
+            <solid android:color="#004071" />
             <size android:width="75dp" android:height="75dp" />
         </shape>
     </item>
