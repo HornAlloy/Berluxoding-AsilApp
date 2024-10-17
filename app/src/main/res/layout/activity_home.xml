@@ -9,88 +9,87 @@
     tools:context=".HomeActivity">
 
 
-    <ImageButton
-        android:id="@+id/button"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="90dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline7"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-        tools:src="@drawable/baseline_person_24" />
+    <LinearLayout
+        android:id="@+id/layoutHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@android:color/white">
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="90dp"
+            android:backgroundTint="#FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+            tools:src="@drawable/baseline_person_24" />
 
-    <TextView
-        android:id="@+id/txtProfilo"
-        android:layout_width="65dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="172dp"
-        android:text="@string/profilo"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/txtProfilo"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="160dp"
+            android:text="@string/profilo"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            tools:ignore="TextSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/button2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtProfilo"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-        tools:src="@drawable/baseline_info_outline_24" />
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtProfilo"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+            tools:src="@drawable/baseline_info_outline_24" />
 
-    <TextView
-        android:id="@+id/txtInformativa"
-        android:layout_width="185dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="112dp"
-        android:text="@string/sezione_informativa"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/txtInformativa"
+            android:layout_width="185dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="105dp"
+            android:text="@string/sezione_informativa"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            tools:ignore="TextSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/button3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtInformativa"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-        tools:src="@drawable/baseline_add_box_24" />
+        <ImageButton
+            android:id="@+id/button3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInformativa"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+            tools:src="@drawable/baseline_add_box_24" />
 
-    <TextView
-        android:id="@+id/txtMedBox"
-        android:layout_width="200dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="112dp"
-        android:text="@string/connessione_medbox"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/txtMedBox"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="105dp"
+            android:text="@string/connessione_medbox"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            tools:ignore="TextSizeCheck" />
+    </LinearLayout>
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible"
-        android:visibility="invisible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

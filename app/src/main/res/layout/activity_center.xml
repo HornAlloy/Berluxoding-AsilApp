@@ -176,15 +176,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_convivenza_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-    <Button
-        android:id="@+id/btnIndietro"
-        android:layout_width="400dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="#000000"
-        android:text="@string/indietro"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_convivenza_description"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

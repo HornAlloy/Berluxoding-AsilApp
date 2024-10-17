@@ -8,192 +8,205 @@
     android:background="#FFFFFF"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/txtLnome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/nome"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintEnd_toEndOf="@id/guideline5"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtLnome" />
-
-    <TextView
-        android:id="@+id/txtLCognome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/cognome"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view"
-        tools:ignore="TextSizeCheck" />
-
-    <TextView
-        android:id="@+id/text_view2"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintEnd_toEndOf="@id/guideline5"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtLCognome" />
-
-    <TextView
-        android:id="@+id/txtLDataNascita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/data_di_nascita"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view2"
-        tools:ignore="TextSizeCheck" />
-
-    <TextView
-        android:id="@+id/text_view3"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintEnd_toEndOf="@id/guideline5"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtLDataNascita" />
-
-    <TextView
-        android:id="@+id/txtLLuogoProvenienza"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/luogo_di_provenienza"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view3"
-        tools:ignore="TextSizeCheck" />
-
-    <TextView
-        android:id="@+id/text_view4"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintEnd_toEndOf="@id/guideline5"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtLLuogoProvenienza" />
-
-
-    <ImageButton
-        android:id="@+id/button"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toBottomOf="@+id/text_view4"
-        app:layout_constraintRight_toLeftOf="@id/button2"
-        app:srcCompat="@drawable/baseline_personal_injury_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-        tools:layout_editor_absoluteX="15dp" />
-
-    <TextView
-        android:id="@+id/txtPatologie"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:text="@string/Patologie"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="TextSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/button2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view4"
-        app:srcCompat="@drawable/baseline_device_thermostat_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/txtMisurazione"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="2dp"
-        android:text="@string/Misurazioni"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:ignore="TextSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/button3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginStart="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/text_view4"
-        app:srcCompat="@drawable/baseline_attach_money_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/txtSpese"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="305dp"
-        android:layout_marginTop="2dp"
-        android:text="@string/Spese"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        tools:ignore="TextSizeCheck" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutAnagrafica"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible" />
+        android:padding="16dp"
+        android:background="@android:color/white">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintGuide_percent="1"
-        tools:visibility="invisible" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/scheda_personale"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/black" />
 
+        <TextView
+            android:id="@+id/tvNomeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mario"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvCognomeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cognome"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvCognome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rossi"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvUsernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mario.rossi"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvPaeseDiProvenienzaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paese di Provenienza"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvPaeseDiProvenienza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Italia"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvDataNascitaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data di Nascita"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvDataNascita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/01/1990"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"> <!-- Imposta lo stretching automatico delle colonne, se necessario -->
+
+            <!-- Prima riga: ImageButtons -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/button"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view4"
+                    app:layout_constraintRight_toLeftOf="@id/button2"
+                    app:srcCompat="@drawable/baseline_personal_injury_24"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+                    tools:layout_editor_absoluteX="15dp" />
+                <ImageButton
+                    android:id="@+id/button2"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="65dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view4"
+                    app:srcCompat="@drawable/baseline_device_thermostat_24"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                <ImageButton
+                    android:id="@+id/button3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/button2"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view4"
+                    app:srcCompat="@drawable/baseline_attach_money_24"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            </TableRow>
+
+            <!-- Seconda riga: TextViews (Label) -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtPatologie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/Patologie"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/black"
+                    tools:ignore="InvalidId" />
+
+                <TextView
+                    android:id="@+id/txtMisurazione"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/Misurazioni"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/black"
+                    tools:ignore="InvalidId" />
+
+                <TextView
+                    android:id="@+id/txtSpese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Spese"
+                    android:layout_marginStart="40dp"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/black"
+                    tools:ignore="InvalidId" />
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

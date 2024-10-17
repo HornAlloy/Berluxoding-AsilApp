@@ -18,7 +18,7 @@
             android:layout_height="70dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#004071"
             android:text="@string/dettagli"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"

@@ -31,7 +31,6 @@
     <string name="medbox">"MedBox"</string>
     <string name="patologie">"Patologie"</string>
     <string name="misurazioni">"Misurazioni"</string>
-    <string name="spese">"Spese"</string>
     <string name="utente">"Utente"</string>
     <string name="centro">"CentroDiAccoglienza"</string>
     <string name="luogo">"Luogo"</string>
@@ -119,6 +118,7 @@
     <string name="pin">Inserisci il PIN</string>
     <string name="invia_pin">Invia PIN</string>
     <string name="attendere">Attendere la risposta dal Medbox...</string>
+    <string name="scheda_personale">Scheda Personale</string>
 
 
 </resources>
