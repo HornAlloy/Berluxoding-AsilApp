@@ -24,15 +24,15 @@
             android:layout_height="30dp"
             android:text="@string/ambito"
             android:textSize="15sp"
-            android:textColor="@color/black"
             tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/txtAmbito"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="30dp"
             android:hint="@string/ambito"
             android:layout_marginTop="5dp"
+            android:textColor="@color/black"
             tools:ignore="Autofill" />
         <TextView
             android:id="@+id/lblArticolo"
@@ -40,16 +40,16 @@
             android:layout_height="30dp"
             android:text="@string/articolo"
             android:textSize="15sp"
-            android:textColor="@color/black"
             tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/txArticolo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="@string/articolo"
             android:minHeight="48dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/black"
             tools:ignore="Autofill" />
 
         <TextView
@@ -58,15 +58,15 @@
             android:layout_height="30dp"
             android:text="@string/costo"
             android:textSize="15sp"
-            android:textColor="@color/black"
             tools:ignore="TextSizeCheck" />
         <TextView
             android:id="@+id/txtCosto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="@string/costo"
             android:minHeight="48dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/black"
             tools:ignore="Autofill,TextContrastCheck" />
         <TextView
             android:id="@+id/lblData"
@@ -74,7 +74,6 @@
             android:layout_height="30dp"
             android:text="@string/Data_acquisto"
             android:textSize="15sp"
-            android:textColor="@color/black"
             tools:ignore="TextSizeCheck" />
 
         <LinearLayout
@@ -89,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="GG"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
             <TextView
@@ -107,6 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:hint="MM"
                 tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
@@ -126,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="AAAA"
+                android:textColor="@color/black"
                 tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
@@ -135,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="oo"
+                android:textColor="@color/black"
                 tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
             <TextView
@@ -143,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="mm"
+                android:textColor="@color/black"
                 tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
     </LinearLayout>
