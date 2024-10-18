@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
-import it.uniba.berluxoding.AsilApp.controller.profilo.misurazioni.DettagliMisurazioneActivity;
+import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliMisurazioneActivity;
 
 /**
  * A simple {@link Fragment} subclass.

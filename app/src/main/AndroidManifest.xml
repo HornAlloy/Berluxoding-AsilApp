@@ -8,28 +8,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".controller.profilo.misurazioni.DettagliMisurazioneActivity"
+            android:name=".controller.profilo.dettagli.DettagliMisurazioneActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.patologie.DettagliPatologiaActivity"
+            android:name=".controller.profilo.dettagli.DettagliPatologiaActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.gestionespese.AggiungiSpesaActivity"
+            android:name=".controller.profilo.aggiunta.AggiungiSpesaActivity"
             android:exported="false" />
         <activity
             android:name=".ModificaSpesaActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.gestionespese.DettagliSpesaActivity"
+            android:name=".controller.profilo.dettagli.DettagliSpesaActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.gestionespese.ListaSpeseActivity"
+            android:name=".controller.profilo.liste.ListaSpeseActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.misurazioni.ListaMisurazioniActivity"
+            android:name=".controller.profilo.liste.ListaMisurazioniActivity"
             android:exported="false" />
         <activity
-            android:name=".controller.profilo.patologie.ListaPatologieActivity"
+            android:name=".controller.profilo.liste.ListaPatologieActivity"
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity

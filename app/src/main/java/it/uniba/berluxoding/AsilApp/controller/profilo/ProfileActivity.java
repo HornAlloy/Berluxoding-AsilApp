@@ -21,9 +21,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.berluxoding.AsilApp.R;
-import it.uniba.berluxoding.AsilApp.controller.profilo.gestionespese.ListaSpeseActivity;
-import it.uniba.berluxoding.AsilApp.controller.profilo.misurazioni.ListaMisurazioniActivity;
-import it.uniba.berluxoding.AsilApp.controller.profilo.patologie.ListaPatologieActivity;
+import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
+import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaMisurazioniActivity;
+import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaPatologieActivity;
 import it.uniba.berluxoding.AsilApp.model.Utente;
 
 public class ProfileActivity extends AppCompatActivity {

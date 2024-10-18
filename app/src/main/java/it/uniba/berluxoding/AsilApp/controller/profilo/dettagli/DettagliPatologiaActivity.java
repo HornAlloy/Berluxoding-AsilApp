@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.patologie;
+package it.uniba.berluxoding.AsilApp.controller.profilo.dettagli;
 
 import android.os.Bundle;
 import android.util.Log;

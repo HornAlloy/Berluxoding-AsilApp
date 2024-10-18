@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.gestionespese;
+package it.uniba.berluxoding.AsilApp.controller.profilo.liste;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,8 @@ import com.google.firebase.database.Query;
 
 import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.profilo.aggiunta.AggiungiSpesaActivity;
+import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliSpesaActivity;
 import it.uniba.berluxoding.AsilApp.model.Spesa;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.SpesaViewHolder;
 

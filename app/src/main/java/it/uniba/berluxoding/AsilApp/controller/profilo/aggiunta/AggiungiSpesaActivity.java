@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.gestionespese;
+package it.uniba.berluxoding.AsilApp.controller.profilo.aggiunta;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
 import it.uniba.berluxoding.AsilApp.model.Spesa;
 
 public class AggiungiSpesaActivity extends AppCompatActivity {

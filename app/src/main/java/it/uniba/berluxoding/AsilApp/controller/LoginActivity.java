@@ -90,7 +90,9 @@ public class LoginActivity extends AppCompatActivity {
             signUp();
         });
 
-        btnBackdoor.setOnClickListener( v -> startActivity( new Intent( LoginActivity.this, HomeActivity.class) ) );
+        btnBackdoor.setOnClickListener( v -> {
+            authentication ("username@abcd.com", "password");
+        } );
 
 
     }
@@ -116,12 +118,16 @@ public class LoginActivity extends AppCompatActivity {
         String email = et1.getText().toString();
         String password = et2.getText().toString();
 
+        authentication(email, password);
+    }
+
+    private void authentication (String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signIn:onComplete:" + task.isSuccessful());
-                       // hideProgressBar();
+                        // hideProgressBar();
 
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());

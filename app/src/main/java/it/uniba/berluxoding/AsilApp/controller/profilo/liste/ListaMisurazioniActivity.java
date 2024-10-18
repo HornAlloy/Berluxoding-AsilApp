@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.misurazioni;
+package it.uniba.berluxoding.AsilApp.controller.profilo.liste;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ import com.google.firebase.database.Query;
 
 import it.uniba.berluxoding.AsilApp.controller.medbox.MedboxActivity;
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliMisurazioneActivity;
 import it.uniba.berluxoding.AsilApp.model.Misurazione;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.MisurazioneViewHolder;
 

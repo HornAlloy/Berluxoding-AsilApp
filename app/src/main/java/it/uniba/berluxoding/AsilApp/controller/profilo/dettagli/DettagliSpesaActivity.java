@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.gestionespese;
+package it.uniba.berluxoding.AsilApp.controller.profilo.dettagli;
 
 import android.os.Bundle;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.profilo.patologie;
+package it.uniba.berluxoding.AsilApp.controller.profilo.liste;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliPatologiaActivity;
 import it.uniba.berluxoding.AsilApp.model.Patologia;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.PatologiaViewHolder;
 
