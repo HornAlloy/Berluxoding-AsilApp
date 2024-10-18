@@ -17,18 +17,17 @@
         android:padding="16dp"
         android:background="@android:color/white">
         <ImageButton
-            android:id="@+id/button"
+            android:id="@+id/imgBtnProfilo"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:background="#FFFFFF"
             android:layout_marginStart="130dp"
-            android:layout_marginTop="90dp"
-            android:backgroundTint="#FFFFFF"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="50dp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-            tools:src="@drawable/baseline_person_24" />
+            app:layout_constraintTop_toBottomOf="parent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/baseline_person_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/txtProfilo"
@@ -38,21 +37,21 @@
             android:text="@string/profilo"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnProfilo"
             tools:ignore="TextSizeCheck" />
 
         <ImageButton
-            android:id="@+id/button2"
+            android:id="@+id/imgBtnInformativa"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:background="#FFFFFF"
             android:layout_marginStart="130dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#FFFFFF"
-            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtProfilo"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-            tools:src="@drawable/baseline_info_outline_24" />
+            app:layout_constraintTop_toBottomOf="parent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/baseline_info_outline_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/txtInformativa"
@@ -62,21 +61,21 @@
             android:text="@string/sezione_informativa"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnInformativa"
             tools:ignore="TextSizeCheck" />
 
         <ImageButton
-            android:id="@+id/button3"
+            android:id="@+id/imgBtnMedBox"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:background="#FFFFFF"
             android:layout_marginStart="130dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#FFFFFF"
-            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtInformativa"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
-            tools:src="@drawable/baseline_add_box_24" />
+            app:layout_constraintTop_toBottomOf="parent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/baseline_add_box_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/txtMedBox"
@@ -88,6 +87,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button3"
             tools:ignore="TextSizeCheck" />
+
+
     </LinearLayout>
 
 
