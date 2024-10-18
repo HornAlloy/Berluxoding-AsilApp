@@ -28,9 +28,9 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        ibt1 = findViewById(R.id.button);
-        ibt2 = findViewById(R.id.button2);
-        ibt3 = findViewById(R.id.button3);
+        ibt1 = findViewById(R.id.imgBtnProfilo);
+        ibt2 = findViewById(R.id.imgBtnInformativa);
+        ibt3 = findViewById(R.id.imgBtnMedBox);
 
         ibt1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
