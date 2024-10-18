@@ -19,19 +19,14 @@ package it.uniba.berluxoding.AsilApp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import it.uniba.berluxoding.AsilApp.R;
-import it.uniba.berluxoding.AsilApp.databinding.ActivityMainBinding;
+
+import it.uniba.berluxoding.AsilApp.controller.LoginActivity;
 
 public class  MainActivity extends AppCompatActivity {
 
@@ -50,7 +45,7 @@ public class  MainActivity extends AppCompatActivity {
             public void run() {
 
                 // definisco l'intenzione di aprire l'Activity "Page1.java"
-                Intent openPage = new Intent(MainActivity.this,LoginActivity.class);
+                Intent openPage = new Intent(MainActivity.this, LoginActivity.class);
                 // passo all'attivazione dell'activity page1.java
                 startActivity(openPage);
             }

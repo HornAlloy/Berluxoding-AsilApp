@@ -8,50 +8,50 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".DettagliMisurazioneActivity"
+            android:name=".controller.profilo.misurazioni.DettagliMisurazioneActivity"
             android:exported="false" />
         <activity
-            android:name=".DettagliPatologiaActivity"
+            android:name=".controller.profilo.patologie.DettagliPatologiaActivity"
             android:exported="false" />
         <activity
-            android:name=".AggiungiSpesaActivity"
+            android:name=".controller.profilo.gestionespese.AggiungiSpesaActivity"
             android:exported="false" />
         <activity
             android:name=".ModificaSpesaActivity"
             android:exported="false" />
         <activity
-            android:name=".DettagliSpesaActivity"
+            android:name=".controller.profilo.gestionespese.DettagliSpesaActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaSpeseActivity"
+            android:name=".controller.profilo.gestionespese.ListaSpeseActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaMisurazioniActivity"
+            android:name=".controller.profilo.misurazioni.ListaMisurazioniActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaPatologieActivity"
+            android:name=".controller.profilo.patologie.ListaPatologieActivity"
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".controller.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".MedboxActivity"
+            android:name=".controller.medbox.MedboxActivity"
             android:exported="false" />
         <activity
-            android:name=".InformationActivity"
+            android:name=".controller.informazioni.InformationActivity"
             android:exported="false" />
         <activity
-            android:name=".DatiActivity"
+            android:name=".trashcan.DatiActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".controller.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".controller.profilo.ProfileActivity"
             android:exported="false" />
         <!--
        <activity
