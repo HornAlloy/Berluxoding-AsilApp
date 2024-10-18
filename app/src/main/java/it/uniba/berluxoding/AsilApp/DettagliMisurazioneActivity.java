@@ -49,18 +49,21 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         valoreV = findViewById(R.id.valore);
         dataV = findViewById(R.id.dataMisurazione);
         oraV = findViewById(R.id.oraMisurazione);
-        btnIndietro = findViewById(R.id.indietro);
+        //btnIndietro = findViewById(R.id.indietro);
         // Recupera il misurazioneId passato tramite l'intent
         misurazioneId = getIntent().getStringExtra("misurazioneId");
         // Popola i dettagli della misurazione
         getMisurazione();
         // Azione sul bottone Indietro
+        /*
         btnIndietro.setOnClickListener(v -> {
             Log.d(TAG, "Back button pressed");
             // Torna alla lista misurazioni
             Intent intent = new Intent(DettagliMisurazioneActivity.this, ListaMisurazioniActivity.class);
             startActivity(intent);
         });
+         */
+
     }
 
     private void getMisurazione() {

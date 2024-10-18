@@ -53,10 +53,10 @@ public class ProfileActivity extends AppCompatActivity {
         bt2 = findViewById(R.id.button2);
         bt3 = findViewById(R.id.button3);
 
-        tv1 = findViewById(R.id.text_view);
-        tv2 = findViewById(R.id.text_view2);
-        tv3 = findViewById(R.id.text_view3);
-        tv4 = findViewById(R.id.text_view4);
+        //tv1 = findViewById(R.id.text_view);
+        //tv2 = findViewById(R.id.text_view2);
+        //tv3 = findViewById(R.id.text_view3);
+        //tv4 = findViewById(R.id.text_view4);
         getUtente();
 
         bt1.setOnClickListener(new View.OnClickListener() {

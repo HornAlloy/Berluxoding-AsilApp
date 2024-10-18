@@ -50,14 +50,16 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
         dataV = findViewById(R.id.dataDiagnosi);
         diagnostaV = findViewById(R.id.diagnosta);
         patologiaId = getIntent().getStringExtra(patologiaId);
-        btnIndietro = findViewById(R.id.indietro);
-
+        //btnIndietro = findViewById(R.id.indietro);
+        /*
         btnIndietro.setOnClickListener(v -> {
             Log.d(TAG, "Back button pressed");
             // Torna alla lista patologie
             Intent intent = new Intent(DettagliPatologiaActivity.this, ListaPatologieActivity.class);
             startActivity(intent);
         });
+         */
+
 
         getPatologia();
 

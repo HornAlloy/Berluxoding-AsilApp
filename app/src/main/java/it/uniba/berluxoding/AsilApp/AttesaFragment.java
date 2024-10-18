@@ -64,14 +64,16 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
 
     private void setListener (DatabaseReference listenerPath) {
         // Listener per ricevere la risposta
-        listenerPath.addListenerForSingleValueEvent(new ValueEventListener() {
+        listenerPath.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String userId = dataSnapshot.child("userId").getValue(String.class);
+
                     misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
 
-                    Log.d("Firebase", "Risposta ricevuta: userId=" + userId + ", risultato=" + misurazioneId);
+                    Log.d("Firebase", "Risposta ricevuta: userId=" + ", risultato=" + misurazioneId);
+
+                    listenerPath.removeEventListener(this);
 
                     // Elimina la risposta dopo averla letta
                     listenerPath.removeValue()

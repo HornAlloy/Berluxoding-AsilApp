@@ -52,7 +52,7 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         txtAnno = findViewById(R.id.txtAnno);
         txtOra = findViewById(R.id.txtOra);
         txtMinuto = findViewById(R.id.txtMinuto);
-        btnIndietro = findViewById(R.id.btnIndietro);
+        //btnIndietro = findViewById(R.id.btnIndietro);
         // Inizializzazione Firebase Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
@@ -61,12 +61,15 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         // Popola i dettagli della spesa
         loadSpesaDetails();
         // Azione sul bottone Indietro
+        /*
         btnIndietro.setOnClickListener(v -> {
             Log.d(TAG, "Back button pressed");
             // Torna alla lista spese
             Intent intent = new Intent(DettagliSpesaActivity.this, ListaSpeseActivity.class);
             startActivity(intent);
         });
+         */
+
     }
     // Metodo per caricare i dettagli della spesa da Firebase
     private void loadSpesaDetails() {

@@ -68,6 +68,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
 
         if(getArguments() != null) {
             strumento = getArguments().getString("strumento");
+            Log.d("strumento = ", strumento);
         }
 
 
@@ -126,8 +127,8 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
 
             // Creiamo un HashMap per inviare i dati della richiesta
             HashMap<String, Object> richiestaMap = new HashMap<>();
-            richiestaMap.put("userId", "dsajhfaskhjADGdsad"); // esempio di userId
-            richiestaMap.put("strumento", "chitarra"); // servizio richiesto
+            richiestaMap.put("userId", getUid()); // esempio di userId
+            richiestaMap.put("strumento", strumento); // servizio richiesto
 
             // Invia la richiesta
             richiestaRef.setValue(richiestaMap)

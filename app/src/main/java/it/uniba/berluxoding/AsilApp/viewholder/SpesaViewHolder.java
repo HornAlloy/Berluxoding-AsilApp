@@ -22,7 +22,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
             ambitoView = itemView.findViewById(R.id.textView);
             dataView = itemView.findViewById(R.id.textView2);
             dettagliView = itemView.findViewById(R.id.btnVedi);
-            aggiornaView = itemView.findViewById(R.id.btnAggiorna);
+            //aggiornaView = itemView.findViewById(R.id.btnAggiorna);
             cancellaView = itemView.findViewById(R.id.btnCancella);
         }
 
