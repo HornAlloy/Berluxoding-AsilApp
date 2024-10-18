@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar pr;
     private Button bt1;
     private Button bt2;
+    private Button btnBackdoor;
 
     private  EditText et1;
     private  EditText et2;
@@ -74,21 +75,22 @@ public class LoginActivity extends AppCompatActivity {
         et2 = findViewById(R.id.fieldPassword);
       //  String value2 =et2.getText().toString();
 
-        bt1 = (Button) findViewById(R.id.buttonSignIn);
-        bt1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the SignIn button");
-                signIn();
-            }
+        bt1 = findViewById(R.id.buttonSignIn);
+        bt2 = findViewById(R.id.buttonSignUp);
+        btnBackdoor = findViewById(R.id.backdoor);
+
+        bt1.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the SignIn button");
+            signIn();
         });
 
-        bt2 = (Button) findViewById(R.id.buttonSignUp);
-        bt2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the SignUp button");
-                signUp();
-            }
+
+        bt2.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the SignUp button");
+            signUp();
         });
+
+        btnBackdoor.setOnClickListener( v -> startActivity( new Intent( LoginActivity.this, HomeActivity.class) ) );
 
 
     }
