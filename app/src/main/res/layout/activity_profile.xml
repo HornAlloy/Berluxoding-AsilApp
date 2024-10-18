@@ -95,10 +95,10 @@
             android:id="@+id/tvPaeseDiProvenienza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Italia"
-            android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black" />
+            android:text="Italia"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvDataNascitaLabel"

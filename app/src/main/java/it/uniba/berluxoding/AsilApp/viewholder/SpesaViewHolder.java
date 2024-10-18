@@ -31,7 +31,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
             dataView.setText(spesa.getData());
 
             dettagliView.setOnClickListener(dettagliListener);
-            aggiornaView.setOnClickListener(aggiornaListener);
+            //aggiornaView.setOnClickListener(aggiornaListener);
             cancellaView.setOnClickListener(cancellaListener);
         }
 }
