@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/btnVedi"
-        android:layout_width="110dp"
+        android:layout_width="135dp"
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="35dp"
         android:backgroundTint="#004071"
         android:text="@string/vedi"
         android:textSize="20sp"
@@ -21,12 +21,12 @@
 
     <Button
         android:id="@+id/btnCancella"
-        android:layout_width="110dp"
+        android:layout_width="135dp"
         android:layout_height="70dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="60dp"
         android:backgroundTint="#004071"
         android:text="@string/cancella"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/btnVedi"
         app:layout_constraintTop_toTopOf="@id/btnVedi"
         tools:ignore="DuplicateSpeakableTextCheck" />

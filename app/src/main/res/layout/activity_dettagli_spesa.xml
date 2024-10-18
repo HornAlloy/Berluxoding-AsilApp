@@ -18,6 +18,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/lblAmbito"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:text="@string/ambito"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/txtAmbito"
@@ -26,6 +34,14 @@
             android:hint="@string/ambito"
             android:layout_marginTop="5dp"
             tools:ignore="Autofill" />
+        <TextView
+            android:id="@+id/lblArticolo"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:text="@string/articolo"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/txArticolo"
@@ -37,6 +53,14 @@
             tools:ignore="Autofill" />
 
         <TextView
+            android:id="@+id/lblCosto"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:text="@string/costo"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            tools:ignore="TextSizeCheck" />
+        <TextView
             android:id="@+id/txtCosto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +68,14 @@
             android:minHeight="48dp"
             android:layout_marginTop="5dp"
             tools:ignore="Autofill,TextContrastCheck" />
+        <TextView
+            android:id="@+id/lblData"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:text="@string/Data_acquisto"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            tools:ignore="TextSizeCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,6 +91,16 @@
                 android:hint="GG"
                 android:importantForAutofill="no"
                 tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+            <TextView
+                android:id="@+id/lblbarra1"
+                android:layout_width="5dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toStartOf="@id/txtMese"
+                android:text="@string/slash"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                tools:ignore="TextSizeCheck" />
 
             <TextView
                 android:id="@+id/txtMese"
@@ -68,6 +110,16 @@
                 android:hint="MM"
                 tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
+            <TextView
+                android:id="@+id/lblbarra2"
+                android:layout_width="5dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toStartOf="@id/txtAnno"
+                android:text="@string/slash"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                tools:ignore="TextSizeCheck" />
             <TextView
                 android:id="@+id/txtAnno"
                 android:layout_width="0dp"

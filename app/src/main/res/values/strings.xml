@@ -119,6 +119,8 @@
     <string name="invia_pin">Invia PIN</string>
     <string name="attendere">Attendere la risposta dal Medbox...</string>
     <string name="scheda_personale">Scheda Personale</string>
+    <string name="Data_acquisto" >Data Acquisto</string>
+    <string name="slash">/</string>
 
 
 </resources>

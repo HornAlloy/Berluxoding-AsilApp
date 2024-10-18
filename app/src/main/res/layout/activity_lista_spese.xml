@@ -29,6 +29,8 @@
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
         tools:listitem="@layout/item_spesa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
