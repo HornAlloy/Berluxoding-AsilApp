@@ -13,83 +13,85 @@
         android:id="@+id/layoutAnagrafica"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@android:color/white">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/scheda_personale"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:textColor="@color/black" />
+            android:text="@string/scheda_personale"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvNomeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mario"
-            android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black" />
+            android:text="Mario"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvCognomeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cognome"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvCognome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rossi"
-            android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black" />
+            android:text="Rossi"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvUsernameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mario.rossi"
-            android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black" />
+            android:text="mario.rossi"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvPaeseDiProvenienzaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Paese di Provenienza"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvPaeseDiProvenienza"
@@ -105,46 +107,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data di Nascita"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDataNascita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01/01/1990"
-            android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black" />
+            android:text="01/01/1990"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="1"> <!-- Imposta lo stretching automatico delle colonne, se necessario -->
+            android:stretchColumns="1"
+            android:layout_marginTop="50dp"> <!-- Imposta lo stretching automatico delle colonne, se necessario -->
 
             <!-- Prima riga: ImageButtons -->
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ImageButton
                     android:id="@+id/button"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginTop="65dp"
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="#FFFFFF"
                     android:scaleType="fitCenter"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view4"
                     app:layout_constraintRight_toLeftOf="@id/button2"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view4"
                     app:srcCompat="@drawable/baseline_personal_injury_24"
                     tools:ignore="ContentDescription,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="15dp" />
+
                 <ImageButton
                     android:id="@+id/button2"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginTop="65dp"
                     android:backgroundTint="#FFFFFF"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -152,11 +155,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_view4"
                     app:srcCompat="@drawable/baseline_device_thermostat_24"
                     tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
                 <ImageButton
                     android:id="@+id/button3"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginTop="65dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="#FFFFFF"
                     android:scaleType="fitCenter"
@@ -178,10 +181,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
-                    android:text="@string/Patologie"
-                    android:textSize="18sp"
                     android:layout_marginBottom="16dp"
+                    android:text="@string/Patologie"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     tools:ignore="InvalidId" />
 
                 <TextView
@@ -189,21 +192,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="@string/Misurazioni"
-                    android:textSize="18sp"
                     android:layout_marginBottom="16dp"
+                    android:text="@string/Misurazioni"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     tools:ignore="InvalidId" />
 
                 <TextView
                     android:id="@+id/txtSpese"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Spese"
                     android:layout_marginStart="40dp"
-                    android:textSize="18sp"
                     android:layout_marginBottom="16dp"
+                    android:text="@string/Spese"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     tools:ignore="InvalidId" />
             </TableRow>
 
