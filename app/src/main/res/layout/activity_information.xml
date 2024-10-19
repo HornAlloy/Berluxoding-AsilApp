@@ -28,6 +28,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/Altro"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnAltro"
         tools:ignore="TextSizeCheck" />
@@ -53,6 +54,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/Centro"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnCentro"
@@ -80,6 +82,7 @@
         android:layout_marginEnd="60dp"
         android:text="@string/Utente"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnUtente"
@@ -107,6 +110,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/Luogo"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnLuogo"
         tools:ignore="TextSizeCheck" />
