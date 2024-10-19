@@ -17,9 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="#000000"
         android:text="@string/aggiungi"
-        android:textSize="15sp"
+        android:textSize="40sp"
         tools:ignore="DuplicateSpeakableTextCheck" />
-
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,6 +28,7 @@
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
+        tools:layout_editor_absoluteY="2dp"
         tools:listitem="@layout/item_misurazione" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
