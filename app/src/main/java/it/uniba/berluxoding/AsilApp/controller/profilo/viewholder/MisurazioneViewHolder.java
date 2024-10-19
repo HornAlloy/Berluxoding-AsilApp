@@ -21,7 +21,7 @@ public class MisurazioneViewHolder extends RecyclerView.ViewHolder {
         nomeView = itemView.findViewById(R.id.textView);
         dataView = itemView.findViewById(R.id.textView2);
         oraView = itemView.findViewById(R.id.textView3);
-        dettagliBtn = itemView.findViewById(R.id.btnVedi);
+        dettagliBtn = itemView.findViewById(R.id.btnDettagli);
     }
 
     public void bindToMisurazione(Misurazione misurazione, View.OnClickListener dettagliListener) {
