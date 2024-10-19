@@ -48,6 +48,7 @@ public class  MainActivity extends AppCompatActivity {
                 Intent openPage = new Intent(MainActivity.this, LoginActivity.class);
                 // passo all'attivazione dell'activity page1.java
                 startActivity(openPage);
+                finish();
             }
         }, 2000);
 

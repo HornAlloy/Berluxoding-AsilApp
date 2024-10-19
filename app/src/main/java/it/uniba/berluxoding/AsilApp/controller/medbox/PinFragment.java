@@ -2,6 +2,7 @@ package it.uniba.berluxoding.AsilApp.controller.medbox;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,35 +22,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PinFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class PinFragment extends Fragment implements OnDataReceived<String> {
 
     private EditText pinEditText;
     private Button submitButton;
     private ProgressBar progressBar;
-    private DatabaseReference mDatabase, pinPath, richiestaRef;
+    private DatabaseReference pinPath;
+    private DatabaseReference richiestaRef;
     private String strumento;
     private static final String TAG = "PinFragment";
-
-    public static PinFragment newInstance() {
-        // Crea una nuova istanza di PinFragment
-        PinFragment fragment = new PinFragment();
-
-        // Se desideri passare dei dati, puoi farlo tramite un Bundle
-        // Bundle args = new Bundle();
-        // args.putString("userRef", userRef);
-        // fragment.setArguments(args);
-
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,12 +53,13 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
         progressBar = view.findViewById(R.id.progressBar);
 
         // Inizializzazione del riferimento al database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         pinPath = mDatabase.child("AsilApp").child(getUid()).child("anagrafica").child("pin");
         richiestaRef = mDatabase.child("medbox").child("richiesta");
 
         if(getArguments() != null) {
             strumento = getArguments().getString("strumento");
+            assert strumento != null;
             Log.d("strumento = ", strumento);
         }
 
@@ -85,7 +74,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // Esegui la query sul database per recuperare il PIN
-                checkPin(pin);
+                checkPin();
             } else {
                 Toast.makeText(getContext(), "Inserisci il PIN!", Toast.LENGTH_SHORT).show();
             }
@@ -95,10 +84,10 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
     /**
      * Verifica il PIN inserito confrontandolo con quello nel database.
      */
-    private void checkPin(String pin) {
+    private void checkPin() {
         pinPath.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String storedPin = dataSnapshot.getValue(String.class);  // Recupera il PIN memorizzato
 
                 // Utilizza il callback per passare il PIN memorizzato
@@ -106,7 +95,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Errore di lettura dal database
                 Log.e(TAG, "Errore nel recuperare il PIN dal database: " + databaseError.getMessage());
 
@@ -135,15 +124,11 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
 
             // Invia la richiesta
             richiestaRef.setValue(richiestaMap)
-                    .addOnSuccessListener(aVoid -> {
-                        Log.d("Firebase", "Richiesta inviata con successo.");
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("Firebase", "Errore nell'invio della richiesta: " + e.getMessage());
-                    });
+                    .addOnSuccessListener(aVoid -> Log.d("Firebase", "Richiesta inviata con successo."))
+                    .addOnFailureListener(e -> Log.e("Firebase", "Errore nell'invio della richiesta: " + e.getMessage()));
 
             // Passa al fragment successivo o invia l'utente alla schermata successiva
-            ((MedboxActivity) getActivity()).replaceFragment(new AttesaFragment(), false, args);
+            ((MedboxActivity) requireActivity()).replaceFragment(new AttesaFragment(), args);
 
         } else {
             // Il PIN inserito non è corretto
@@ -157,7 +142,6 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
 
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user != null ? user.getUid() : null;
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 }

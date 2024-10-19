@@ -3,11 +3,11 @@ package it.uniba.berluxoding.AsilApp.controller.profilo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaMisurazioniActivity;
@@ -29,11 +31,6 @@ import it.uniba.berluxoding.AsilApp.model.Utente;
 public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
-
-    private ImageButton bt1;
-    private ImageButton bt2;
-    private ImageButton bt3;
 
     private TextView tv1;
     private TextView tv2;
@@ -53,9 +50,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        bt1 = findViewById(R.id.button);
-        bt2 = findViewById(R.id.button2);
-        bt3 = findViewById(R.id.button3);
+        ImageButton bt1 = findViewById(R.id.button);
+        ImageButton bt2 = findViewById(R.id.button2);
+        ImageButton bt3 = findViewById(R.id.button3);
 
         tv1 = findViewById(R.id.tvNome);
         tv2 = findViewById(R.id.tvCognome);
@@ -63,38 +60,32 @@ public class ProfileActivity extends AppCompatActivity {
         tv4 = findViewById(R.id.tvPaeseDiProvenienza);
         getUtente();
 
-        bt1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the profile button");
-                Intent openPage = new Intent(ProfileActivity.this, ListaPatologieActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
+        bt1.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the profile button");
+            Intent openPage = new Intent(ProfileActivity.this, ListaPatologieActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
 
-            }
         });
-        bt2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the information button");
-                Intent openPage = new Intent(ProfileActivity.this, ListaMisurazioniActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
-            }
+        bt2.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the information button");
+            Intent openPage = new Intent(ProfileActivity.this, ListaMisurazioniActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
         });
-        bt3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the medbox button");
-                Intent openPage = new Intent(ProfileActivity.this, ListaSpeseActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
-            }
+        bt3.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the medbox button");
+            Intent openPage = new Intent(ProfileActivity.this, ListaSpeseActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
         });
     }
 
     private void getUtente () {
-        mDatabase.child("AsilApp").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("anagrafica").addListenerForSingleValueEvent(
+        mDatabase.child("AsilApp").child(getUser()).child("anagrafica").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // Converti il DataSnapshot in un oggetto User
                         Utente utente = dataSnapshot.getValue(Utente.class);
                         if (utente != null) {
@@ -113,11 +104,15 @@ public class ProfileActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
                         // Gestisci eventuali errori
                         Log.e("FirebaseData", "Errore nella lettura del dato", databaseError.toException());
                     }
                 });
+    }
+
+    private String getUser() {
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
 }

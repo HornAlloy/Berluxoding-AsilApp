@@ -2,22 +2,23 @@ package it.uniba.berluxoding.AsilApp.controller.profilo.dettagli;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Misurazione;
@@ -25,8 +26,7 @@ import it.uniba.berluxoding.AsilApp.model.Misurazione;
 public class DettagliMisurazioneActivity extends AppCompatActivity {
 
     private TextView strumentoV, valoreV, dataV, oraV;
-    private Button btnIndietro;
-    private DatabaseReference mDatabase, userRef;
+    private DatabaseReference userRef;
     private String misurazioneId;
     final private String TAG = "DETTAGLI_MISURAZIONE_ACTIVITY";
 
@@ -42,7 +42,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         });
 
         // Inizializzazione Firebase Database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
         // Collegamento delle TextView dell'interfaccia
         strumentoV = findViewById(R.id.strumento);
@@ -55,14 +55,6 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         // Popola i dettagli della misurazione
         getMisurazione();
         // Azione sul bottone Indietro
-        /*
-        btnIndietro.setOnClickListener(v -> {
-            Log.d(TAG, "Back button pressed");
-            // Torna alla lista misurazioni
-            Intent intent = new Intent(DettagliMisurazioneActivity.this, ListaMisurazioniActivity.class);
-            startActivity(intent);
-        });
-         */
 
     }
 
@@ -71,7 +63,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
 
         misurazioneRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Verifica se la patologia esiste
                 if (dataSnapshot.exists()) {
                     Misurazione misurazione = dataSnapshot.getValue(Misurazione.class);
@@ -88,7 +80,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Errore nel caricamento della misurazione", databaseError.toException());
             }
         });
@@ -97,7 +89,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
 
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user != null ? user.getUid() : null;
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
     }
 }

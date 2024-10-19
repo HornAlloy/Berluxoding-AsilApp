@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,10 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.controller.medbox.MedboxActivity;
 import it.uniba.berluxoding.AsilApp.R;
@@ -32,11 +33,7 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.MisurazioneVie
 
 public class ListaMisurazioniActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase, userRef;
-    private RecyclerView mRecycler;
-    private LinearLayoutManager mManager;
     private FirebaseRecyclerAdapter<Misurazione, MisurazioneViewHolder> mAdapter;
-    private Button btn;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -49,15 +46,15 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
             return insets;
         });
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        userRef = mDatabase.child("AsilApp").child(getUid());
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference userRef = mDatabase.child("AsilApp").child(getUid());
 
-        mRecycler = findViewById(R.id.listaMisurazioni);
+        RecyclerView mRecycler = findViewById(R.id.listaMisurazioni);
         mRecycler.setHasFixedSize(true);
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        mManager = new LinearLayoutManager(this);
+        LinearLayoutManager mManager = new LinearLayoutManager(this);
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
@@ -68,24 +65,23 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
                 .setQuery(misurazioneQuery, Misurazione.class)
                 .build();
 
-        btn = findViewById(R.id.btnAggiungi);
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Add button");
-                aggiungiMisurazione();
-            }
+        Button btn = findViewById(R.id.btnAggiungi);
+        btn.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the Add button");
+            aggiungiMisurazione();
         });
 
-        mAdapter = new FirebaseRecyclerAdapter<Misurazione, MisurazioneViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<>(options) {
+            @NonNull
             @Override
-            public MisurazioneViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public MisurazioneViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new MisurazioneViewHolder(inflater.inflate(R.layout.item_misurazione, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(MisurazioneViewHolder viewHolder, int position, final Misurazione model) {
-                final DatabaseReference misurazioneRef = getRef(position);
+            protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
+                getRef(position);
 //                final String uid = model.getId();
 
                 // Click listener per il post
@@ -99,13 +95,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 //                }
 
                 // Bind del post al ViewHolder
-                viewHolder.bindToMisurazione(model, new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        mostraDettagli(model);
-                    }
-
-                });
+                viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
             }
         };
 
@@ -132,15 +122,13 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user != null ? user.getUid() : null;
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
     public Query getQuery(DatabaseReference queryReference) {
         // My top posts by number of stars
-        Query mSpeseQuery = queryReference.child("misurazioni").orderByChild("data");
 
-        return mSpeseQuery;
+        return queryReference.child("misurazioni").orderByChild("data");
     }
 
     private void mostraDettagli(Misurazione model) {

@@ -1,26 +1,14 @@
 package it.uniba.berluxoding.AsilApp.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Utente {
     private String nome;
     private String cognome;
     private String dataNascita;
     private String luogoProvenienza;
     private String pin;
-    private String username;
-    private String email;
-
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public Utente () {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    }
-
-    public Utente (String username, String email) {
-        this.username = username;
-        this.email = email;
     }
 
     public void setNome (String nome) {
@@ -31,9 +19,6 @@ public class Utente {
     }
     public void setDataNascita (String dataNascita) {
         this.dataNascita = dataNascita;
-    }
-    public void setDateNascita (Date dataNascita) {
-        setDataNascita (sdf.format(dataNascita));
     }
     public void setLuogoProvenienza(String luogo) {
         this.luogoProvenienza = luogo;

@@ -3,7 +3,6 @@ package it.uniba.berluxoding.AsilApp.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -18,7 +17,6 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.ProfileActivity;
 import it.uniba.berluxoding.AsilApp.R;
 
 public class HomeActivity extends AppCompatActivity {
-    private ImageButton ibt1, ibt2, ibt3;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -32,34 +30,28 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        ibt1 = findViewById(R.id.imgBtnProfilo);
-        ibt2 = findViewById(R.id.imgBtnInformativa);
-        ibt3 = findViewById(R.id.imgBtnMedBox);
+        ImageButton ibt1 = findViewById(R.id.imgBtnProfilo);
+        ImageButton ibt2 = findViewById(R.id.imgBtnInformativa);
+        ImageButton ibt3 = findViewById(R.id.imgBtnMedBox);
 
-        ibt1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the profile button");
-                Intent openPage = new Intent(HomeActivity.this, ProfileActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
+        ibt1.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the profile button");
+            Intent openPage = new Intent(HomeActivity.this, ProfileActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
 
-            }
         });
-        ibt2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the information button");
-                Intent openPage = new Intent(HomeActivity.this, InformationActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
-            }
+        ibt2.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the information button");
+            Intent openPage = new Intent(HomeActivity.this, InformationActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
         });
-        ibt3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the medbox button");
-                Intent openPage = new Intent(HomeActivity.this, MedboxActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
-            }
+        ibt3.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the medbox button");
+            Intent openPage = new Intent(HomeActivity.this, MedboxActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
         });
 
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -18,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Utente;
 
@@ -25,10 +26,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
-    private final String TAG = "REGISTRATION_ACTIVITY";
-
-    private Button bt1;
 
     private EditText et1;
     private EditText et2;
@@ -60,17 +57,16 @@ public class RegistrationActivity extends AppCompatActivity {
         etm = findViewById(R.id.editTextMese);
         eta = findViewById(R.id.editTextAnno);
 
-        bt1 = (Button) findViewById(R.id.buttonRegister);
-        bt1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the registration button");
-                register();
-            }
+        Button bt1 = findViewById(R.id.buttonRegister);
+        bt1.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the registration button");
+            register();
         });
 
     }
 
     private void register() {
+        String TAG = "REGISTRATION_ACTIVITY";
         Log.d(TAG, "register");
         if (!validateForm()) {
             return;
@@ -90,10 +86,15 @@ public class RegistrationActivity extends AppCompatActivity {
         utente.setDataNascita(dataNascita);
         utente.setPin(medboxCode);
 
-        mDatabase.child("AsilApp").child(mAuth.getCurrentUser().getUid()).child("anagrafica").setValue(utente);
+        mDatabase.child("AsilApp").child(getUserId()).child("anagrafica").setValue(utente);
         Intent openPage = new Intent(RegistrationActivity.this, HomeActivity.class);
         // passo all'attivazione dell'activity page1.java
         startActivity(openPage);
+        finish();
+    }
+
+    private String getUserId () {
+        return Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
     }
 
     private boolean validateForm() {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
@@ -27,11 +27,8 @@ import it.uniba.berluxoding.AsilApp.model.Spesa;
 
 public class AggiungiSpesaActivity extends AppCompatActivity {
 
-    private Button salva;
     private DatabaseReference mDatabase, userRef;
-    private String userId;
     private EditText etAmbito, etArticolo, etCosto, anno, mese, giorno, ora, minuto;
-    final private String TAG = "AGGIUNGI_SPESA_ACTIVITY";
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -45,8 +42,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         });
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        userRef = mDatabase.child("AsilApp").child(userId);
+        userRef = mDatabase.child("AsilApp").child(getUser());
 
         etAmbito = findViewById(R.id.editTextAmbito);
         etArticolo = findViewById(R.id.editTextArticolo);
@@ -56,17 +52,15 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         anno = findViewById(R.id.editTextAnno);
         ora = findViewById(R.id.editTextOra);
         minuto = findViewById(R.id.editTextMinuto);
-        salva = findViewById(R.id.buttonSave);
-        salva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Save button");
-                save();
+        Button salva = findViewById(R.id.buttonSave);
+        salva.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the Save button");
+            save();
 
-            }
         });
     }
     public void save() {
+        String TAG = "AGGIUNGI_SPESA_ACTIVITY";
         Log.d(TAG, "save");
         if (!validateForm()) {
             return;
@@ -91,16 +85,17 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         Map<String, Object> spesaValues = spesa.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/AsilApp/" + userId + "/spese/" + spesaKey, spesaValues);
-        childUpdates.put("/AsilApp/" + userId + "/spese-ambito/" + spesa.getAmbito() + "/" + spesaKey, spesaValues);
+        childUpdates.put("/AsilApp/" + getUser() + "/spese/" + spesaKey, spesaValues);
+        childUpdates.put("/AsilApp/" + getUser() + "/spese-ambito/" + spesa.getAmbito() + "/" + spesaKey, spesaValues);
         mDatabase.updateChildren(childUpdates);
         Log.d(TAG, "spesa salvata");
-//        mDatabase.child("AsilApp").child(userId).child("spese").child(spesaKey).setValue(spesa);
-//        spesa.setId(spesaKey);
-//        mDatabase.child("AsilApp").child(userId).child("spese").child(spesa.getAmbito()).setValue(spesa);
         Intent openPage = new Intent(AggiungiSpesaActivity.this, ListaSpeseActivity.class);
         // passo all'attivazione dell'activity page1.java
         startActivity(openPage);
+    }
+
+    private String getUser () {
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
     private boolean validateForm() {

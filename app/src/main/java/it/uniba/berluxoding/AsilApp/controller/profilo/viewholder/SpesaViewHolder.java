@@ -13,7 +13,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
         public TextView ambitoView;
         public TextView dataView;
         public Button dettagliView;
-        public Button aggiornaView;
+        //public Button aggiornaView;
         public Button cancellaView;
 
         public SpesaViewHolder(View itemView) {
@@ -26,7 +26,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
             cancellaView = itemView.findViewById(R.id.btnCancella);
         }
 
-        public void bindToSpesa(Spesa spesa, View.OnClickListener dettagliListener, View.OnClickListener aggiornaListener, View.OnClickListener cancellaListener) {
+        public void bindToSpesa(Spesa spesa, View.OnClickListener dettagliListener,/* View.OnClickListener aggiornaListener,*/ View.OnClickListener cancellaListener) {
             ambitoView.setText(spesa.getAmbito());
             dataView.setText(spesa.getData());
 

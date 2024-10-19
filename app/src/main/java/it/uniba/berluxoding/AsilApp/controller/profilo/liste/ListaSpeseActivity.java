@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,12 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
+import java.util.Objects;
+
+//import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.aggiunta.AggiungiSpesaActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliSpesaActivity;
@@ -33,11 +34,8 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.SpesaViewHolde
 
 public class ListaSpeseActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase, userRef;
-    private RecyclerView mRecycler;
-    private LinearLayoutManager mManager;
+    private DatabaseReference userRef;
     private FirebaseRecyclerAdapter<Spesa, SpesaViewHolder> mAdapter;
-    private Button btn;
 
 
     @Override
@@ -51,16 +49,16 @@ public class ListaSpeseActivity extends AppCompatActivity {
             return insets;
         });
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
 
-        mRecycler = findViewById(R.id.listaSpese);
+        RecyclerView mRecycler = findViewById(R.id.listaSpese);
         mRecycler.setHasFixedSize(true);
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         // Configura il LayoutManager
-        mManager = new LinearLayoutManager(this);
+        LinearLayoutManager mManager = new LinearLayoutManager(this);
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
@@ -73,25 +71,24 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(spesaQuery, Spesa.class)
                 .build();
 
-        btn = findViewById(R.id.btnAggiungi);
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Add button");
-                aggiungiSpesa();
-            }
+        Button btn = findViewById(R.id.btnAggiungi);
+        btn.setOnClickListener(v -> {
+            Log.d("BUTTONS", "User tapped the Add button");
+            aggiungiSpesa();
         });
 
         // Imposta l'adapter
-        mAdapter = new FirebaseRecyclerAdapter<Spesa, SpesaViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<>(options) {
+            @NonNull
             @Override
-            public SpesaViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public SpesaViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new SpesaViewHolder(inflater.inflate(R.layout.item_spesa, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(SpesaViewHolder viewHolder, int position, final Spesa model) {
-                final DatabaseReference spesaRef = getRef(position);
+            protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
+                getRef(position);
 //                final String uid = model.getId();
 
                 // Click listener per il post
@@ -105,32 +102,15 @@ public class ListaSpeseActivity extends AppCompatActivity {
 //                }
 
                 // Bind del post al ViewHolder
-                viewHolder.bindToSpesa(model, new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        mostraDettagli(model);
-                    }
-
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        aggiornaSpesa(model);
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        eliminaSpesa(model);
-                    }
-//                    @Override
+                //                    @Override
 //                    public void onClick(View starView) {
 //                        DatabaseReference globalPostRef = mDatabase.child("posts").child(spesaRef.getKey());
 //                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(uid).child(spesaRef.getKey());
-
-                        // Aggiorna i like in entrambe le posizioni
+// Aggiorna i like in entrambe le posizioni
 //                        onStarClicked(globalPostRef);
 //                        onStarClicked(userPostRef);
 //                    }
-                });
+                viewHolder.bindToSpesa(model, v -> mostraDettagli(model),/* v -> aggiornaSpesa(model),*/ v -> eliminaSpesa(model));
             }
         };
 
@@ -159,15 +139,13 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     public Query getQuery(DatabaseReference queryReference) {
         // My top posts by number of stars
-        Query mSpeseQuery = queryReference.child("spese").orderByChild("data");
 
-        return mSpeseQuery;
+        return queryReference.child("spese").orderByChild("data");
     }
 
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user != null ? user.getUid() : null;
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
     private void mostraDettagli(Spesa model) {
@@ -177,12 +155,12 @@ public class ListaSpeseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void aggiornaSpesa(Spesa model) {
-        // Logica per aggiornare la spesa (ad esempio, apri un dialogo di modifica)
-        Intent intent = new Intent(this, ModificaSpesaActivity.class);
-        intent.putExtra("spesaId", model.getId());
-        startActivity(intent);
-    }
+//    private void aggiornaSpesa(Spesa model) {
+//        // Logica per aggiornare la spesa (ad esempio, apri un dialogo di modifica)
+//        Intent intent = new Intent(this, ModificaSpesaActivity.class);
+//        intent.putExtra("spesaId", model.getId());
+//        startActivity(intent);
+//    }
 
     private void eliminaSpesa(Spesa model) {
         // Elimina la spesa dal database Firebase

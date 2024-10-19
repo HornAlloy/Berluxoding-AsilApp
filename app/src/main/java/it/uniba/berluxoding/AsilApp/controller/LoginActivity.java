@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,10 +19,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Utente;
@@ -41,16 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
-    private ProgressBar pr;
-    private Button bt1;
-    private Button bt2;
-    private Button btnBackdoor;
-
     private  EditText et1;
     private  EditText et2;
 
     private final String TAG = "LOGIN_ACTIVITY";
-    private boolean value;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -75,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         et2 = findViewById(R.id.fieldPassword);
       //  String value2 =et2.getText().toString();
 
-        bt1 = findViewById(R.id.buttonSignIn);
-        bt2 = findViewById(R.id.buttonSignUp);
-        btnBackdoor = findViewById(R.id.backdoor);
+        Button bt1 = findViewById(R.id.buttonSignIn);
+        Button bt2 = findViewById(R.id.buttonSignUp);
+        Button btnBackdoor = findViewById(R.id.backdoor);
 
         bt1.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the SignIn button");
@@ -90,9 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             signUp();
         });
 
-        btnBackdoor.setOnClickListener( v -> {
-            authentication ("username@abcd.com", "password");
-        } );
+        btnBackdoor.setOnClickListener(v -> authentication ("username@abcd.com", "password"));
 
 
     }
@@ -103,14 +94,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         // Check auth on Activity start
-       /* if (mAuth.getCurrentUser() != null) {
-            onAuthSuccess(mAuth.getCurrentUser());
-        }*/
+//       if (mAuth.getCurrentUser() != null) {
+//            onAuthSuccess(mAuth.getCurrentUser());
+//        }
     }
 
     private void signIn() {
         Log.d(TAG, "signIn");
-        if (!validateForm()) {
+        if (validateForm()) {
             return;
         }
 
@@ -123,25 +114,22 @@ public class LoginActivity extends AppCompatActivity {
 
     private void authentication (String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signIn:onComplete:" + task.isSuccessful());
-                        // hideProgressBar();
+                .addOnCompleteListener(this, task -> {
+                    Log.d(TAG, "signIn:onComplete:" + task.isSuccessful());
+                    // hideProgressBar();
 
-                        if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser());
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Sign In Failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                    if (task.isSuccessful()) {
+                        onAuthSuccess(Objects.requireNonNull(task.getResult().getUser()));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Sign In Failed",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void signUp() {
         Log.d(TAG, "signUp");
-        if (!validateForm()) {
+        if (validateForm()) {
             return;
         }
 
@@ -149,28 +137,14 @@ public class LoginActivity extends AppCompatActivity {
         String email = et1.getText().toString();
         String password = et2.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
-                      //  hideProgressBar();
-
-                        if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser());
-                        } else {
-                            Toast.makeText(getApplicationContext(), getString(R.string.signup_failed),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        authentication(email, password);
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(user.getEmail());
+        String username = usernameFromEmail(Objects.requireNonNull(user.getEmail()));
 
         // Write new user
-        writeNewUser(user.getUid(), username, user.getEmail());
+        writeNewUser(user.getUid(), user.getEmail());
 
         // Go to MainFragment
        // NavHostFragment.findNavController(this).navigate(R.id.action_SignInFragment_to_MainFragment);
@@ -186,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             // Avvia l'activity appropriata
             startActivity(openPage);
+            finish();
         }).addOnFailureListener(e -> {
             // Gestisci eventuali errori che possono verificarsi durante il controllo della registrazione
             Toast.makeText(LoginActivity.this, "Errore durante la verifica della registrazione: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -202,17 +177,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validateForm() {
-        boolean result = true;
+        boolean result = false;
         if (TextUtils.isEmpty(et1.getText().toString())) {
             et1.setError("Required");
-            result = false;
+            result = true;
         } else {
             et1.setError(null);
         }
 
         if (TextUtils.isEmpty(et2.getText().toString())) {
             et2.setError("Required");
-            result = false;
+            result = true;
         } else {
             et2.setError(null);
         }
@@ -226,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase.child("AsilApp").child(userId).child("anagrafica")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists() && snapshot.getValue() != null) {
                             taskCompletionSource.setResult(true); // Utente registrato
                         } else {
@@ -235,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError error) {
+                    public void onCancelled(@NonNull DatabaseError error) {
                         taskCompletionSource.setException(error.toException()); // Errore
                     }
                 });
@@ -243,8 +218,8 @@ public class LoginActivity extends AppCompatActivity {
         return taskCompletionSource.getTask();
     }
 
-    private void writeNewUser(String userId, String name, String email) {
-        Utente utente = new Utente(name, email);
+    private void writeNewUser(String userId, String email) {
+        Utente utente = new Utente();
 
         mDatabase.child("users").child(userId).setValue(utente);
     }
@@ -256,13 +231,5 @@ public class LoginActivity extends AppCompatActivity {
         } else if (i == R.id.buttonSignUp) {
             signUp();
         }
-    }
-
-    private void setValue (boolean value) {
-        this.value = value;
-    }
-
-    private boolean getValue () {
-        return value;
     }
 }

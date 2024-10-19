@@ -2,22 +2,23 @@ package it.uniba.berluxoding.AsilApp.controller.profilo.dettagli;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Spesa;
@@ -25,9 +26,6 @@ import it.uniba.berluxoding.AsilApp.model.Spesa;
 public class DettagliSpesaActivity extends AppCompatActivity {
 
     private TextView txtAmbito, txArticolo, txtCosto, txtGiorno, txtMese, txtAnno, txtOra, txtMinuto;
-    private Button btnIndietro;
-    private DatabaseReference mDatabase, userRef;
-    private String spesaId;
     final private String TAG = "DETTAGLI_SPESA_ACTIVITY";
 
     @Override
@@ -52,32 +50,20 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         txtOra = findViewById(R.id.txtOra);
         txtMinuto = findViewById(R.id.txtMinuto);
         //btnIndietro = findViewById(R.id.btnIndietro);
-        // Inizializzazione Firebase Database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        userRef = mDatabase.child("AsilApp").child(getUid());
         // Recupera lo spesaId passato tramite l'intent
-        spesaId = getIntent().getStringExtra("spesaId");
-        // Popola i dettagli della spesa
-        loadSpesaDetails();
-        // Azione sul bottone Indietro
-        /*
-        btnIndietro.setOnClickListener(v -> {
-            Log.d(TAG, "Back button pressed");
-            // Torna alla lista spese
-            Intent intent = new Intent(DettagliSpesaActivity.this, ListaSpeseActivity.class);
-            startActivity(intent);
-        });
-         */
+        String spesaId = getIntent().getStringExtra("spesaId");
+        // Inizializzazione Firebase Database
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("spese").child(Objects.requireNonNull(spesaId));
 
+        // Popola i dettagli della spesa
+        loadSpesaDetails(dataRef);
     }
     // Metodo per caricare i dettagli della spesa da Firebase
-    private void loadSpesaDetails() {
-        // Referenzia il nodo della spesa specifica
-        DatabaseReference spesaRef = userRef.child("spese").child(spesaId);
-
-        spesaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void loadSpesaDetails(DatabaseReference dataRef) {
+        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Verifica se la spesa esiste
                 if (dataSnapshot.exists()) {
                     Spesa spesa = dataSnapshot.getValue(Spesa.class);
@@ -103,7 +89,7 @@ public class DettagliSpesaActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Errore nel caricamento della spesa", databaseError.toException());
             }
         });
@@ -111,7 +97,6 @@ public class DettagliSpesaActivity extends AppCompatActivity {
 
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user != null ? user.getUid() : null;
+        return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 }

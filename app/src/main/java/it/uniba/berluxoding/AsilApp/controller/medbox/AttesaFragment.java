@@ -3,6 +3,7 @@ package it.uniba.berluxoding.AsilApp.controller.medbox;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -24,27 +25,8 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliMisurazi
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AttesaFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class AttesaFragment extends Fragment implements OnDataReceived<String> {
-
-    private ProgressBar progressBar;
-    private TextView waitingText;
-    private DatabaseReference path;
-    private String misurazioneId;
-
-    public static AttesaFragment newInstance() {
-        // Crea una nuova istanza di PinFragment
-        AttesaFragment fragment = new AttesaFragment();
-
-        // Se desideri passare dei dati, puoi farlo tramite un Bundle
-        // Bundle args = new Bundle();
-        // args.putString("key", value);
-        // fragment.setArguments(args);
-
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,10 +36,10 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        progressBar = view.findViewById(R.id.progressBar);
-        waitingText = view.findViewById(R.id.waitingText);
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+        TextView waitingText = view.findViewById(R.id.waitingText);
 
-        path = FirebaseDatabase.getInstance().getReference("medbox/risposta");
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference("medbox/risposta");
 
         // Mostra il progresso dell'attesa
         progressBar.setVisibility(View.VISIBLE);
@@ -70,10 +52,10 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
         // Listener per ricevere la risposta
         listenerPath.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
-                    misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
+                     String misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
 
                     Log.d("Firebase", "Risposta ricevuta: userId=" + ", risultato=" + misurazioneId);
 
@@ -90,7 +72,7 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
 
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("Firebase", "Errore nel recupero della risposta: " + databaseError.getMessage());
             }
         });
