@@ -32,9 +32,9 @@
 
         <TextView
             android:id="@+id/txtProfilo"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginStart="155dp"
+            android:layout_marginStart="154dp"
             android:text="@string/profilo"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -57,7 +57,7 @@
 
         <TextView
             android:id="@+id/txtInformativa"
-            android:layout_width="124dp"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginStart="128dp"
             android:text="Informazioni"
@@ -82,15 +82,16 @@
 
         <TextView
             android:id="@+id/txtMedBox"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginStart="94dp"
+            android:layout_marginStart="90dp"
             android:text="@string/connessione_medbox"
             android:textSize="20sp"
+            android:layout_centerHorizontal="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnMedBox"
             android:textColor="@color/black"
-            tools:ignore="TextSizeCheck" />
+            tools:ignore="ObsoleteLayoutParam,TextSizeCheck" />
     </LinearLayout>
 
 
