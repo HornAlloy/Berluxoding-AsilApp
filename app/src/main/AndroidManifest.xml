@@ -55,6 +55,9 @@
             android:name=".controller.informazioni.UserActivity"
             android:exported="false"/>
         <activity
+            android:name=".controller.altriDocumentiEValutazione.OtherDocumentsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".trashcan.DatiActivity"
             android:exported="false" />
         <activity

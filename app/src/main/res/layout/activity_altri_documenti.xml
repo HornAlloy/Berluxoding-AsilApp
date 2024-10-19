@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Titolo della sezione per i corsi e le attività -->
+    <TextView
+        android:id="@+id/lblAttivita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Corsi e Attività"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Descrizione dei corsi e delle attività -->
+    <TextView
+        android:id="@+id/tv_corsi_attivita_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Qui puoi iscriverti a corsi di lingua italiana, attività ricreative e culturali."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblAttivita"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Titolo per le informazioni pratiche -->
+    <TextView
+        android:id="@+id/tv_informazioni_pratiche_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Informazioni Pratiche"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_corsi_attivita_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Descrizione delle informazioni pratiche -->
+    <TextView
+        android:id="@+id/tv_informazioni_pratiche_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Trasporti pubblici, mappa della città e i luoghi principali (ambulatorio, farmacia, ecc.)."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_informazioni_pratiche_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Titolo per i contatti utili -->
+    <TextView
+        android:id="@+id/tv_contatti_utili_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Contatti Utili"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_informazioni_pratiche_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Descrizione dei contatti utili -->
+    <TextView
+        android:id="@+id/tv_contatti_utili_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Polizia: 113, Ambulanza: 118, Vigili del Fuoco: 115. Contatti per assistenza legale e sanitaria."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_contatti_utili_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
