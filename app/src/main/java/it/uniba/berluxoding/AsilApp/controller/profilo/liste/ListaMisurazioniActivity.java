@@ -82,19 +82,8 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
                 getRef(position);
-//                final String uid = model.getId();
 
-                // Click listener per il post
-//                final String spesaKey = spesaRef.getKey();
-
-//                // Gestisce il like del post
-//                if (model.stars.containsKey(getUid())) {
-//                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
-//                } else {
-//                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
-//                }
-
-                // Bind del post al ViewHolder
+                // Bind del model al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
             }
         };
@@ -132,7 +121,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     }
 
     private void mostraDettagli(Misurazione model) {
-        // Mostra i dettagli della spesa (ad esempio, apri una nuova activity o un frammento)
+        // Mostra i dettagli della misurazione
         Intent intent = new Intent(this, DettagliMisurazioneActivity.class);
         intent.putExtra("misurazioneId", model.getId());
         startActivity(intent);
@@ -141,5 +130,6 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     private void aggiungiMisurazione() {
         Intent intent = new Intent(this, MedboxActivity.class);
         startActivity(intent);
+        finish();
     }
 }

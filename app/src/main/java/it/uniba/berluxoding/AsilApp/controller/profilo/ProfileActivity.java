@@ -61,20 +61,20 @@ public class ProfileActivity extends AppCompatActivity {
         getUtente();
 
         bt1.setOnClickListener(v -> {
-            Log.d("BUTTONS", "User tapped the profile button");
+            Log.d("BUTTONS", "User tapped the patologies button");
             Intent openPage = new Intent(ProfileActivity.this, ListaPatologieActivity.class);
             // passo all'attivazione dell'activity page1.java
             startActivity(openPage);
 
         });
         bt2.setOnClickListener(v -> {
-            Log.d("BUTTONS", "User tapped the information button");
+            Log.d("BUTTONS", "User tapped the misurations button");
             Intent openPage = new Intent(ProfileActivity.this, ListaMisurazioniActivity.class);
             // passo all'attivazione dell'activity page1.java
             startActivity(openPage);
         });
         bt3.setOnClickListener(v -> {
-            Log.d("BUTTONS", "User tapped the medbox button");
+            Log.d("BUTTONS", "User tapped the expenses button");
             Intent openPage = new Intent(ProfileActivity.this, ListaSpeseActivity.class);
             // passo all'attivazione dell'activity page1.java
             startActivity(openPage);
