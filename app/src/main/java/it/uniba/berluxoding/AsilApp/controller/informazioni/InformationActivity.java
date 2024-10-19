@@ -60,10 +60,8 @@ public class InformationActivity extends AppCompatActivity {
         imgBtnUtente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Azione da definire in seguito
-                // Placeholder: avvia una nuova Activity temporanea
-                // Intent intent = new Intent(InformationActivity.this, PlaceholderUtenteActivity.class);
-                // startActivity(intent);
+                Intent intent = new Intent(InformationActivity.this, UserActivity.class);
+                startActivity(intent);
             }
         });
 

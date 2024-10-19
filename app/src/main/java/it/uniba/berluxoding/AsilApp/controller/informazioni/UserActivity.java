@@ -1,4 +1,34 @@
 package it.uniba.berluxoding.AsilApp.controller.informazioni;
 
-public class UserActivity {
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.TextView;
+import it.uniba.berluxoding.AsilApp.R;
+
+public class UserActivity extends AppCompatActivity {
+
+    private WebView tipiUtentiWebview; // Riferimento alla WebView
+    private TextView txtInfoUt; // Riferimento al TextView
+
+    // L'ID del video YouTube
+    private static final String USER_VIDEO_ID = "A_05YMRASzU"; // ID video di YouTube
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user); // Assicurati che il nome del layout XML sia corretto
+
+        // Inizializzazione dei componenti della UI
+        tipiUtentiWebview = findViewById(R.id.tipi_utenti_webview);
+        txtInfoUt = findViewById(R.id.txtInfoUt);
+
+        // Configura il WebView per mostrare il contenuto di YouTube
+        tipiUtentiWebview.getSettings().setJavaScriptEnabled(true);
+        tipiUtentiWebview.setWebViewClient(new WebViewClient());
+
+        // Carica l'URL del video di YouTube
+        tipiUtentiWebview.loadUrl("https://www.youtube.com/embed/" + USER_VIDEO_ID + "?autoplay=1&vq=small");
+    }
 }
