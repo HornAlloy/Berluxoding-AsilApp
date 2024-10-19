@@ -13,6 +13,7 @@ public class PlaceActivity extends AppCompatActivity {
 
     private WebView wvMaps;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
