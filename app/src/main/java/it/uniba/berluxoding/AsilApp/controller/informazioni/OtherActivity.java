@@ -1,5 +1,6 @@
 package it.uniba.berluxoding.AsilApp.controller.informazioni;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.altriDocumentiEValutazione.EvaluationsActivity;
 import it.uniba.berluxoding.AsilApp.controller.altriDocumentiEValutazione.OtherDocumentsActivity; // Import dell'activity di destinazione
 
 public class OtherActivity extends AppCompatActivity {
@@ -21,6 +23,7 @@ public class OtherActivity extends AppCompatActivity {
     // L'ID del video è la parte dopo ?v=, quindi in questo caso, https://www.youtube.com/watch?v=Op3hkJND21Q, è Op3hkJND21Q.
     private static final String HEALTHY_LIFESTYLE_VIDEO_ID = "Y8HIFRPU6pM"; // ID video di YouTube
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,8 @@ public class OtherActivity extends AppCompatActivity {
 
         // Gestione click bottone "Valutazioni"
         btnValutazioni.setOnClickListener(view -> {
-            // Codice per gestire il click del bottone 'Valutazioni'
-            // In questo caso potresti voler implementare una nuova activity o funzione
+            Intent intent = new Intent(OtherActivity.this, EvaluationsActivity.class);
+            startActivity(intent);
         });
     }
 }
