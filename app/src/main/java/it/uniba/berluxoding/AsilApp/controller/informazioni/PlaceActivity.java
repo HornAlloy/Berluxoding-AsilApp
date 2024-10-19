@@ -1,5 +1,6 @@
 package it.uniba.berluxoding.AsilApp.controller.informazioni;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,16 +12,15 @@ import it.uniba.berluxoding.AsilApp.R;
 
 public class PlaceActivity extends AppCompatActivity {
 
-    private WebView wvMaps;
 
-
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place);
 
         // Trova la WebView nel layout
-        wvMaps = findViewById(R.id.wvMaps);
+        WebView wvMaps = findViewById(R.id.wvMaps);
 
         // Abilita JavaScript nella WebView
         WebSettings webSettingsMaps = wvMaps.getSettings();

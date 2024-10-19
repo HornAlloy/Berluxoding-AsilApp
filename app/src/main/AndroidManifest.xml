@@ -49,6 +49,9 @@
             android:name=".controller.informazioni.PlaceActivity"
             android:exported="false"/>
         <activity
+            android:name=".controller.informazioni.OtherActivity"
+            android:exported="false"/>
+        <activity
             android:name=".trashcan.DatiActivity"
             android:exported="false" />
         <activity
