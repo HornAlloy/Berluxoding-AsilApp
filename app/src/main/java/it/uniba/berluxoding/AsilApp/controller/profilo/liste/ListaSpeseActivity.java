@@ -69,7 +69,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     private void setupSpinner() {
         // Crea un array di tipologie di spesa
-        String[] tipologie = {"Tipologia 1", "Tipologia 2", "Tipologia 3"}; // Sostituisci con le tue tipologie
+        String[] tipologie = {"Farmaco", "Alimentari", "Abbigliamento", "Trasporti", "Altro"}; // Sostituisci con le tue tipologie
 
         // Imposta l'adapter per lo Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tipologie);
