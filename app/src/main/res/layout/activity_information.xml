@@ -78,10 +78,10 @@
         android:layout_height="40dp"
         android:text="@string/Utente"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/imgBtnUtente"
         app:layout_constraintEnd_toEndOf="@id/imgBtnUtente"
         app:layout_constraintTop_toBottomOf="@id/imgBtnUtente"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
