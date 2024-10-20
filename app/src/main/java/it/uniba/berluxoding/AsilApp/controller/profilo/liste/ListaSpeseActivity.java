@@ -29,6 +29,7 @@ import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
+//import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.aggiunta.AggiungiSpesaActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliSpesaActivity;
@@ -40,7 +41,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
     private DatabaseReference userRef;
     private FirebaseRecyclerAdapter<Spesa, SpesaViewHolder> mAdapter;
     private Spinner spTipologia;
-    private String selectedTipologia; // Variabile per tenere traccia della tipologia selezionata
+    private final String TAG = "LISTA_SPESE_ACTIVITY";
+    private RecyclerView mRecycler;
+    private FirebaseRecyclerOptions<Spesa> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,38 @@ public class ListaSpeseActivity extends AppCompatActivity {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
 
-        // Inizializza lo Spinner
-        spTipologia = findViewById(R.id.spAmbito); // Assicurati che l'ID sia corretto
-        setupSpinner();
+        // Imposta lo spinner e il suo listener
+        spTipologia = findViewById(R.id.spAmbito);
+        ArrayAdapter<CharSequence> ambitoAdapter = ArrayAdapter.createFromResource(this,
+                R.array.tipologia_per_la_visualizzazione_array, android.R.layout.simple_spinner_item);
+        ambitoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTipologia.setAdapter(ambitoAdapter);
+
+        // Configura il listener per lo spinner
+        spTipologia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Quando viene selezionato un elemento nello spinner, aggiorna la query
+                String selectedFilter = parentView.getItemAtPosition(position).toString();
+                Log.d(TAG, "Filtro selezionato: " + selectedFilter);
+                updateQueryBasedOnSelection(selectedFilter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Nessuna azione necessaria se non viene selezionato nulla
+            }
+        });
+
+        // Configura il RecyclerView
+        mRecycler = findViewById(R.id.listaSpese);
+        mRecycler.setHasFixedSize(true);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager mManager = new LinearLayoutManager(this);
+        mManager.setReverseLayout(true);
+        mManager.setStackFromEnd(true);
+        mRecycler.setLayoutManager(mManager);
 
         Button btn = findViewById(R.id.btnAggiungi);
         btn.setOnClickListener(v -> {
@@ -67,49 +99,28 @@ public class ListaSpeseActivity extends AppCompatActivity {
         });
     }
 
-    private void setupSpinner() {
-        // Crea un array di tipologie di spesa
-        String[] tipologie = {"Farmaco", "Alimentari", "Abbigliamento", "Trasporti", "Altro"}; // Sostituisci con le tue tipologie
+    // Metodo per aggiornare la query e ricaricare i dati quando lo spinner cambia
+    private void updateQueryBasedOnSelection(String selectedFilter) {
+        Query updatedQuery = getQuery(userRef); // Ottieni la nuova query basata sul filtro
 
-        // Imposta l'adapter per lo Spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tipologie);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTipologia.setAdapter(adapter);
+        // Ferma l'ascolto dell'adapter corrente se esiste
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
 
-        // Gestisce il cambiamento di selezione nello Spinner
-        spTipologia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedTipologia = (String) parent.getItemAtPosition(position);
-                Log.d("SPINNER", "Selected: " + selectedTipologia);
-                updateListBasedOnSelection(); // Aggiorna la lista in base alla selezione
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Non fare nulla
-            }
-        });
-    }
-
-    private void updateListBasedOnSelection() {
-        // Ottieni la query basata sulla tipologia selezionata
-        Query spesaQuery = getQuery(userRef, selectedTipologia);
-        creaListaElementi(spesaQuery);
-    }
-
-    private void creaListaElementi(Query spesaQuery) {
-        RecyclerView mRecycler = findViewById(R.id.listaSpese);
-        mRecycler.setHasFixedSize(true);
-        mRecycler.setLayoutManager(new LinearLayoutManager(this));
-
-        // Configura FirebaseRecyclerOptions
-        FirebaseRecyclerOptions<Spesa> options = new FirebaseRecyclerOptions.Builder<Spesa>()
-                .setQuery(spesaQuery, Spesa.class)
+        // Crea nuove opzioni per l'adapter basate sulla nuova query
+        options = new FirebaseRecyclerOptions.Builder<Spesa>()
+                .setQuery(updatedQuery, Spesa.class)
                 .build();
 
+        // Ricrea l'adapter e collega il RecyclerView
+        creaListaElementi(options);
+    }
+
+    // Metodo per creare la lista degli elementi nel RecyclerView
+    private void creaListaElementi(FirebaseRecyclerOptions<Spesa> options) {
         // Imposta l'adapter
-        mAdapter = new FirebaseRecyclerAdapter<>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<Spesa, SpesaViewHolder>(options) {
             @NonNull
             @Override
             public SpesaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -119,36 +130,52 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
-                getRef(position);
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
+                Log.d(TAG, "Binding avvenuto!");
             }
         };
 
-        // Collega l'adapter al RecyclerView
+        // Collega l'adapter al RecyclerView e avvia l'ascolto
         mRecycler.setAdapter(mAdapter);
+        mAdapter.startListening();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Inizia l'ascolto dei dati Firebase
-        if (mAdapter != null) {
-            mAdapter.startListening();
-        }
+
+        // Inizia con la query predefinita quando l'activity viene avviata
+        Query spesaQuery = getQuery(userRef);
+        options = new FirebaseRecyclerOptions.Builder<Spesa>()
+                .setQuery(spesaQuery, Spesa.class)
+                .build();
+
+        creaListaElementi(options);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        // Ferma l'ascolto dei dati Firebase
+
+        // Ferma l'ascolto dei dati Firebase quando l'activity viene fermata
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
     }
 
-    public Query getQuery(DatabaseReference queryReference, String tipologia) {
-        // Query per ottenere le spese in base alla tipologia selezionata
-        return queryReference.child("spese").orderByChild("tipologia").equalTo(tipologia);
+    // Metodo per ottenere la query da Firebase in base alla selezione dello spinner
+    public Query getQuery(DatabaseReference queryReference) {
+        String ambito = spTipologia.getSelectedItem().toString();
+        Query query;
+
+        if (ambito != null && ambito.equals("Tutto")) {
+            query = queryReference.child("spese").orderByChild("data");
+        } else {
+            query = queryReference.child("spese-ambito").child(ambito).orderByChild("data");
+        }
+
+        Log.d(TAG, "Query created for ambito: " + ambito);
+        return query;
     }
 
     private String getUid() {
@@ -172,7 +199,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
     }
 
     private void aggiungiSpesa() {
+        // Apre l'activity per aggiungere una nuova spesa
         Intent intent = new Intent(this, AggiungiSpesaActivity.class);
         startActivity(intent);
+        finish();
     }
 }

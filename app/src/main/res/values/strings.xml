@@ -133,12 +133,12 @@
     </string-array>
 
     <string-array name="tipologia_per_la_visualizzazione_array">
+        <item>Tutto</item>
         <item>Farmaco</item>
         <item>Alimentari</item>
         <item>Abbigliamento</item>
         <item>Trasporti</item>
         <item>Altro</item>
-        <item>Tutto</item>
     </string-array>
 
     <string-array name="metodo_pagamento_array">

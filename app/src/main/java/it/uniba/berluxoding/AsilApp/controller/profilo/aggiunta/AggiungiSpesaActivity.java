@@ -8,8 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,6 +34,9 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
     private DatabaseReference mDatabase, userRef;
     private EditText etAmbito, etArticolo, etCosto, anno, mese, giorno, ora, minuto;
     private Spinner spTipologia;
+
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -57,7 +62,9 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         ora = findViewById(R.id.editTextOra);
         minuto = findViewById(R.id.editTextMinuto);
 
-        /**Popolare i tipi di spesa con dati simulati*/
+        /**
+         * Popolare i tipi di spesa con dati simulati
+         * */
         ArrayAdapter<CharSequence> tipologiaAdapter = ArrayAdapter.createFromResource(this,
                 R.array.tipologia_array, android.R.layout.simple_spinner_item);
         tipologiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,7 +76,28 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
             save();
 
         });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                    backToast.cancel();
+                    terminate();
+                } else {
+                    backToast = Toast.makeText(getBaseContext(), "Premi di nuovo per tornare alla lista", Toast.LENGTH_SHORT);
+                    backToast.show();
+                }
+                backPressedTime = System.currentTimeMillis();
+            }
+        });
     }
+
+    private void terminate() {
+        Intent intent = new Intent(this, ListaSpeseActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void save() {
         String TAG = "AGGIUNGI_SPESA_ACTIVITY";
         Log.d(TAG, "save");
@@ -103,6 +131,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         Intent openPage = new Intent(AggiungiSpesaActivity.this, ListaSpeseActivity.class);
         // passo all'attivazione dell'activity page1.java
         startActivity(openPage);
+        finish();
     }
 
     private String getUser () {
@@ -111,14 +140,6 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private boolean validateForm() {
         boolean result = true;
-        /*
-        if (TextUtils.isEmpty(spTipologia.getSelectedItem().toString())) {
-            etAmbito.setError("Required");
-            result = false;
-        } else {
-            etAmbito.setError(null);
-        }
-        */
         if (TextUtils.isEmpty(etArticolo.getText().toString())) {
             etArticolo.setError("Required");
             result = false;

@@ -10,7 +10,7 @@ import it.uniba.berluxoding.AsilApp.model.Spesa;
 
 public class SpesaViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView ambitoView;
+        public TextView articoloView;
         public TextView dataView;
         public Button dettagliView;
         //public Button aggiornaView;
@@ -19,7 +19,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
         public SpesaViewHolder(View itemView) {
             super(itemView);
 
-            ambitoView = itemView.findViewById(R.id.textView);
+            articoloView = itemView.findViewById(R.id.textView);
             dataView = itemView.findViewById(R.id.textView2);
             dettagliView = itemView.findViewById(R.id.btnVedi);
             //aggiornaView = itemView.findViewById(R.id.btnAggiorna);
@@ -27,7 +27,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
         }
 
         public void bindToSpesa(Spesa spesa, View.OnClickListener dettagliListener,/* View.OnClickListener aggiornaListener,*/ View.OnClickListener cancellaListener) {
-            ambitoView.setText(spesa.getAmbito());
+            articoloView.setText(spesa.getArticolo());
             dataView.setText(spesa.getData());
 
             dettagliView.setOnClickListener(dettagliListener);

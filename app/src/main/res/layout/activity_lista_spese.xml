@@ -5,62 +5,53 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.profilo.liste.ListaSpeseActivity"
     android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF">
+    tools:context=".controller.profilo.liste.ListaSpeseActivity">
 
-    <LinearLayout
-        android:id="@+id/inserimentoDati"
-        android:layout_width="match_parent"
+    <!-- Spinner per selezionare il filtro -->
+    <Spinner
+        android:id="@+id/spAmbito"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="visible"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp"
+        android:minWidth="200dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="5dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/listaSpese" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-        <Spinner
-            android:id="@+id/spAmbito"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:hint="Tipologia"
-            android:layout_marginTop="8dp" />
+    <!-- RecyclerView per la lista delle spese -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaSpese"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/spAmbito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_spesa" />
 
-        <!-- View invisibile per separare il bottone e lo spinner -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
+    <!-- Bottone sovrapposto per aggiungere una spesa -->
+    <Button
         android:id="@+id/btnAggiungi"
-        android:layout_width="75dp"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#000000"
         android:text="@string/aggiungi"
-        android:textSize="40sp"
-        android:elevation="8dp"/>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaSpese"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="5dp"
-        android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/item_spesa" />
-    </LinearLayout>
+        android:textSize="20sp"
+        android:elevation="8dp"
+        android:layout_margin="16dp"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
