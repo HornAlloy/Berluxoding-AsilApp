@@ -1,7 +1,9 @@
 package it.uniba.berluxoding.AsilApp.model;
 
 public class Patologia {
-    private String id;
+    /**
+     * La patologia si identifica con il nome
+     */
     private String nome;
     private String dataDiagnosi;
     /**
@@ -9,16 +11,11 @@ public class Patologia {
      */
     private String diagnosta;
 
+    /**
+     * Costruttore necessario per poter leggere i dati dal Database Realtime Firebase
+     */
     public Patologia () {
 
-    }
-
-    public String getId () {
-        return id;
-    }
-
-    public void setId (String id) {
-        this.id = id;
     }
 
     public String getDataDiagnosi () {
