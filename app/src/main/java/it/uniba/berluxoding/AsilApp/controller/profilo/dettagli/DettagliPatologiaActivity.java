@@ -26,7 +26,6 @@ import it.uniba.berluxoding.AsilApp.model.Patologia;
 public class DettagliPatologiaActivity extends AppCompatActivity {
 
     private TextView nomeV, dataV, diagnostaV;
-    private String patologiaId;
     final private String TAG = "DETTAGLI_PATOLOGIA_ACTIVITY";
 
 
@@ -46,7 +45,8 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
         nomeV = findViewById(R.id.nomePatologia);
         dataV = findViewById(R.id.dataDiagnosi);
         diagnostaV = findViewById(R.id.diagnosta);
-        patologiaId = getIntent().getStringExtra(patologiaId);
+        String patologiaId = getIntent().getStringExtra("patologiaId");
+        Log.d(TAG, "patologiaId = " + patologiaId);
 
         DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("patologie").child(patologiaId);
 
@@ -68,7 +68,7 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
                     if (patologia != null) {
                         nomeV.setText(patologia.getNome());
                         dataV.setText(patologia.getDataDiagnosi());
-                        diagnostaV.setText(patologia.getDataDiagnosi());
+                        diagnostaV.setText(patologia.getDiagnosta());
                     }
                 } else {
                     Log.e(TAG, "Patologia non trovata!");

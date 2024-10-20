@@ -3,6 +3,7 @@ package it.uniba.berluxoding.AsilApp.controller.profilo.liste;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -31,6 +32,7 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.PatologiaViewH
 
 
 public class ListaPatologieActivity extends AppCompatActivity {
+    private final String TAG = "LISTA_PATOLOGIE_ACTIVITY";
 
     private FirebaseRecyclerAdapter<Patologia, PatologiaViewHolder> mAdapter;
 //    private Button btn;
@@ -88,6 +90,8 @@ public class ListaPatologieActivity extends AppCompatActivity {
         // Collega l'adapter al RecyclerView
         mRecycler.setAdapter(mAdapter);
 
+        Log.d(TAG, "View created!");
+
     }
 
     @Override
@@ -109,7 +113,6 @@ public class ListaPatologieActivity extends AppCompatActivity {
     }
 
     public Query getQuery(DatabaseReference queryReference) {
-
         return queryReference.child("patologie").orderByKey();
     }
 
@@ -122,6 +125,7 @@ public class ListaPatologieActivity extends AppCompatActivity {
         // Mostra i dettagli della patologia
         Intent intent = new Intent(this, DettagliPatologiaActivity.class);
         intent.putExtra("patologiaId", model.getNome());
+        Log.d(TAG, "patologiaId = " + model.getNome());
         startActivity(intent);
     }
 }
