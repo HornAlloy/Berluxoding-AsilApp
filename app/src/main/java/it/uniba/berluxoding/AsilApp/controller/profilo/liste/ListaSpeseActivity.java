@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
     private DatabaseReference userRef;
     private FirebaseRecyclerAdapter<Spesa, SpesaViewHolder> mAdapter;
+    private Spinner spTipologia;
 
 
     @Override
@@ -69,6 +71,8 @@ public class ListaSpeseActivity extends AppCompatActivity {
         FirebaseRecyclerOptions<Spesa> options = new FirebaseRecyclerOptions.Builder<Spesa>()
                 .setQuery(spesaQuery, Spesa.class)
                 .build();
+
+        //spTipologia = findViewById(R.id.spTipologia);
 
         Button btn = findViewById(R.id.btnAggiungi);
         btn.setOnClickListener(v -> {
