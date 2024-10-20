@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +19,9 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.ProfileActivity;
 import it.uniba.berluxoding.AsilApp.R;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -54,6 +59,19 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(openPage);
         });
 
-
+        // Inizializza il dispatcher per onBackPressed
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                    backToast.cancel();
+                    finish();
+                } else {
+                    backToast = Toast.makeText(getBaseContext(), "Premi di nuovo per uscire", Toast.LENGTH_SHORT);
+                    backToast.show();
+                }
+                backPressedTime = System.currentTimeMillis();
+            }
+        });
     }
 }

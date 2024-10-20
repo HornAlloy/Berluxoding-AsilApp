@@ -6,8 +6,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -35,6 +37,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etm;
     private EditText eta;
 
+    private long backPressedTime;
+    private Toast backToast;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,21 @@ public class RegistrationActivity extends AppCompatActivity {
         bt1.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the registration button");
             register();
+        });
+
+        // Inizializza il dispatcher per onBackPressed
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                    backToast.cancel();
+                    finish();
+                } else {
+                    backToast = Toast.makeText(getBaseContext(), "Premi di nuovo per uscire", Toast.LENGTH_SHORT);
+                    backToast.show();
+                }
+                backPressedTime = System.currentTimeMillis();
+            }
         });
 
     }

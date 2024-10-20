@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -44,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     private  EditText et2;
 
     private final String TAG = "LOGIN_ACTIVITY";
+
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -84,6 +87,21 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         btnBackdoor.setOnClickListener(v -> authentication ("username@abcd.com", "password"));
+
+        // Inizializza il dispatcher per onBackPressed
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                    backToast.cancel();
+                    finish();
+                } else {
+                    backToast = Toast.makeText(getBaseContext(), "Premi di nuovo per uscire", Toast.LENGTH_SHORT);
+                    backToast.show();
+                }
+                backPressedTime = System.currentTimeMillis();
+            }
+        });
 
 
     }
@@ -141,13 +159,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(Objects.requireNonNull(user.getEmail()));
 
         // Write new user
-        writeNewUser(user.getUid(), user.getEmail());
-
-        // Go to MainFragment
-       // NavHostFragment.findNavController(this).navigate(R.id.action_SignInFragment_to_MainFragment);
+        writeNewUser(user.getUid());
 
         checkRegistration(user.getUid()).addOnSuccessListener(isRegistered -> {
             Intent openPage;
@@ -166,14 +180,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Errore durante la verifica della registrazione: " + e.getMessage(), Toast.LENGTH_LONG).show();
         });
 
-    }
-
-    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
-        } else {
-            return email;
-        }
     }
 
     private boolean validateForm() {
@@ -218,18 +224,9 @@ public class LoginActivity extends AppCompatActivity {
         return taskCompletionSource.getTask();
     }
 
-    private void writeNewUser(String userId, String email) {
+    private void writeNewUser(String userId) {
         Utente utente = new Utente();
 
         mDatabase.child("users").child(userId).setValue(utente);
-    }
-
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.buttonSignIn) {
-            signIn();
-        } else if (i == R.id.buttonSignUp) {
-            signUp();
-        }
     }
 }
