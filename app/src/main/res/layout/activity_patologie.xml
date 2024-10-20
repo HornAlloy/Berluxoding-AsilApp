@@ -7,16 +7,6 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF">
 
-    <Button
-        android:id="@+id/btnAggiungi"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/plus"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextSizeCheck,VisualLintOverlap" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messagesList"
