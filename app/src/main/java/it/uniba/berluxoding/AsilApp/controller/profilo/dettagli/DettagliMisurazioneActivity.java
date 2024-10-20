@@ -21,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
-import it.uniba.berluxoding.AsilApp.model.Misurazione;
+import it.uniba.berluxoding.AsilApp.model.Misurazione;import android.content.Intent;
+import android.view.View; // Importa questa libreria
 
 public class DettagliMisurazioneActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
     final private String TAG = "DETTAGLI_MISURAZIONE_ACTIVITY";
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dettagli_misurazione);
@@ -44,18 +45,18 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         // Inizializzazione Firebase Database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
+
         // Collegamento delle TextView dell'interfaccia
         strumentoV = findViewById(R.id.strumento);
         valoreV = findViewById(R.id.valore);
         dataV = findViewById(R.id.dataMisurazione);
         oraV = findViewById(R.id.oraMisurazione);
-        //btnIndietro = findViewById(R.id.indietro);
+
         // Recupera il misurazioneId passato tramite l'intent
         misurazioneId = getIntent().getStringExtra("misurazioneId");
+
         // Popola i dettagli della misurazione
         getMisurazione();
-        // Azione sul bottone Indietro
-
     }
 
     private void getMisurazione() {
@@ -64,11 +65,8 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         misurazioneRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Verifica se la patologia esiste
                 if (dataSnapshot.exists()) {
                     Misurazione misurazione = dataSnapshot.getValue(Misurazione.class);
-
-                    // Popola le TextView con i dettagli della spesa
                     if (misurazione != null) {
                         strumentoV.setText(misurazione.getStrumento());
                         valoreV.setText(misurazione.getValore());
@@ -79,17 +77,46 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
                     Log.e(TAG, "Misurazione non trovata!");
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Errore nel caricamento della misurazione", databaseError.toException());
             }
         });
-
     }
 
     private String getUid() {
-        // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    }
 
+    // Metodo per condividere i dettagli della misurazione tramite Gmail
+    public void condividiMisurazione(View view) {
+        // Recupera i dettagli della misurazione
+        String strumento = strumentoV.getText().toString();
+        String valore = valoreV.getText().toString();
+        String data = dataV.getText().toString();
+        String ora = oraV.getText().toString();
+
+        // Crea il contenuto da condividere
+        String contenuto = "Dettagli Misurazione:\n" +
+                "Strumento: " + strumento + "\n" +
+                "Valore: " + valore + "\n" +
+                "Data: " + data + "\n" +
+                "Ora: " + ora;
+
+        // Crea l'Intent per condividere tramite Gmail
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");  // Tipo di contenuto da condividere
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Dettagli Misurazione");
+        intent.putExtra(Intent.EXTRA_TEXT, contenuto);
+
+        // Verifica che ci sia un'app di Gmail installata
+        intent.setPackage("com.google.android.gm");
+
+        try {
+            startActivity(Intent.createChooser(intent, "Condividi i dettagli della misurazione con:"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Log.e(TAG, "Gmail non è installato", ex);
+        }
     }
 }
