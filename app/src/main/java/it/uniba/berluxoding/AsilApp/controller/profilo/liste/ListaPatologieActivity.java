@@ -35,6 +35,8 @@ public class ListaPatologieActivity extends AppCompatActivity {
     private final String TAG = "LISTA_PATOLOGIE_ACTIVITY";
 
     private FirebaseRecyclerAdapter<Patologia, PatologiaViewHolder> mAdapter;
+
+    DatabaseReference userRef;
 //    private Button btn;
 
     @Override
@@ -49,8 +51,10 @@ public class ListaPatologieActivity extends AppCompatActivity {
         });
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference userRef = mDatabase.child("AsilApp").child(getUid());
+        userRef = mDatabase.child("AsilApp").child(getUid());
+    }
 
+    private void creaListaElementi(Query patologiaQuery) {
         RecyclerView mRecycler = findViewById(R.id.listaPatologie);
         mRecycler.setHasFixedSize(true);
 
@@ -62,8 +66,7 @@ public class ListaPatologieActivity extends AppCompatActivity {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-        // Ottieni la query dal database Firebase
-        Query patologiaQuery = getQuery(userRef);
+
 
         // Configura FirebaseRecyclerOptions
         FirebaseRecyclerOptions<Patologia> options = new FirebaseRecyclerOptions.Builder<Patologia>()
@@ -97,6 +100,12 @@ public class ListaPatologieActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        // Ottieni la query dal database Firebase
+        Query patologiaQuery = getQuery(userRef);
+
+        creaListaElementi(patologiaQuery);
+
         // Inizia l'ascolto dei dati Firebase
         if (mAdapter != null) {
             mAdapter.startListening();

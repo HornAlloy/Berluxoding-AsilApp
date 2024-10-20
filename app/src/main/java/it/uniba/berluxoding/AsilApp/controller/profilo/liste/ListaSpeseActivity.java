@@ -51,7 +51,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
+    }
 
+    private void creaListaElementi(Query spesaQuery) {
         RecyclerView mRecycler = findViewById(R.id.listaSpese);
         mRecycler.setHasFixedSize(true);
 
@@ -62,9 +64,6 @@ public class ListaSpeseActivity extends AppCompatActivity {
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
-
-        // Ottieni la query dal database Firebase
-        Query spesaQuery = getQuery(userRef);
 
         // Configura FirebaseRecyclerOptions
         FirebaseRecyclerOptions<Spesa> options = new FirebaseRecyclerOptions.Builder<Spesa>()
@@ -89,39 +88,23 @@ public class ListaSpeseActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
                 getRef(position);
-//                final String uid = model.getId();
-
-                // Click listener per il post
-//                final String spesaKey = spesaRef.getKey();
-
-//                // Gestisce il like del post
-//                if (model.stars.containsKey(getUid())) {
-//                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
-//                } else {
-//                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
-//                }
-
-                // Bind del post al ViewHolder
-                //                    @Override
-//                    public void onClick(View starView) {
-//                        DatabaseReference globalPostRef = mDatabase.child("posts").child(spesaRef.getKey());
-//                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(uid).child(spesaRef.getKey());
-// Aggiorna i like in entrambe le posizioni
-//                        onStarClicked(globalPostRef);
-//                        onStarClicked(userPostRef);
-//                    }
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model),/* v -> aggiornaSpesa(model),*/ v -> eliminaSpesa(model));
             }
         };
 
         // Collega l'adapter al RecyclerView
         mRecycler.setAdapter(mAdapter);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        // Ottieni la query dal database Firebase
+        Query spesaQuery = getQuery(userRef);
+
+        creaListaElementi(spesaQuery);
+
         // Inizia l'ascolto dei dati Firebase
         if (mAdapter != null) {
             mAdapter.startListening();
