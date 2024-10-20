@@ -9,18 +9,47 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF">
 
-    <Button
+    <LinearLayout
+        android:id="@+id/inserimentoDati"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/spAmbito"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="Tipologia"
+            android:layout_marginTop="8dp" />
+
+        <!-- View invisibile per separare il bottone e lo spinner -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
         android:id="@+id/btnAggiungi"
         android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_height="match_parent"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#000000"
         android:text="@string/aggiungi"
         android:textSize="40sp"
-        android:elevation="8dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:elevation="8dp"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaSpese"
@@ -32,5 +61,6 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
         tools:listitem="@layout/item_spesa" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

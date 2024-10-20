@@ -17,12 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp">
-        <Spinner
-            android:id="@+id/spAmbito"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:hint="Tipologia"
-            android:layout_marginTop="8dp" />
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
