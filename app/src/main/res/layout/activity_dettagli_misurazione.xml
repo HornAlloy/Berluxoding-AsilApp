@@ -77,6 +77,7 @@
             android:textSize="28sp"
             app:layout_constraintTop_toBottomOf="@+id/valore" />
     </LinearLayout>
+
         <ImageButton
             android:id="@+id/btnCondividi"
             android:layout_width="match_parent"
