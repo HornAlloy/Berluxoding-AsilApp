@@ -48,7 +48,8 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
         String patologiaId = getIntent().getStringExtra("patologiaId");
         Log.d(TAG, "patologiaId = " + patologiaId);
 
-        DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("patologie").child(patologiaId);
+        DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("patologie")
+                .child(Objects.requireNonNull(patologiaId));
 
 
 

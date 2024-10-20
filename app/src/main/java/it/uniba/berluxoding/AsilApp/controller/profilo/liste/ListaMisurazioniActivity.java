@@ -35,6 +35,8 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
     private FirebaseRecyclerAdapter<Misurazione, MisurazioneViewHolder> mAdapter;
 
+    private DatabaseReference userRef;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +49,10 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         });
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference userRef = mDatabase.child("AsilApp").child(getUid());
+        userRef = mDatabase.child("AsilApp").child(getUid());
+    }
 
+    private void creaListaElementi(Query misurazioneQuery) {
         RecyclerView mRecycler = findViewById(R.id.listaMisurazioni);
         mRecycler.setHasFixedSize(true);
 
@@ -59,7 +63,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-        Query misurazioneQuery = getQuery(userRef);
+
 
         FirebaseRecyclerOptions<Misurazione> options = new FirebaseRecyclerOptions.Builder<Misurazione>()
                 .setQuery(misurazioneQuery, Misurazione.class)
@@ -94,6 +98,11 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        Query misurazioneQuery = getQuery(userRef);
+
+        creaListaElementi(misurazioneQuery);
+
         // Inizia l'ascolto dei dati Firebase
         if (mAdapter != null) {
             mAdapter.startListening();
@@ -130,6 +139,5 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     private void aggiungiMisurazione() {
         Intent intent = new Intent(this, MedboxActivity.class);
         startActivity(intent);
-        finish();
     }
 }
