@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase, userRef;
     private EditText etAmbito, etArticolo, etCosto, anno, mese, giorno, ora, minuto;
+    private Spinner spTipologia;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -44,7 +47,8 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUser());
 
-        etAmbito = findViewById(R.id.editTextAmbito);
+        //etAmbito = findViewById(R.id.editTextAmbito);
+        spTipologia = findViewById(R.id.spTipologia);
         etArticolo = findViewById(R.id.editTextArticolo);
         etCosto = findViewById(R.id.editTextCosto);
         giorno = findViewById(R.id.editTextGiorno);
@@ -52,6 +56,13 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         anno = findViewById(R.id.editTextAnno);
         ora = findViewById(R.id.editTextOra);
         minuto = findViewById(R.id.editTextMinuto);
+
+        /**Popolare i tipi di spesa con dati simulati*/
+        ArrayAdapter<CharSequence> tipologiaAdapter = ArrayAdapter.createFromResource(this,
+                R.array.tipologia_array, android.R.layout.simple_spinner_item);
+        tipologiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTipologia.setAdapter(tipologiaAdapter);
+
         Button salva = findViewById(R.id.buttonSave);
         salva.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the Save button");
@@ -65,7 +76,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         if (!validateForm()) {
             return;
         }
-        String ambito = etAmbito.getText().toString();
+        String ambito = spTipologia.getSelectedItem().toString();
         String articolo = etArticolo.getText().toString();
         String costo = etCosto.getText().toString();
         String orario = ora.getText().toString() + ":" + minuto.getText().toString();
@@ -100,13 +111,14 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private boolean validateForm() {
         boolean result = true;
-        if (TextUtils.isEmpty(etAmbito.getText().toString())) {
+        /*
+        if (TextUtils.isEmpty(spTipologia.getSelectedItem().toString())) {
             etAmbito.setError("Required");
             result = false;
         } else {
             etAmbito.setError(null);
         }
-
+        */
         if (TextUtils.isEmpty(etArticolo.getText().toString())) {
             etArticolo.setError("Required");
             result = false;

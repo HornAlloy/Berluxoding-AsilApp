@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp">
 
+        <!--
         <EditText
             android:id="@+id/editTextAmbito"
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             android:inputType="text"
             android:layout_marginTop="5dp"
             tools:ignore="Autofill" />
+        -->
 
         <EditText
             android:id="@+id/editTextArticolo"
@@ -112,6 +114,13 @@
                 android:inputType="number"
                 tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
         </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spTipologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipologia"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/buttonSave"
