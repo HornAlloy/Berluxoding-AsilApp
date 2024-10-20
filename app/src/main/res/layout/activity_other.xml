@@ -5,17 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/activityContainer"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
-
     <TextView
         android:id="@+id/textViewStileDiVitaSalutare"
         android:layout_width="wrap_content"
@@ -23,40 +12,48 @@
         android:text="@string/stile_di_vita_salutare"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/stile_vita_youtube_webview"/>
 
     <WebView
         android:id="@+id/stile_vita_youtube_webview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewStileDiVitaSalutare"
+        app:layout_constraintBottom_toTopOf="@id/btnAltriDoc"/>
 
-        <Button
-            android:id="@+id/btnAltriDoc"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:text="Altri documenti e riferimenti utili"
-            tools:ignore="HardcodedText,ObsoleteLayoutParam"
-            android:backgroundTint="#004071"
-            android:layout_marginStart="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="75dp"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/btnValutazioni"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:text="@string/valutazioni"
-            tools:ignore="HardcodedText"
-            android:layout_marginStart="50dp"
-            android:backgroundTint="#004071"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"/>
+    <Button
+        android:id="@+id/btnAltriDoc"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Altri documenti e riferimenti utili"
+        android:backgroundTint="#004071"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stile_vita_youtube_webview"
+        app:layout_constraintBottom_toTopOf="@id/btnValutazioni"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam"/>
 
-        <!-- Altri documenti e riferimenti utili -->
+    <Button
+        android:id="@+id/btnValutazioni"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="@string/valutazioni"
+        android:backgroundTint="#004071"
+        android:textStyle="bold"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAltriDoc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText"/>
 
 
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
