@@ -7,8 +7,12 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,13 +30,18 @@ import it.uniba.berluxoding.AsilApp.model.Valutazione;
 public class EvaluationsActivity extends AppCompatActivity implements OnDataReceived<Valutazione> {
     private RatingBar ratingBarCenter, ratingBarApp;
     private EditText editTextCenterComments, editTextAppComments;
-    private Valutazione app, centro;
     private final String TAG = "EVALUATIONS_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_evaluations);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         // Trova le view nel layout
         ratingBarCenter = findViewById(R.id.ratingBarCenter);
@@ -43,9 +52,6 @@ public class EvaluationsActivity extends AppCompatActivity implements OnDataRece
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference userRef = mDatabase.child("AsilApp").child(getUser()).child("valutazioni");
-
-        app = new Valutazione();
-        centro = new Valutazione();
 
         leggi(userRef);
 
@@ -71,38 +77,35 @@ public class EvaluationsActivity extends AppCompatActivity implements OnDataRece
     }
 
     private void leggi(DatabaseReference ref) {
-        leggiRatings(ref.child("applicazione"), new OnDataReceived<Valutazione>() {
-            @Override
-            public void onDataReceived (Valutazione data) {
-                if (data != null) {
-                    // Dati ricevuti, puoi lavorarci
-                    Log.d(TAG, "Valutazione ricevuta: " + data.toString());
-                    //app
-                    ratingBarApp.setRating(data.getRating());
-                    editTextAppComments.setText(data.getComment());
-                } else {
-                    // Nessun dato ricevuto
-                    Log.d(TAG, "Nessuna valutazione trovata.");
-                }
+        leggiRatings(ref.child("applicazione"), data -> {
+            if (data != null) {
+                // Dati ricevuti, puoi lavorarci
+                Log.d(TAG, "Valutazione ricevuta: " + data);
+                //app
+                ratingBarApp.setRating(data.getRating());
+                editTextAppComments.setText(data.getComment());
+            } else {
+                // Nessun dato ricevuto
+                Log.d(TAG, "Nessuna valutazione trovata.");
             }
         });
-        leggiRatings(ref.child("centro"), new OnDataReceived<Valutazione>() {
-            @Override
-            public void onDataReceived (Valutazione data) {
-                if (data != null) {
-                    Log.d(TAG, "Valutazione ricevuta: " + data.toString());
-                    //centro
-                    ratingBarCenter.setRating(data.getRating());
-                    editTextCenterComments.setText(data.getComment());
-                } else {
-                    Log.d(TAG, "Nessuna valutazione trovata.");
-                }
+        leggiRatings(ref.child("centro"), data -> {
+            if (data != null) {
+                Log.d(TAG, "Valutazione ricevuta: " + data);
+                //centro
+                ratingBarCenter.setRating(data.getRating());
+                editTextCenterComments.setText(data.getComment());
+            } else {
+                Log.d(TAG, "Nessuna valutazione trovata.");
             }
         });
     }
 
 
     private void salvaRatings(DatabaseReference ref) {
+
+        Valutazione app = new Valutazione();
+        Valutazione centro = new Valutazione();
 
         // Prendi i valori dalle RatingBar e dagli EditText
         centro.setRating(ratingBarCenter.getRating());

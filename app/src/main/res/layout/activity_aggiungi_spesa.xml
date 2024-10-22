@@ -20,17 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp">
 
-        <!--
-        <EditText
-            android:id="@+id/editTextAmbito"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:hint="@string/ambito"
-            android:inputType="text"
-            android:layout_marginTop="5dp"
-            tools:ignore="Autofill" />
-        -->
         <Spinner
             android:id="@+id/spTipologia"
             android:layout_width="match_parent"

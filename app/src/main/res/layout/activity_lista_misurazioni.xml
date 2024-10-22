@@ -11,14 +11,16 @@
 
     <Button
         android:id="@+id/btnAggiungi"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#000000"
         android:background="@drawable/rounded_button"
         android:text="@string/aggiungi"
         android:textSize="40sp"
         android:elevation="8dp"
         android:layout_marginEnd="15dp"
+        android:minWidth="75dp"
+        android:minHeight="75dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
