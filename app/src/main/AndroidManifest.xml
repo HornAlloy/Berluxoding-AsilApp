@@ -55,10 +55,10 @@
             android:name=".controller.informazioni.UserActivity"
             android:exported="false"/>
         <activity
-            android:name=".controller.altriDocumentiEValutazione.OtherDocumentsActivity"
+            android:name=".controller.informazioni.altriDocumentiEValutazione.OtherDocumentsActivity"
             android:exported="false"/>
         <activity
-            android:name=".controller.altriDocumentiEValutazione.EvaluationsActivity"
+            android:name=".controller.informazioni.altriDocumentiEValutazione.EvaluationsActivity"
             android:exported="false"/>
         <activity
             android:name=".trashcan.DatiActivity"

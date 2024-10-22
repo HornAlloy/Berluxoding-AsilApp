@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- Titolo della sezione -->
-    <TextView
-        android:id="@+id/tv_section_title"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/informazioni_sui_centri_di_accoglienza"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center" />
-
-    <!-- Descrizione del luogo e dei servizi offerti -->
-    <TextView
-        android:id="@+id/tv_center_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/questo_centro_ubicato_nel_centro_di_bari_e_offre_diversi_servizi_elencati_qui_sotto"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_section_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Lista dei servizi offerti -->
-    <TextView
-        android:id="@+id/tv_services_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/servizi_offerti"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_center_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:padding="5dp">
 
 
-    <TextView
-        android:id="@+id/txtServizio1"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:text="@string/alloggio"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_services_title"
-        tools:ignore="TextSizeCheck" />
+        <!-- Titolo della sezione -->
+        <TextView
+            android:id="@+id/tv_section_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/informazioni_sui_centri_di_accoglienza"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center" />
 
-    <TextView
-        android:id="@+id/txtServizio2"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/assistenza_sanitaria"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtServizio1"
-        tools:ignore="TextSizeCheck" />
+        <!-- Descrizione del luogo e dei servizi offerti -->
+        <TextView
+            android:id="@+id/tv_center_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/questo_centro_ubicato_nel_centro_di_bari_e_offre_diversi_servizi_elencati_qui_sotto"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_section_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/txtServizio3"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/servizio_pasti"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtServizio2"
-        tools:ignore="TextSizeCheck" />
+        <!-- Lista dei servizi offerti -->
+        <TextView
+            android:id="@+id/tv_services_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/servizi_offerti"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_center_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/txtServizio4"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/assistenza_legale"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtServizio3"
-        tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/txtServizio5"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/supporto_linguistico"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtServizio4"
-        tools:ignore="TextSizeCheck" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible" />
+        <TextView
+            android:id="@+id/txtServizio1"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="@string/alloggio"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_services_title"
+            tools:ignore="TextSizeCheck" />
 
-    <!-- Regolamento vigente -->
-    <TextView
-        android:id="@+id/tv_rules_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/regolamento_e_norme_di_convivenza"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtServizio5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/txtServizio2"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/assistenza_sanitaria"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtServizio1"
+            tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/tv_rules_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/_1_rispetto_reciproco_n2_pulizia_degli_spazi_comuni_n3_rispetto_degli_orari_dei_pasti_n4_collaborazione_con_il_personale"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rules_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/txtServizio3"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/servizio_pasti"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtServizio2"
+            tools:ignore="TextSizeCheck" />
 
-    <!-- Norme di buona convivenza -->
-    <TextView
-        android:id="@+id/tv_convivenza_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/norme_di_buona_convivenza"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rules_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/txtServizio4"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/assistenza_legale"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtServizio3"
+            tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/tv_convivenza_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/_1_rispettare_la_privacy_degli_altri_n2_non_fare_rumore_dopo_le_22_00_n3_segnalare_eventuali_problemi_al_personale"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_convivenza_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtServizio5"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/supporto_linguistico"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtServizio4"
+            tools:ignore="TextSizeCheck" />
+
+        <!-- Regolamento vigente -->
+        <TextView
+            android:id="@+id/tv_rules_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/regolamento_e_norme_di_convivenza"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtServizio5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_rules_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/_1_rispetto_reciproco_n2_pulizia_degli_spazi_comuni_n3_rispetto_degli_orari_dei_pasti_n4_collaborazione_con_il_personale"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rules_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Norme di buona convivenza -->
+        <TextView
+            android:id="@+id/tv_convivenza_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/norme_di_buona_convivenza"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rules_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_convivenza_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/_1_rispettare_la_privacy_degli_altri_n2_non_fare_rumore_dopo_le_22_00_n3_segnalare_eventuali_problemi_al_personale"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_convivenza_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -3,15 +3,14 @@ package it.uniba.berluxoding.AsilApp.controller.informazioni;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import it.uniba.berluxoding.AsilApp.R;
-import it.uniba.berluxoding.AsilApp.controller.altriDocumentiEValutazione.EvaluationsActivity;
-import it.uniba.berluxoding.AsilApp.controller.altriDocumentiEValutazione.OtherDocumentsActivity; // Import dell'activity di destinazione
+import it.uniba.berluxoding.AsilApp.controller.informazioni.altriDocumentiEValutazione.EvaluationsActivity;
+import it.uniba.berluxoding.AsilApp.controller.informazioni.altriDocumentiEValutazione.OtherDocumentsActivity; // Import dell'activity di destinazione
 
 public class OtherActivity extends AppCompatActivity {
 

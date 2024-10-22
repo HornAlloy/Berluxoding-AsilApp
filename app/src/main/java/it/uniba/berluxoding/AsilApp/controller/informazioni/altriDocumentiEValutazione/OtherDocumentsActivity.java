@@ -1,4 +1,4 @@
-package it.uniba.berluxoding.AsilApp.controller.altriDocumentiEValutazione;
+package it.uniba.berluxoding.AsilApp.controller.informazioni.altriDocumentiEValutazione;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
