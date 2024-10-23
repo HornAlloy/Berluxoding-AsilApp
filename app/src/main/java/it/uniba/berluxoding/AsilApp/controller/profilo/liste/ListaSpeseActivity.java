@@ -49,6 +49,10 @@ public class ListaSpeseActivity extends AppCompatActivity {
     private FirebaseRecyclerOptions<Spesa> options;
     private TextView tvTotaleSpese;
 
+    // Variabile per tenere traccia del totale
+    private double totaleSpese = 0.0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +84,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 String selectedFilter = parentView.getItemAtPosition(position).toString();
                 Log.d(TAG, "Filtro selezionato: " + selectedFilter);
                 updateQueryBasedOnSelection(selectedFilter);
+                setTotaleSpese();
             }
 
             @Override
@@ -119,9 +124,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(updatedQuery, Spesa.class)
                 .build();
 
+        setTotaleSpese();
         // Ricrea l'adapter e collega il RecyclerView
         creaListaElementi(options);
-        calcolaTotaleSpese(options);
     }
 
     // Metodo per creare la lista degli elementi nel RecyclerView
@@ -139,6 +144,10 @@ public class ListaSpeseActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
+
+                // Aggiungi il costo della spesa al totale
+                totaleSpese += Float.parseFloat(model.getCosto());
+                tvTotaleSpese.setText("Totale Spese: €" + totaleSpese);
             }
         };
 
@@ -157,8 +166,8 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(spesaQuery, Spesa.class)
                 .build();
 
+        setTotaleSpese();
         creaListaElementi(options);
-        calcolaTotaleSpese(options);
     }
 
     @Override
@@ -214,15 +223,11 @@ public class ListaSpeseActivity extends AppCompatActivity {
     }
 
 
-    private void calcolaTotaleSpese(@NonNull FirebaseRecyclerOptions<Spesa> options) {
-        double totale = 0.0;
-
-        List<Spesa> spese = options.getSnapshots().stream().toList();
-
-        for (Spesa spesa : spese)
-            totale += Float.parseFloat(spesa.getCosto());
-
-        tvTotaleSpese.setText("Totale Spese: €" + totale);
+    private void setTotaleSpese() {
+        // Aggiorna il TextView con il totale corrente
+        //tvTotaleSpese.setText("Totale Spese: €" + totaleSpese);
+        //Riportare a 0 il totale delle spese per il prossimo calcolo
+        totaleSpese = 0.0;
     }
 
 
