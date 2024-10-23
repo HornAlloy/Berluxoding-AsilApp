@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 //import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
@@ -44,6 +47,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
     private final String TAG = "LISTA_SPESE_ACTIVITY";
     private RecyclerView mRecycler;
     private FirebaseRecyclerOptions<Spesa> options;
+    private TextView tvTotaleSpese;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,8 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
+
+        tvTotaleSpese = findViewById(R.id.tvTotaleSpese);
 
         // Imposta lo spinner e il suo listener
         spTipologia = findViewById(R.id.spAmbito);
@@ -115,6 +121,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
         // Ricrea l'adapter e collega il RecyclerView
         creaListaElementi(options);
+        calcolaTotaleSpese(options);
     }
 
     // Metodo per creare la lista degli elementi nel RecyclerView
@@ -151,6 +158,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .build();
 
         creaListaElementi(options);
+        calcolaTotaleSpese(options);
     }
 
     @Override
@@ -204,4 +212,19 @@ public class ListaSpeseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+    private void calcolaTotaleSpese(@NonNull FirebaseRecyclerOptions<Spesa> options) {
+        double totale = 0.0;
+
+        List<Spesa> spese = options.getSnapshots().stream().toList();
+
+        for (Spesa spesa : spese)
+            totale += Float.parseFloat(spesa.getCosto());
+
+        tvTotaleSpese.setText("Totale Spese: €" + totale);
+    }
+
+
+
 }

@@ -18,8 +18,7 @@
         android:minWidth="200dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/listaSpese" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- RecyclerView per la lista delle spese -->
     <androidx.recyclerview.widget.RecyclerView
@@ -32,8 +31,24 @@
         app:layout_constraintTop_toBottomOf="@id/spAmbito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvTotaleSpese"
+        app:layout_constraintHeight_default="spread"
         tools:listitem="@layout/item_spesa" />
+
+    <!-- TextView per il totale delle spese -->
+    <TextView
+        android:id="@+id/tvTotaleSpese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Totale Spese: €0.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/listaSpese"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <!-- Bottone sovrapposto per aggiungere una spesa -->
     <Button
