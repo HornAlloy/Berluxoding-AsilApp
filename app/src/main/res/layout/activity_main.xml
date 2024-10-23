@@ -24,7 +24,7 @@
         android:id="@+id/icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@mipmap/ic_icon2"
+        android:src="@mipmap/ic_icon"
         android:layout_centerHorizontal="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
