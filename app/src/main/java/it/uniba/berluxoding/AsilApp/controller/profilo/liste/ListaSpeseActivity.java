@@ -24,15 +24,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-//import it.uniba.berluxoding.AsilApp.ModificaSpesaActivity;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.aggiunta.AggiungiSpesaActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliSpesaActivity;
@@ -67,7 +68,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
 
-        tvTotaleSpese = findViewById(R.id.tvTotaleSpese);
+        tvTotaleSpese = findViewById(R.id.tvTotaleSpeseEuro);
 
         // Imposta lo spinner e il suo listener
         spTipologia = findViewById(R.id.spAmbito);
@@ -83,8 +84,8 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 // Quando viene selezionato un elemento nello spinner, aggiorna la query
                 String selectedFilter = parentView.getItemAtPosition(position).toString();
                 Log.d(TAG, "Filtro selezionato: " + selectedFilter);
-                updateQueryBasedOnSelection(selectedFilter);
-                setTotaleSpese();
+                calcolaTotaleSpese(getQuery(userRef));
+                updateQueryBasedOnSelection();
             }
 
             @Override
@@ -111,7 +112,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
     }
 
     // Metodo per aggiornare la query e ricaricare i dati quando lo spinner cambia
-    private void updateQueryBasedOnSelection(String selectedFilter) {
+    private void updateQueryBasedOnSelection() {
         Query updatedQuery = getQuery(userRef); // Ottieni la nuova query basata sul filtro
 
         // Ferma l'ascolto dell'adapter corrente se esiste
@@ -124,7 +125,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(updatedQuery, Spesa.class)
                 .build();
 
-        setTotaleSpese();
+        //setTotaleSpese();
         // Ricrea l'adapter e collega il RecyclerView
         creaListaElementi(options);
     }
@@ -132,28 +133,57 @@ public class ListaSpeseActivity extends AppCompatActivity {
     // Metodo per creare la lista degli elementi nel RecyclerView
     private void creaListaElementi(FirebaseRecyclerOptions<Spesa> options) {
         // Imposta l'adapter
-        mAdapter = new FirebaseRecyclerAdapter<Spesa, SpesaViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<>(options) {
             @NonNull
             @Override
-            public SpesaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public SpesaViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new SpesaViewHolder(inflater.inflate(R.layout.item_spesa, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
+            protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
 
-                // Aggiungi il costo della spesa al totale
-                totaleSpese += Float.parseFloat(model.getCosto());
-                tvTotaleSpese.setText("Totale Spese: €" + totaleSpese);
+//                // Aggiungi il costo della spesa al totale
+//                totaleSpese += Float.parseFloat(model.getCosto());
+//                tvTotaleSpese.setText(String.format("%.2f", totaleSpese));
+//                Log.d(TAG, "totale spese = " + totaleSpese);
             }
         };
 
         // Collega l'adapter al RecyclerView e avvia l'ascolto
         mRecycler.setAdapter(mAdapter);
         mAdapter.startListening();
+    }
+
+    private void calcolaTotaleSpese(Query spesaQuery) {
+
+        spesaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Resetta il totale prima di ricalcolare
+                totaleSpese = 0.0;
+
+                // Itera su tutti i figli del nodo 'spese' per calcolare il totale
+                for (DataSnapshot spesaSnapshot : dataSnapshot.getChildren()) {
+                    Spesa spesa = spesaSnapshot.getValue(Spesa.class);
+                    if (spesa != null && spesa.getCosto() != null && !spesa.getCosto().isEmpty()) {
+                        totaleSpese += Double.parseDouble(spesa.getCosto());
+                    }
+                }
+
+                // Aggiorna il TextView con il totale delle spese
+                tvTotaleSpese.setText(String.format(Locale.getDefault(),"%.2f", totaleSpese));
+                Log.d(TAG, "Totale spese calcolato: " + totaleSpese);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "Errore nel recupero delle spese: " + databaseError.getMessage());
+            }
+        });
     }
 
     @Override
@@ -166,7 +196,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(spesaQuery, Spesa.class)
                 .build();
 
-        setTotaleSpese();
+        //setTotaleSpese();
         creaListaElementi(options);
     }
 
@@ -185,7 +215,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
         String ambito = spTipologia.getSelectedItem().toString();
         Query query;
 
-        if (ambito != null && ambito.equals("Tutto")) {
+        if (ambito.equals("Tutto")) {
             query = queryReference.child("spese").orderByChild("data");
         } else {
             query = queryReference.child("spese-ambito").child(ambito).orderByChild("data");
@@ -221,15 +251,4 @@ public class ListaSpeseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-    private void setTotaleSpese() {
-        // Aggiorna il TextView con il totale corrente
-        //tvTotaleSpese.setText("Totale Spese: €" + totaleSpese);
-        //Riportare a 0 il totale delle spese per il prossimo calcolo
-        totaleSpese = 0.0;
-    }
-
-
-
 }
