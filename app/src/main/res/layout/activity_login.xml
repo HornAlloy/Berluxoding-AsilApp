@@ -32,18 +32,19 @@
         android:id="@+id/icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:contentDescription="@string/app_icon"
         android:src="@mipmap/ic_icon"
         android:layout_centerHorizontal="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <EditText
         android:id="@+id/fieldEmail"
         android:layout_width="305dp"
         android:layout_height="55dp"
         android:layout_marginTop="35dp"
+        android:autofillHints="mariolino@panevino.com"
         android:ellipsize="end"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
@@ -52,22 +53,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toBottomOf="@+id/icon" />
 
     <EditText
         android:id="@+id/fieldPassword"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginTop="15dp"
+        android:autofillHints="password"
         android:ellipsize="end"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldEmail"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldEmail" />
 
     <Button
         android:id="@+id/buttonSignIn"
@@ -99,7 +99,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="#004071"
-        android:text="@string/teacher_s_backdoor"
+        android:text="@string/backdoor"
         android:layout_centerHorizontal="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

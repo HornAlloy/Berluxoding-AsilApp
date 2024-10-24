@@ -13,25 +13,26 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:backgroundTint="#FFFFFF"
+        android:contentDescription="@string/icon_altro"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/baseline_more_horiz_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/baseline_more_horiz_24" />
+
     <TextView
         android:id="@+id/txtAltro"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:layout_marginTop="5dp"
         android:text="@string/Altro"
         android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/imgBtnAltro"
         app:layout_constraintEnd_toEndOf="@id/imgBtnAltro"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnAltro"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnAltro" />
 
     <ImageButton
         android:id="@+id/imgBtnCentro"
@@ -39,25 +40,25 @@
         android:layout_height="200dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/icon_centro"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
-        app:srcCompat="@drawable/baseline_home_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/baseline_home_24" />
 
     <TextView
         android:id="@+id/txtCentro"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:text="@string/Centro"
         android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/imgBtnCentro"
         app:layout_constraintEnd_toEndOf="@id/imgBtnCentro"
         app:layout_constraintTop_toBottomOf="@id/imgBtnCentro"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/imgBtnUtente"
@@ -65,24 +66,24 @@
         android:layout_height="200dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/icon_utente"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
-        app:srcCompat="@drawable/baseline_person_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/baseline_person_24" />
 
     <TextView
         android:id="@+id/txtUtente"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:text="@string/Utente"
         android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/imgBtnUtente"
         app:layout_constraintEnd_toEndOf="@id/imgBtnUtente"
-        app:layout_constraintTop_toBottomOf="@id/imgBtnUtente"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@id/imgBtnUtente" />
 
     <ImageButton
         android:id="@+id/imgBtnLuogo"
@@ -90,24 +91,24 @@
         android:layout_height="200dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/icon_luogo"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/baseline_place_24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/baseline_place_24" />
 
     <TextView
         android:id="@+id/txtLuogo"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:text="@string/Luogo"
         android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/imgBtnLuogo"
         app:layout_constraintEnd_toEndOf="@id/imgBtnLuogo"
-        app:layout_constraintTop_toBottomOf="@id/imgBtnLuogo"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@id/imgBtnLuogo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -124,8 +125,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5"
-        tools:visibility="invisible"
-        android:visibility="invisible"/>
+        tools:visibility="invisible" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -133,7 +133,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible"
-        android:visibility="invisible"/>
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

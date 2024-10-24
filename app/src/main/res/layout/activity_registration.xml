@@ -24,30 +24,31 @@
             android:id="@+id/editTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="@string/nome_esempio"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:hint="@string/Nome"
+            android:hint="@string/nome"
             android:inputType="text"
-            tools:ignore="Autofill" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextCognome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="@string/cognome_esempio"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:hint="@string/Cognome"
+            android:hint="@string/cognome"
             android:inputType="text"
-            android:minHeight="48dp"
-            tools:ignore="Autofill" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextPaeseDiProvenienza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="@string/provenienza_esempio"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-            android:hint="@string/Paese_di_provenienza"
+            android:hint="@string/provenienza"
             android:inputType="text"
-            android:minHeight="48dp"
-            tools:ignore="Autofill,TextContrastCheck" />
+            android:minHeight="48dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,46 +59,48 @@
                 android:id="@+id/editTextGiorno"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="1"
-                android:hint="GG"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:autofillHints="31"
+                android:hint="@string/dd"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/editTextMese"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="1"
-                android:hint="MM"
-                android:inputType="number"
-                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:autofillHints="12"
+                android:hint="@string/MM"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/editTextAnno"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="2"
-                android:hint="AAAA"
-                android:inputType="number"
-                tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                android:autofillHints="1999"
+                android:hint="@string/yyyy"
+                android:inputType="number" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/editMedboxCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Medbox_PIN"
+            android:autofillHints="123456"
+            android:hint="@string/medbox_PIN"
             android:inputType="number"
-            android:minHeight="48dp"
-            tools:ignore="Autofill,TextContrastCheck" />
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#004071"
-            android:text="@string/Registra"
+            android:text="@string/sign_up"
             tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
 

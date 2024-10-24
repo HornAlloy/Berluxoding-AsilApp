@@ -20,61 +20,62 @@
         android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/lblAmbito"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="65dp"
+            android:minHeight="30dp"
             android:text="@string/ambito"
-            android:textSize="15sp"
-            tools:ignore="TextSizeCheck" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtAmbito"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="@string/ambito"
+            android:hint="@string/ambito_esempio"
             android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            tools:ignore="Autofill" />
+            android:textColor="@color/black" />
         <TextView
             android:id="@+id/lblArticolo"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="65dp"
+            android:minHeight="30dp"
             android:text="@string/articolo"
-            android:textSize="15sp"
-            tools:ignore="TextSizeCheck" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txArticolo"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="@string/articolo"
+            android:hint="@string/articolo_esempio"
             android:minHeight="48dp"
             android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            tools:ignore="Autofill" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/lblCosto"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="65dp"
+            android:minHeight="30dp"
             android:text="@string/costo"
-            android:textSize="15sp"
-            tools:ignore="TextSizeCheck" />
+            android:textSize="15sp" />
         <TextView
             android:id="@+id/txtCosto"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="@string/costo"
+            android:hint="@string/costo_esempio"
             android:minHeight="48dp"
             android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            tools:ignore="Autofill,TextContrastCheck" />
+            android:textColor="@color/black" />
         <TextView
             android:id="@+id/lblData"
-            android:layout_width="95dp"
-            android:layout_height="30dp"
-            android:text="@string/Data_acquisto"
-            android:textSize="15sp"
-            tools:ignore="TextSizeCheck" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="95dp"
+            android:minHeight="30dp"
+            android:text="@string/Data"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,20 +88,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="GG"
-                android:textColor="@color/black"
-                android:importantForAutofill="no"
-                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:hint="@string/dd"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/lblbarra1"
-                android:layout_width="5dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="5dp"
+                android:minHeight="30dp"
                 app:layout_constraintEnd_toStartOf="@id/txtMese"
                 android:text="@string/slash"
                 android:textSize="15sp"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                tools:ignore="TextSizeCheck" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/txtMese"
@@ -108,47 +108,72 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:hint="MM"
-                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:hint="@string/MM" />
 
             <TextView
                 android:id="@+id/lblbarra2"
-                android:layout_width="5dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="5dp"
+                android:minHeight="30dp"
                 app:layout_constraintEnd_toStartOf="@id/txtAnno"
                 android:text="@string/slash"
                 android:textSize="15sp"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                tools:ignore="TextSizeCheck" />
+                android:textColor="@color/black" />
             <TextView
                 android:id="@+id/txtAnno"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="AAAA"
-                android:textColor="@color/black"
-                tools:ignore="Autofill,HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                android:hint="@string/yyyy"
+                android:textColor="@color/black"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/txtOra"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="oo"
-                android:textColor="@color/black"
-                tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:hint="@string/oo"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/lblduepunti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="5dp"
+                android:minHeight="30dp"
+                app:layout_constraintEnd_toStartOf="@id/txtAnno"
+                android:text="@string/separatore"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/txtMinuto"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="mm"
-                android:textColor="@color/black"
-                tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+                android:hint="@string/mm"
+                android:textColor="@color/black" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,162 @@
+<resources>
+    <string name="app_name">AsilApp</string>
+    <!-- activity aggiungi spesa-->
+    <string name="ambito">Ámbito</string>
+    <string name="articolo">Artículo comprado</string>
+    <string name="costo">Cantidad gastada</string>
+    <string name="dd">día</string>
+    <string name="MM">mes</string>
+    <string name="yyyy">año</string>
+    <string name="oo">hora</string>
+    <string name="mm">minuto</string>
+    <string name="salva">Guardar</string>
+
+    <!-- activity altri documenti -->
+    <string name="corsi_e_attivit">Cursos y Actividades</string>
+    <string name="corsi">Aquí puedes inscribirte en cursos de italiano, actividades recreativas y culturales.</string>
+    <string name="informazioni_pratiche">Información Práctica</string>
+    <string name="informazioni_mezzi_e_vicinato">Transporte público, mapa de la ciudad y los lugares principales (clínica, farmacia, etc.).</string>
+    <string name="contatti_utili">Contactos Útiles</string>
+    <string name="contatti">Policía: 113, Ambulancia: 118, Bomberos: 115. Contactos para asistencia legal y sanitaria.</string>
+
+    <!-- activity_center -->
+    <string name="informazioni_centri">Información sobre los Centros de Acogida</string>
+    <string name="locazione_centro">Este centro está ubicado en el centro de Bari y ofrece los siguientes servicios enumerados a continuación</string>
+    <string name="servizi_offerti">Servicios Ofrecidos:</string>
+    <string name="alloggio">Alojamiento</string>
+    <string name="assistenza_sanitaria">Asistencia Sanitaria</string>
+    <string name="servizio_pasti">Servicio de Comidas</string>
+    <string name="assistenza_legale">Asistencia Legal</string>
+    <string name="supporto_linguistico">Apoyo Lingüístico</string>
+    <string name="regolamento_e_norme">Reglamento y Normas de Convivencia:</string>
+    <string name="regolamento_centro">1. Respeto mutuo\n2. Limpieza de las áreas comunes\n3. Respeto de los horarios de las comidas\n4. Colaboración con el personal</string>
+    <string name="norme_di_buona_convivenza">Normas de Buena Convivencia:</string>
+    <string name="norme_di_convivenza">1. Respetar la privacidad de los demás\n2. No hacer ruido después de las 22:00\n3. Informar de cualquier problema al personal</string>
+
+    <!-- activity dettagli misurazione -->
+    <string name="strumento">instrumento</string>
+    <string name="valore">valor</string>
+    <string name="ora">23:59</string>
+    <string name="data">31/01/2004</string>
+    <string name="shareButton">compartir</string>
+
+    <!-- activity dettagli patologia -->
+    <string name="nome_patologia">Patología</string>
+    <string name="dottore">Doctor diagnosticador</string>
+
+    <!-- activity dettagli spesa -->
+    <string name="ambito_esempio">Medicamento</string>
+    <string name="articolo_esempio">Aspirina</string>
+    <string name="costo_esempio">23.99</string>
+    <string name="Data">Fecha</string>
+    <string name="slash">/</string>
+    <string name="separatore">:</string>
+
+    <!-- activity evaluations -->
+    <string name="valutaci">Valóranos</string>
+    <string name="valuta_centro">Evalúa tu centro de acogida</string>
+    <string name="feedback_centro">Describe tu experiencia en el centro de acogida</string>
+    <string name="feedback_app">Describe tu experiencia con AsilApp</string>
+    <string name="valuta_asilapp">Evalúa AsilApp</string>
+    <string name="invia">Enviar</string>
+
+    <!-- activity home -->
+    <string name='profilo_img'>Icono de Perfil</string>
+    <string name='profilo'>Perfil</string>
+    <string name="informazioni_img">Icono de Información</string>
+    <string name="informazioni">Información</string>
+    <string name="medbox_img">Icono de Medbox</string>
+    <string name="medbox">Medbox</string>
+
+    <!-- activity information -->
+    <string name="Altro">Otro</string>
+    <string name="Centro">Centro</string>
+    <string name="Utente">Usuario</string>
+    <string name="Luogo">Lugar</string>
+    <string name="icon_altro">Icono de Otro</string>
+    <string name="icon_centro">Icono de Centro</string>
+    <string name="icon_utente">Icono de Usuario</string>
+    <string name="icon_luogo">Icono de Lugar</string>
+
+    <!-- activity lista misurazioni -->
+    <string name="aggiungi">+</string>
+
+    <!-- activity lista spese -->
+    <string name="totale_spese">Total Gastos: €</string>
+
+    <!-- activity login -->
+    <string name="app_icon">Icono de AsilApp</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="backdoor">Backdoor</string>
+
+    <!-- activity medbox -->
+    <string name="strumento2">instrumento2</string>
+    <string name="strumento3">instrumento3</string>
+
+    <!-- activity other -->
+    <string name="stile_di_vita_salutare">Estilo de Vida Saludable</string>
+    <string name="documenti">Otros documentos y referencias útiles</string>
+    <string name="valutazioni">Evaluaciones</string>
+
+    <!-- activity profile -->
+    <string name="scheda_personale">Ficha Personal</string>
+    <string name="nome">Nombre</string>
+    <string name="nome_esempio">Mario</string>
+    <string name="cognome">Apellido</string>
+    <string name="cognome_esempio">Rossi</string>
+    <string name="provenienza">País de Origen</string>
+    <string name="provenienza_esempio">Italia</string>
+    <string name="nato_il">Fecha de Nacimiento</string>
+    <string name="patologie">Patologías</string>
+    <string name="misurazioni">Mediciones</string>
+    <string name="spese">Gastos</string>
+    <string name="icon_patologie">Icono de Patologías</string>
+    <string name="icon_misurazioni">Icono de Mediciones</string>
+    <string name="icon_spese">Icono de Gastos</string>
+
+    <!-- activity registration -->
+    <string name="medbox_PIN">Medbox_PIN</string>
+
+    <!-- activity user -->
+    <string name="descrizione_video_richiesta_asilo">Un video explicativo sobre cómo funciona la solicitud de asilo</string>
+
+    <!-- fragment attesa -->
+    <string name="attendere">Esperando la respuesta de Medbox…</string>
+
+    <!-- fragment pin -->
+    <string name="pin">Introduce el PIN</string>
+    <string name="invia_pin">Enviar PIN</string>
+
+    <!-- items -->
+    <string name="dettagli">Detalles</string>
+    <string name="icon_dettagli">Icono de Detalles</string>
+    <string name="elimina">Eliminar</string>
+
+    <string-array name="tipologia_array">
+        <item>Medicamento</item>
+        <item>Alimentos</item>
+        <item>Ropa</item>
+        <item>Transportes</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="tipologia_per_la_visualizzazione_array">
+        <item>Todo</item>
+        <item>Medicamento</item>
+        <item>Alimentos</item>
+        <item>Ropa</item>
+        <item>Transportes</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="metodo_pagamento_array">
+        <item>Efectivo</item>
+        <item>Tarjeta de débito</item>
+        <item>Transferencia bancaria</item>
+        <item>Otro</item>
+    </string-array>
+
+</resources>

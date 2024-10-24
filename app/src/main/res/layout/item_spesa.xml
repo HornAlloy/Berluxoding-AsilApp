@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_spesa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -55,28 +54,34 @@
 
             <Button
                 android:id="@+id/btnVedi"
-                android:layout_width="135dp"
-                android:layout_height="70dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="135dp"
+                android:minHeight="70dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginStart="5dp"
                 android:backgroundTint="#004071"
-                android:text="@string/vedi"
+                android:text="@string/dettagli"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <Button
                 android:id="@+id/btnCancella"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
+                android:minWidth="135dp"
+                android:minHeight="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="#004071"
-                android:text="@string/cancella"
+                android:text="@string/elimina"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                android:textColor="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
         </LinearLayout>
 
     </LinearLayout>

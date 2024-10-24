@@ -18,65 +18,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp">
-    <TextView
-        android:id="@+id/strumento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/strumento"
-        android:layout_marginTop="10dp"
-        android:minWidth="300dp"
-        android:minHeight="48dp"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/valore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/valore"
-        android:layout_marginTop="10dp"
-        android:minWidth="300dp"
-        android:minHeight="48dp"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/strumento"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-    <TextView
-        android:id="@+id/dataMisurazione"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/data_diagnosi"
-        android:layout_marginTop="5dp"
-        android:minWidth="120dp"
-        android:minHeight="48dp"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/valore"
-        app:layout_constraintStart_toStartOf="@id/valore" />
-
         <TextView
-            android:id="@+id/oraMisurazione"
+            android:id="@+id/strumento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="4dp"
-            android:hint="@string/ora"
-            android:minWidth="120dp"
+            android:hint="@string/strumento"
+            android:layout_marginTop="10dp"
+            android:minWidth="300dp"
             android:minHeight="48dp"
-            android:textColor="@color/black"
             android:textSize="28sp"
-            app:layout_constraintTop_toBottomOf="@+id/valore" />
-    </LinearLayout>
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/valore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/valore"
+            android:layout_marginTop="10dp"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/strumento"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dataMisurazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/data"
+                android:layout_marginTop="5dp"
+                android:minWidth="120dp"
+                android:minHeight="48dp"
+                android:textSize="28sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/valore"
+                app:layout_constraintStart_toStartOf="@id/valore" />
+
+            <TextView
+                android:id="@+id/oraMisurazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
+                android:hint="@string/ora"
+                android:minWidth="120dp"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                app:layout_constraintTop_toBottomOf="@+id/valore" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/btnCondividi"
@@ -89,7 +89,7 @@
             app:layout_constraintRight_toLeftOf="@id/button2"
             app:layout_constraintTop_toBottomOf="@+id/text_view4"
             app:srcCompat="@drawable/baseline_share_24"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+            android:contentDescription="@string/shareButton"
             tools:layout_editor_absoluteX="15dp" />
     </LinearLayout>
 

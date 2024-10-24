@@ -25,29 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
         android:backgroundTint="#004071"
         android:text="@string/strumento"
         android:visibility="visible"
         android:minWidth="300dp"
         android:minHeight="70dp"
-        app:layout_constraintStart_toStartOf="@id/button2"
-        app:layout_constraintBottom_toTopOf="@id/button2"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button2" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#004071"
-        android:text="@string/strumento"
-        android:visibility="visible"
-        android:minWidth="300dp"
-        android:minHeight="70dp"
-        app:layout_constraintStart_toStartOf="@id/button2"
-        app:layout_constraintTop_toBottomOf="@id/button2" />
+
 
     <Button
         android:id="@+id/button2"
@@ -58,47 +46,28 @@
         android:backgroundTint="#004071"
         android:minWidth="300dp"
         android:minHeight="70dp"
-        android:text="@string/strumento"
+        android:text="@string/strumento2"
         android:visibility="visible"
-        app:layout_constraintTop_toTopOf="@id/guideline5"
-        app:layout_constraintBottom_toBottomOf="@id/guideline6"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintEnd_toEndOf="@id/guideline7"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button"
+        app:layout_constraintBottom_toTopOf="@id/button3"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+    <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#004071"
+        android:text="@string/strumento3"
+        android:visibility="visible"
+        android:minWidth="300dp"
+        android:minHeight="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintGuide_percent="1"
-        tools:visibility="invisible" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0"
-        tools:visibility="invisible"
-        android:visibility="invisible"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"
-        tools:visibility="invisible"
-        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

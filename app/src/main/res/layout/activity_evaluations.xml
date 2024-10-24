@@ -25,7 +25,7 @@
         android:id="@+id/textViewCenterTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/valuta_il_tuo_centro_di_accoglienza"
+        android:text="@string/valuta_centro"
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_below="@id/textViewTitle"
@@ -51,19 +51,22 @@
     <!-- Commenti per il centro di accoglienza -->
     <EditText
         android:id="@+id/editTextCenterComments"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingBarCenter"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/dai_un_feedback_descrittivo"
+        android:hint="@string/feedback_centro"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
+        android:maxWidth="488dp"
+        android:minWidth="300dp"
         android:minLines="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ratingBarCenter"
-        tools:ignore="Autofill,DuplicateSpeakableTextCheck" />
+        />
 
     <!-- Valutazione per l'app -->
     <TextView
@@ -96,9 +99,11 @@
     <!-- Commenti per l'app -->
     <EditText
         android:id="@+id/editTextAppComments"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/dai_un_feedback_descrittivo"
+        android:minWidth="300dp"
+        android:maxWidth="488dp"
+        android:hint="@string/feedback_app"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minLines="3"

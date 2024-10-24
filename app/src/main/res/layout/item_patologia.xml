@@ -23,7 +23,7 @@
             android:layout_marginTop="4dp"
             android:minWidth="300dp"
             android:minHeight="48dp"
-            android:text="@string/Nomepatologia"
+            android:text="@string/nome_patologia"
             android:textSize="28sp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,14 +34,14 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="45dp"
+            android:layout_width="48dp"
             android:layout_height="49dp"
             android:layout_marginStart="10dp"
             android:background="@android:color/white"
+            android:contentDescription="@string/icon_dettagli"
             android:src="@drawable/baseline_expand_circle_down_24"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

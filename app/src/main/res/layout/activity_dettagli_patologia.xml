@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:hint="@string/data_diagnosi"
+        android:hint="@string/data"
         android:layout_margin="5dp"
         android:minWidth="300dp"
         android:minHeight="48dp"

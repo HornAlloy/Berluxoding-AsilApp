@@ -28,11 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginStart="10dp"
-        android:text="@string/un_video_esplicativo_sulla_richiesta_di_asilo_come_funziona"
+        android:text="@string/descrizione_video_richiesta_asilo"
         android:textSize="24sp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/tipi_utenti_webview"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/tipi_utenti_webview" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

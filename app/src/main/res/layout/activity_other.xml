@@ -32,16 +32,17 @@
 
     <Button
         android:id="@+id/btnAltriDoc"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:text="Altri documenti e riferimenti utili"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="300dp"
+        android:minHeight="60dp"
+        android:text="@string/documenti"
         android:backgroundTint="#004071"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/stile_vita_youtube_webview"
-        app:layout_constraintBottom_toTopOf="@id/btnValutazioni"
-        tools:ignore="HardcodedText,ObsoleteLayoutParam"/>
+        app:layout_constraintBottom_toTopOf="@id/btnValutazioni" />
 
     <Button
         android:id="@+id/btnValutazioni"
@@ -54,8 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAltriDoc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
