@@ -97,7 +97,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
             protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
                 getRef(position);
 
-                model.setData(convertDateFormat(model.getData()));
+                //model.setData(convertDateFormat(model.getData()));
                 // Bind del model al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
                 //misurazioniList.add(model);
