@@ -33,6 +33,7 @@ import com.google.firebase.database.Query;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.controller.medbox.MedboxActivity;
@@ -97,7 +98,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
             protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
                 getRef(position);
 
-                //model.setData(convertDateFormat(model.getData()));
+                model.setData(convertDateFormat(model.getData()));
                 // Bind del model al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
                 //misurazioniList.add(model);
@@ -108,9 +109,10 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     }
 
     private String convertDateFormat(String dateStr) {
-        // Definire il formato di input e output
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+        //Definire il formato di input e output
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);// Formato di input con Locale US
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);// Formato di output con Locale ITALIAN
+
 
         String formattedDate = null;
         try {
