@@ -109,8 +109,8 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
     private String convertDateFormat(String dateStr) {
         // Definire il formato di input e output
-        SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         String formattedDate = null;
         try {
