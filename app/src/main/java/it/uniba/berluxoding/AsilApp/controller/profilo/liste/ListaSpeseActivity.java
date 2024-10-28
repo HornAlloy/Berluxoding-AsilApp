@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseArray;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -143,6 +150,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
+                model.setData(convertDateFormat(model.getData()));
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
             }
@@ -151,6 +159,24 @@ public class ListaSpeseActivity extends AppCompatActivity {
         // Collega l'adapter al RecyclerView e avvia l'ascolto
         mRecycler.setAdapter(mAdapter);
         mAdapter.startListening();
+    }
+
+    private String convertDateFormat(String dateStr) {
+        // Definire il formato di input e output
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        String formattedDate = null;
+        try {
+            // Parsing della data in formato yyyy/MM/dd
+            Date date = inputFormat.parse(dateStr);
+            // Formattazione della data in formato dd/MM/yyyy
+            formattedDate = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return formattedDate; // Restituisce la data nel nuovo formato
     }
 
     private void calcolaTotaleSpese(Query spesaQuery) {

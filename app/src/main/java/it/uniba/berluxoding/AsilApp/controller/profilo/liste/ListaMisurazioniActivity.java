@@ -30,6 +30,9 @@ import com.google.firebase.database.Query;
 //import java.util.Collections;
 //import java.util.Comparator;
 //import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.controller.medbox.MedboxActivity;
@@ -72,8 +75,6 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-
-
         FirebaseRecyclerOptions<Misurazione> options = new FirebaseRecyclerOptions.Builder<Misurazione>()
                 .setQuery(misurazioneQuery, Misurazione.class)
                 .build();
@@ -96,6 +97,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
             protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
                 getRef(position);
 
+                model.setData(convertDateFormat(model.getData()));
                 // Bind del model al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
                 //misurazioniList.add(model);
@@ -103,6 +105,24 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         };
 
         mRecycler.setAdapter(mAdapter);
+    }
+
+    private String convertDateFormat(String dateStr) {
+        // Definire il formato di input e output
+        SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        String formattedDate = null;
+        try {
+            // Parsing della data in formato yyyy/MM/dd
+            Date date = inputFormat.parse(dateStr);
+            // Formattazione della data in formato dd/MM/yyyy
+            formattedDate = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return formattedDate; // Restituisce la data nel nuovo formato
     }
 
     @Override

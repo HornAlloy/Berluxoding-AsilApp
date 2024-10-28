@@ -105,8 +105,7 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         String articolo = etArticolo.getText().toString();
         String costo = etCosto.getText().toString();
         String orario = ora.getText().toString() + ":" + minuto.getText().toString();
-        String dataSpesa = giorno.getText().toString() + "/" + mese.getText().toString() + "/" +
-                anno.getText().toString();
+        String dataSpesa = anno.getText().toString() + "/" + mese.getText().toString() + "/" + giorno.getText().toString();
 
         Spesa spesa = new Spesa();
         spesa.setAmbito(ambito);
