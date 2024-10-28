@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,13 +36,11 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
-        TextView waitingText = view.findViewById(R.id.waitingText);
 
         DatabaseReference path = FirebaseDatabase.getInstance().getReference("medbox/risposta");
 
         // Mostra il progresso dell'attesa
         progressBar.setVisibility(View.VISIBLE);
-        waitingText.setText("Attendere la risposta dal Medbox...");
 
         setListener(path);
     }
@@ -55,7 +52,7 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
-                     String misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
+                    String misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
 
                     Log.d("Firebase", "Risposta ricevuta: userId=" + ", risultato=" + misurazioneId);
 
@@ -76,8 +73,6 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
                 Log.e("Firebase", "Errore nel recupero della risposta: " + databaseError.getMessage());
             }
         });
-
-
     }
 
 

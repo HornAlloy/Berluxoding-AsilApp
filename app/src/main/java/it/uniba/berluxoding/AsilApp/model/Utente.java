@@ -7,8 +7,10 @@ public class Utente {
     private String luogoProvenienza;
     private String pin;
 
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     */
     public Utente () {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
     public void setNome (String nome) {

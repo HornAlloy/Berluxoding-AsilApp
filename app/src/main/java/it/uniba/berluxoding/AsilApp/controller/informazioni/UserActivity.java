@@ -10,13 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
+
 import it.uniba.berluxoding.AsilApp.R;
 
 public class UserActivity extends AppCompatActivity {
 
-    private WebView tipiUtentiWebview; // Riferimento alla WebView
-    private TextView txtInfoUt; // Riferimento al TextView
+    // Riferimento al TextView
 
     // L'ID del video YouTube
     private static final String USER_VIDEO_ID = "A_05YMRASzU"; // ID video di YouTube
@@ -34,8 +33,8 @@ public class UserActivity extends AppCompatActivity {
          // Assicurati che il nome del layout XML sia corretto
 
         // Inizializzazione dei componenti della UI
-        tipiUtentiWebview = findViewById(R.id.tipi_utenti_webview);
-        txtInfoUt = findViewById(R.id.txtInfoUt);
+        // Riferimento alla WebView
+        WebView tipiUtentiWebview = findViewById(R.id.tipi_utenti_webview);
 
         // Configura il WebView per mostrare il contenuto di YouTube
         tipiUtentiWebview.getSettings().setJavaScriptEnabled(true);

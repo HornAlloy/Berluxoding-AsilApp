@@ -22,16 +22,10 @@ import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import it.uniba.berluxoding.AsilApp.controller.LoginActivity;
 
 public class  MainActivity extends AppCompatActivity {
-
-    private FloatingActionButton fab;
-    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,44 +34,13 @@ public class  MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                // definisco l'intenzione di aprire l'Activity "Page1.java"
-                Intent openPage = new Intent(MainActivity.this, LoginActivity.class);
-                // passo all'attivazione dell'activity page1.java
-                startActivity(openPage);
-                finish();
-            }
+            // definisco l'intenzione di aprire l'Activity "Page1.java"
+            Intent openPage = new Intent(MainActivity.this, LoginActivity.class);
+            // passo all'attivazione dell'activity page1.java
+            startActivity(openPage);
+            finish();
         }, 2000);
-
-
-
-
-       /* ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-
-        fab = binding.fab;
-
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        navController.setGraph(R.navigation.nav_graph_java);*/
-      /*  navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.MainFragment) {
-                    fab.setVisibility(View.VISIBLE);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            navController.navigate(R.id.action_MainFragment_to_NewPostFragment);
-                        }
-                    });
-                } else {
-                    fab.setVisibility(View.GONE);
-                }
-            }
-        });*/
     }
 }

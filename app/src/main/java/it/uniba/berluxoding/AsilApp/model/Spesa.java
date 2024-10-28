@@ -11,6 +11,9 @@ public class Spesa {
     private String ambito;
     private String articolo;
 
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     */
     public Spesa() {}
 
     public void setId (String id) {

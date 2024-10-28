@@ -1,11 +1,15 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+import androidx.annotation.NonNull;
+
 public class Valutazione {
     private float rating;
     private String comment;
 
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     */
     public Valutazione () {
-        // metodo necessario per far funzionare il db
     }
 
     public float getRating () {
@@ -24,6 +28,7 @@ public class Valutazione {
         this.comment = comment;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Valutazione: [Stelle = " + rating + "], [Commento = " + comment + "]";

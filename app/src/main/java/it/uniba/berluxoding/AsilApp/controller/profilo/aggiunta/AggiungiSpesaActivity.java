@@ -32,7 +32,7 @@ import it.uniba.berluxoding.AsilApp.model.Spesa;
 public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase, userRef;
-    private EditText etAmbito, etArticolo, etCosto, anno, mese, giorno, ora, minuto;
+    private EditText etArticolo, etCosto, anno, mese, giorno, ora, minuto;
     private Spinner spTipologia;
 
     private long backPressedTime;
@@ -62,9 +62,6 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         ora = findViewById(R.id.editTextOra);
         minuto = findViewById(R.id.editTextMinuto);
 
-        /**
-         * Popolare i tipi di spesa con dati simulati
-         * */
         ArrayAdapter<CharSequence> tipologiaAdapter = ArrayAdapter.createFromResource(this,
                 R.array.tipologia_array, android.R.layout.simple_spinner_item);
         tipologiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

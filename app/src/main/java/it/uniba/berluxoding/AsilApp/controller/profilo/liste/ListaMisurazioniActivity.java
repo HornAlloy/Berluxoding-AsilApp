@@ -23,13 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+//import java.time.LocalDate;
+//import java.time.LocalTime;
+//import java.time.format.DateTimeFormatter;
+//import java.util.ArrayList;
+//import java.util.Collections;
+//import java.util.Comparator;
+//import java.util.List;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.controller.medbox.MedboxActivity;
@@ -44,7 +44,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
     private DatabaseReference userRef;
 
-    private List<Misurazione> misurazioniList = new ArrayList<>();
+    //private List<Misurazione> misurazioniList = new ArrayList<>();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
                 // Bind del model al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
-                misurazioniList.add(model);
+                //misurazioniList.add(model);
             }
         };
 
@@ -113,7 +113,7 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
 
         creaListaElementi(misurazioneQuery);
 
-        ordinaMisurazioniPerDataEOra(misurazioniList);
+        //ordinaMisurazioniPerDataEOra(misurazioniList);
 
         // Inizia l'ascolto dei dati Firebase
         if (mAdapter != null) {
@@ -154,30 +154,30 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
     }
 
 
-    // Formatter per convertire la stringa in LocalDate e LocalTime
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-
-    // Metodo per ordinare una lista di misurazioni per data e orario (dalla più recente alla meno recente)
-    private void ordinaMisurazioniPerDataEOra(List<Misurazione> misurazioni) {
-        Collections.sort(misurazioni, (m1, m2) -> {
-            // Converte la data da stringa a LocalDate
-            LocalDate data1 = LocalDate.parse(m1.getData(), DATE_FORMATTER);
-            LocalDate data2 = LocalDate.parse(m2.getData(), DATE_FORMATTER);
-
-            // Confronta le date
-            int dataCompare = data2.compareTo(data1);
-
-            // Se le date sono uguali, confronta gli orari
-            if (dataCompare == 0) {
-                LocalTime orario1 = LocalTime.parse(m1.getOrario(), TIME_FORMATTER);
-                LocalTime orario2 = LocalTime.parse(m2.getOrario(), TIME_FORMATTER);
-                return orario2.compareTo(orario1); // ordine decrescente per l'orario
-            }
-
-            return dataCompare; // ordine decrescente per la data
-        });
-    }
+//    // Formatter per convertire la stringa in LocalDate e LocalTime
+//    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+//
+//    // Metodo per ordinare una lista di misurazioni per data e orario (dalla più recente alla meno recente)
+//    private void ordinaMisurazioniPerDataEOra(List<Misurazione> misurazioni) {
+//        Collections.sort(misurazioni, (m1, m2) -> {
+//            // Converte la data da stringa a LocalDate
+//            LocalDate data1 = LocalDate.parse(m1.getData(), DATE_FORMATTER);
+//            LocalDate data2 = LocalDate.parse(m2.getData(), DATE_FORMATTER);
+//
+//            // Confronta le date
+//            int dataCompare = data2.compareTo(data1);
+//
+//            // Se le date sono uguali, confronta gli orari
+//            if (dataCompare == 0) {
+//                LocalTime orario1 = LocalTime.parse(m1.getOrario(), TIME_FORMATTER);
+//                LocalTime orario2 = LocalTime.parse(m2.getOrario(), TIME_FORMATTER);
+//                return orario2.compareTo(orario1); // ordine decrescente per l'orario
+//            }
+//
+//            return dataCompare; // ordine decrescente per la data
+//        });
+//    }
 
 
 

@@ -145,11 +145,6 @@ public class ListaSpeseActivity extends AppCompatActivity {
             protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
-
-//                // Aggiungi il costo della spesa al totale
-//                totaleSpese += Float.parseFloat(model.getCosto());
-//                tvTotaleSpese.setText(String.format("%.2f", totaleSpese));
-//                Log.d(TAG, "totale spese = " + totaleSpese);
             }
         };
 

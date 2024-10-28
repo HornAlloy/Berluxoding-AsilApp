@@ -13,7 +13,6 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
         public TextView articoloView;
         public TextView dataView;
         public Button dettagliView;
-        //public Button aggiornaView;
         public Button cancellaView;
 
         public SpesaViewHolder(View itemView) {
@@ -22,7 +21,6 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
             articoloView = itemView.findViewById(R.id.textView);
             dataView = itemView.findViewById(R.id.textView2);
             dettagliView = itemView.findViewById(R.id.btnVedi);
-            //aggiornaView = itemView.findViewById(R.id.btnAggiorna);
             cancellaView = itemView.findViewById(R.id.btnCancella);
         }
 
@@ -31,7 +29,6 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder {
             dataView.setText(spesa.getData());
 
             dettagliView.setOnClickListener(dettagliListener);
-            //aggiornaView.setOnClickListener(aggiornaListener);
             cancellaView.setOnClickListener(cancellaListener);
         }
 }

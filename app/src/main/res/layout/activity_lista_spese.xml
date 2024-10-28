@@ -11,14 +11,14 @@
     <!-- Spinner per selezionare il filtro -->
     <Spinner
         android:id="@+id/spAmbito"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:minHeight="48dp"
-        android:minWidth="200dp"
+        android:minWidth="250dp"
+        android:maxWidth="400dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/btnAggiungi" />
 
     <!-- RecyclerView per la lista delle spese -->
     <androidx.recyclerview.widget.RecyclerView

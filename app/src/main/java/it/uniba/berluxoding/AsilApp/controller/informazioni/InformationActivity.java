@@ -2,7 +2,6 @@ package it.uniba.berluxoding.AsilApp.controller.informazioni;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -37,42 +36,30 @@ public class InformationActivity extends AppCompatActivity {
         ImageButton imgBtnLuogo = findViewById(R.id.imgBtnLuogo);
 
         // Set OnClickListener per imgBtnAltro
-        imgBtnAltro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Avvia "AltroActivity" (activity_other.xml)
-                Intent intent = new Intent(InformationActivity.this, OtherActivity.class);
-                startActivity(intent);
-            }
+        imgBtnAltro.setOnClickListener(v -> {
+            // Avvia "AltroActivity" (activity_other.xml)
+            Intent intent = new Intent(InformationActivity.this, OtherActivity.class);
+            startActivity(intent);
         });
 
         // Set OnClickListener per imgBtnCentro
-        imgBtnCentro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Avvia "CentroActivity" (activity_center.xml)
-                Intent intent = new Intent(InformationActivity.this, CenterActivity.class);
-                startActivity(intent);
-            }
+        imgBtnCentro.setOnClickListener(v -> {
+            // Avvia "CentroActivity" (activity_center.xml)
+            Intent intent = new Intent(InformationActivity.this, CenterActivity.class);
+            startActivity(intent);
         });
 
         // Set OnClickListener per imgBtnUtente (da definire in seguito)
-        imgBtnUtente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(InformationActivity.this, UserActivity.class);
-                startActivity(intent);
-            }
+        imgBtnUtente.setOnClickListener(v -> {
+            Intent intent = new Intent(InformationActivity.this, UserActivity.class);
+            startActivity(intent);
         });
 
         // Set OnClickListener per imgBtnLuogo
-        imgBtnLuogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Avvia "LuogoActivity" (activity_place.xml)
-                Intent intent = new Intent(InformationActivity.this, PlaceActivity.class);
-                startActivity(intent);
-            }
+        imgBtnLuogo.setOnClickListener(v -> {
+            // Avvia "LuogoActivity" (activity_place.xml)
+            Intent intent = new Intent(InformationActivity.this, PlaceActivity.class);
+            startActivity(intent);
         });
     }
 }

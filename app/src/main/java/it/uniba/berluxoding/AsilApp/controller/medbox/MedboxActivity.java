@@ -30,6 +30,8 @@ public class MedboxActivity extends AppCompatActivity {
 
     private final String TAG = "MEDBOXAPP_ACTIVITY";
 
+    Button strumento1, strumento2, strumento3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +78,9 @@ public class MedboxActivity extends AppCompatActivity {
 
     // Metodo per aggiornare la UI con i nomi degli strumenti e impostare i listener
     private void aggiornaStrumentiUI(String[] strumentiArray) {
-        Button strumento1 = findViewById(R.id.button);
-        Button strumento2 = findViewById(R.id.button2);
-        Button strumento3 = findViewById(R.id.button3);
+        strumento1 = findViewById(R.id.button);
+        strumento2 = findViewById(R.id.button2);
+        strumento3 = findViewById(R.id.button3);
 
         strumento1.setText(strumentiArray[0]);
         strumento2.setText(strumentiArray[1]);
@@ -89,6 +91,7 @@ public class MedboxActivity extends AppCompatActivity {
             String strumentoName = clickedButton.getText().toString();
             Log.d(TAG, strumentoName + " button pressed!");
 
+            changeFrame();
             // Crea un bundle e salvaci lo strumento selezionato
             Bundle bundle = new Bundle();
             bundle.putString("strumento", strumentoName);
@@ -100,6 +103,12 @@ public class MedboxActivity extends AppCompatActivity {
         strumento1.setOnClickListener(listener);
         strumento2.setOnClickListener(listener);
         strumento3.setOnClickListener(listener);
+    }
+
+    private void changeFrame() {
+        strumento1.setVisibility(View.GONE);
+        strumento2.setVisibility(View.GONE);
+        strumento3.setVisibility(View.GONE);
     }
 
     // Metodo per sostituire i fragment
