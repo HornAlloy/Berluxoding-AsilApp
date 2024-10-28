@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".controller.medbox.MedboxActivity">
 
-    <!-- Contenitore per il Fragment -->
+    <!-- Contenitore per il Fragment-->
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -19,6 +20,7 @@
         android:background="?android:attr/selectableItemBackground" >
 
     </FrameLayout>
+
 
     <Button
         android:id="@+id/button"
@@ -58,7 +60,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:backgroundTint="#004071"
         android:text="@string/strumento3"
         android:visibility="visible"
