@@ -1,7 +1,9 @@
 package it.uniba.berluxoding.AsilApp.controller.medbox;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Objects;
 
+import it.uniba.berluxoding.AsilApp.controller.HomeActivity;
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
@@ -41,6 +44,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
     private ProgressBar progressBar; // Barra di progresso per indicare che il processo è in corso
     private DatabaseReference pinPath; // Riferimento al percorso del database per il PIN
     private DatabaseReference richiestaRef; // Riferimento al percorso del database per le richieste
+    private DatabaseReference rispostaRef; // Riferimento al percorso del database per le richieste
     private String strumento; // Nome dello strumento a cui si sta accedendo
     private static final String TAG = "PinFragment"; // Tag per il logging
 
@@ -67,6 +71,10 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
      */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        backPressed();
+
         pinEditText = view.findViewById(R.id.pinEditText);
         submitButton = view.findViewById(R.id.submitButton);
         progressBar = view.findViewById(R.id.progressBar);
@@ -75,6 +83,8 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         pinPath = mDatabase.child("AsilApp").child(getUid()).child("anagrafica").child("pin");
         richiestaRef = mDatabase.child("medbox").child("richiesta");
+        rispostaRef = mDatabase.child("medbox").child("risposta");
+
 
         if(getArguments() != null) {
             strumento = getArguments().getString("strumento");
@@ -82,6 +92,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             Log.d("strumento = ", strumento);
         }
 
+        checkAnswer();
         // Imposta il listener per il pulsante di invio del PIN
         submitButton.setOnClickListener(v -> {
             String pin = pinEditText.getText().toString().trim();
@@ -137,6 +148,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
     public void onDataReceived(String storedPin) {
         String enteredPin = pinEditText.getText().toString().trim();
 
+
         // Confronta il PIN inserito con quello memorizzato nel database
         if (storedPin != null && storedPin.equals(enteredPin)) {
             // Il PIN inserito è corretto
@@ -179,4 +191,43 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    private void checkAnswer() {
+        rispostaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange (@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getValue() != null) {
+                    rispostaRef.removeValue();
+                } else {
+                    rispostaRef.removeEventListener(this);
+                }
+            }
+
+            @Override
+            public void onCancelled (@NonNull DatabaseError error) {
+                Log.e(TAG, "errore nella cancellazione preventiva della risposta");
+            }
+        });
+    }
+
+    private void backPressed() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                MedboxActivity activity = (MedboxActivity) getActivity();
+                if (activity != null) {
+                    activity.resumeActivity();
+                }
+                // Controlla se ci sono Fragment nel back stack
+                if (requireActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    requireActivity().getSupportFragmentManager().popBackStack(); // Torna indietro nel back stack
+                } else {
+                    // Se non ci sono altri fragment, chiudi l'activity
+                    requireActivity().finish();
+                }
+            }
+        };
+
+        // Aggiungi il callback al dispatcher
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+    }
 }

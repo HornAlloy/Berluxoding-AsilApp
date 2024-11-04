@@ -1,5 +1,12 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * La classe {@code Misurazione} rappresenta una misurazione effettuata con uno strumento
  * specifico. Contiene informazioni come il valore della misurazione, la data e l'orario
@@ -11,6 +18,7 @@ public class Misurazione {
     private String valore;
     private String data;
     private String orario;
+    private boolean dataItaliana = false;
 
     /**
      * Costruttore di default necessario per le chiamate a DataSnapshot.getValue(Misurazione.class).
@@ -107,5 +115,39 @@ public class Misurazione {
     public void setOrario(String orario) {
         this.orario = orario;
     }
-}
 
+    /**
+     * Converte una data da un formato di input a un formato di output più leggibile.
+     *
+     * @param dateStr La data in formato di input "yyyy/MM/dd".
+     * @return La data formattata in "dd/MM/yyyy".
+     */
+    private void convertDateFormat(String dateStr) {
+        // Definire il formato di input e output
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+
+        String formattedDate = null;
+        try {
+            // Parsing della data in formato yyyy/MM/dd
+            Date date = inputFormat.parse(dateStr);
+            Log.d("CONVERT_DATE_FORMAT", "Data input = " + dateStr);
+            Log.d("CONVERT_DATE_FORMAT", "Data = " + date);
+            // Formattazione della data in formato dd/MM/yyyy
+            formattedDate = outputFormat.format(date);
+            Log.d("CONVERT_DATE_FORMAT", "Data formattata = " + formattedDate);
+            Log.d("CONVERT_DATE_FORMAT", "Data = " + date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        data = formattedDate;
+    }
+
+    public void checkDate() {
+        if (!dataItaliana) {
+            convertDateFormat(data);
+            dataItaliana = true;
+        }
+    }
+}

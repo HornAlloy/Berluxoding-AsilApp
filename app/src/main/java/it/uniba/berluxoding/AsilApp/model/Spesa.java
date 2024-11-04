@@ -1,9 +1,10 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-
-import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -18,6 +19,7 @@ public class Spesa {
     private String costo;     // Il costo della spesa
     private String ambito;    // L'ambito della spesa
     private String articolo;   // L'articolo acquistato
+    private boolean dataItaliana = false;
 
     /**
      * Costruttore di default necessario per le chiamate a DataSnapshot.getValue(Spesa.class).
@@ -148,5 +150,32 @@ public class Spesa {
         result.put("orario", orario);
 
         return result;
+    }
+
+    /**
+     * Converte la data in formato {@code yyyy/MM/dd} in formato {@code dd/MM/yyyy}.
+     *
+     * @param dateStr La data in formato di input.
+     */
+    private void convertDateFormat(String dateStr) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+
+        String formattedDate = null;
+        try {
+            Date date = inputFormat.parse(dateStr);
+            formattedDate = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        data = formattedDate;
+    }
+
+    public void checkDate () {
+        if (!dataItaliana) {
+            convertDateFormat(data);
+            dataItaliana = true;
+        }
     }
 }

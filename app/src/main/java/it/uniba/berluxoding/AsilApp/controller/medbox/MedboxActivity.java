@@ -108,6 +108,7 @@ public class MedboxActivity extends AppCompatActivity {
             Log.d(TAG, strumentoName + " button pressed!");
 
             changeFrame();
+
             // Crea un bundle e salvaci lo strumento selezionato
             Bundle bundle = new Bundle();
             bundle.putString("strumento", strumentoName);
@@ -126,9 +127,23 @@ public class MedboxActivity extends AppCompatActivity {
      * dopo che un pulsante è stato premuto.
      */
     private void changeFrame() {
+        strumento1 = findViewById(R.id.button);
+        strumento2 = findViewById(R.id.button2);
+        strumento3 = findViewById(R.id.button3);
+
         strumento1.setVisibility(View.GONE);
         strumento2.setVisibility(View.GONE);
         strumento3.setVisibility(View.GONE);
+    }
+
+    protected void resumeActivity() {
+        strumento1 = findViewById(R.id.button);
+        strumento2 = findViewById(R.id.button2);
+        strumento3 = findViewById(R.id.button3);
+
+        strumento1.setVisibility(View.VISIBLE);
+        strumento2.setVisibility(View.VISIBLE);
+        strumento3.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -142,6 +157,7 @@ public class MedboxActivity extends AppCompatActivity {
         fragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);  // Aggiunge il Fragment corrente al back stack
         transaction.commit();
     }
 }

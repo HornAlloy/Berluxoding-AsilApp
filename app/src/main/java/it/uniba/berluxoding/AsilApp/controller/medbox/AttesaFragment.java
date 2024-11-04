@@ -3,6 +3,7 @@ package it.uniba.berluxoding.AsilApp.controller.medbox;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -42,11 +43,33 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
 
         // Riferimento al nodo del database per ricevere la risposta
         DatabaseReference path = FirebaseDatabase.getInstance().getReference("medbox/risposta");
+        DatabaseReference requestPath = FirebaseDatabase.getInstance().getReference("medbox/richiesta");
 
         // Mostra il progresso dell'attesa
         progressBar.setVisibility(View.VISIBLE);
 
         setListener(path);
+
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Rimuove requestPath, se necessario
+                requestPath.removeValue();
+
+                // Torna all'Activity ospitante rimuovendo il fragment corrente
+                if (requireActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    // Disattiva il callback per permettere all'Activity di gestire il back
+                    setEnabled(false);
+                    requireActivity().onBackPressed();
+                }
+            }
+        };
+
+        // Aggiungi il callback al dispatcher
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
     }
 
     /**

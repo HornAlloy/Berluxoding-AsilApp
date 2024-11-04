@@ -167,7 +167,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
-                model.setData(convertDateFormat(model.getData()));
+                model.checkDate();
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
             }
@@ -176,27 +176,6 @@ public class ListaSpeseActivity extends AppCompatActivity {
         // Collega l'adapter al RecyclerView e avvia l'ascolto
         mRecycler.setAdapter(mAdapter);
         mAdapter.startListening();
-    }
-
-    /**
-     * Converte la data in formato {@code yyyy/MM/dd} in formato {@code dd/MM/yyyy}.
-     *
-     * @param dateStr La data in formato di input.
-     * @return La data formattata nel nuovo formato.
-     */
-    private String convertDateFormat(String dateStr) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
-
-        String formattedDate = null;
-        try {
-            Date date = inputFormat.parse(dateStr);
-            formattedDate = outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return formattedDate;
     }
 
     /**

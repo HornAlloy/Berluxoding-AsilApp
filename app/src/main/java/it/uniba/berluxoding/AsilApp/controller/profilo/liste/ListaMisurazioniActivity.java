@@ -117,37 +117,13 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
                 getRef(position);
 
                 // Conversione della data in un formato leggibile
-                model.setData(convertDateFormat(model.getData()));
+                model.checkDate();
                 // Associa il modello al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
             }
         };
 
         mRecycler.setAdapter(mAdapter);
-    }
-
-    /**
-     * Converte una data da un formato di input a un formato di output più leggibile.
-     *
-     * @param dateStr La data in formato di input "yyyy/MM/dd".
-     * @return La data formattata in "dd/MM/yyyy".
-     */
-    private String convertDateFormat(String dateStr) {
-        // Definire il formato di input e output
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
-
-        String formattedDate = null;
-        try {
-            // Parsing della data in formato yyyy/MM/dd
-            Date date = inputFormat.parse(dateStr);
-            // Formattazione della data in formato dd/MM/yyyy
-            formattedDate = outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return formattedDate; // Restituisce la data nel nuovo formato
     }
 
     /**
