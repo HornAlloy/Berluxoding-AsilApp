@@ -61,9 +61,7 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
                 if (requireActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     requireActivity().getSupportFragmentManager().popBackStack();
                 } else {
-                    // Disattiva il callback per permettere all'Activity di gestire il back
-                    setEnabled(false);
-                    requireActivity().onBackPressed();
+                    requireActivity().finish();
                 }
             }
         };
