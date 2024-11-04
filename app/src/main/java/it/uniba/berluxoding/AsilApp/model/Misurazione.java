@@ -1,5 +1,10 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+/**
+ * La classe {@code Misurazione} rappresenta una misurazione effettuata con uno strumento
+ * specifico. Contiene informazioni come il valore della misurazione, la data e l'orario
+ * in cui è stata effettuata, e l'identificatore univoco della misurazione.
+ */
 public class Misurazione {
     private String id;
     private String strumento;
@@ -7,81 +12,100 @@ public class Misurazione {
     private String data;
     private String orario;
 
-
     /**
-     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     * Costruttore di default necessario per le chiamate a DataSnapshot.getValue(Misurazione.class).
      */
-    public Misurazione () {
-
+    public Misurazione() {
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce il valore della misurazione.
+     *
+     * @return Il valore della misurazione.
      */
-    public String getValore () {
+    public String getValore() {
         return valore;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta il valore della misurazione.
+     *
+     * @param valore Il valore da impostare per la misurazione.
      */
-    public void setValore (String valore) {
+    public void setValore(String valore) {
         this.valore = valore;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce il nome dello strumento utilizzato per la misurazione.
+     *
+     * @return Il nome dello strumento.
      */
-    public String getStrumento () {
+    public String getStrumento() {
         return strumento;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta il nome dello strumento utilizzato per la misurazione.
+     *
+     * @param strumento Il nome dello strumento da impostare.
      */
-    public void setStrumento (String strumento) {
+    public void setStrumento(String strumento) {
         this.strumento = strumento;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce la data in cui è stata effettuata la misurazione.
+     *
+     * @return La data della misurazione.
      */
-    public String getData () {
+    public String getData() {
         return data;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta la data in cui è stata effettuata la misurazione.
+     *
+     * @param data La data da impostare.
      */
-    public void setData (String data) {
+    public void setData(String data) {
         this.data = data;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce l'identificatore univoco della misurazione.
+     *
+     * @return L'ID della misurazione.
      */
-    public String getId () {
+    public String getId() {
         return id;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta l'identificatore univoco della misurazione.
+     *
+     * @param id L'ID da impostare per la misurazione.
      */
-    public void setId (String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce l'orario in cui è stata effettuata la misurazione.
+     *
+     * @return L'orario della misurazione.
      */
-    public String getOrario () {
+    public String getOrario() {
         return orario;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta l'orario in cui è stata effettuata la misurazione.
+     *
+     * @param orario L'orario da impostare.
      */
-    public void setOrario (String orario) {
+    public void setOrario(String orario) {
         this.orario = orario;
     }
 }
+

@@ -24,6 +24,12 @@ import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Misurazione;import android.content.Intent;
 import android.view.View; // Importa questa libreria
 
+/**
+ * La classe {@code DettagliMisurazioneActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che mostra i dettagli di una misurazione specifica.
+ * Gli utenti possono visualizzare informazioni come strumento, valore, data e ora della misurazione,
+ * oltre a condividere questi dettagli tramite Gmail.
+ */
 public class DettagliMisurazioneActivity extends AppCompatActivity {
 
     private TextView strumentoV, valoreV, dataV, oraV;
@@ -31,6 +37,13 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
     private String misurazioneId;
     final private String TAG = "DETTAGLI_MISURAZIONE_ACTIVITY";
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente e viene
+     * recuperato l'ID della misurazione passato tramite l'intent.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +72,10 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         getMisurazione();
     }
 
+    /**
+     * Recupera i dettagli della misurazione dal database Firebase
+     * e aggiorna l'interfaccia utente con queste informazioni.
+     */
     private void getMisurazione() {
         DatabaseReference misurazioneRef = userRef.child("misurazioni").child(misurazioneId);
 
@@ -85,11 +102,22 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Restituisce l'ID dell'utente attualmente autenticato.
+     *
+     * @return L'ID dell'utente corrente.
+     */
     private String getUid() {
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
-    // Metodo per condividere i dettagli della misurazione tramite Gmail
+    /**
+     * Condivide i dettagli della misurazione tramite Gmail.
+     * Questo metodo raccoglie i dettagli visualizzati e crea un'Intent
+     * per avviare un'app di posta per la condivisione.
+     *
+     * @param view La vista che ha attivato il metodo.
+     */
     public void condividiMisurazione(View view) {
         // Recupera i dettagli della misurazione
         String strumento = strumentoV.getText().toString();
@@ -120,3 +148,4 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         }
     }
 }
+

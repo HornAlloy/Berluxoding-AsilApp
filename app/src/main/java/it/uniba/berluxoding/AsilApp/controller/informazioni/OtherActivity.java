@@ -17,26 +17,30 @@ import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.informazioni.altriDocumentiEValutazione.EvaluationsActivity;
 import it.uniba.berluxoding.AsilApp.controller.informazioni.altriDocumentiEValutazione.OtherDocumentsActivity; // Import dell'activity di destinazione
 
+/**
+ * Activity che mostra un video di YouTube relativo a uno stile di vita sano
+ * e fornisce accesso a ulteriori documenti e valutazioni.
+ */
 public class OtherActivity extends AppCompatActivity {
 
-    // L'ID del video è la parte dopo ?v=, quindi in questo caso, https://www.youtube.com/watch?v=Op3hkJND21Q, è Op3hkJND21Q.
+    // L'ID del video di YouTube da mostrare.
     private static final String HEALTHY_LIFESTYLE_VIDEO_ID = "Y8HIFRPU6pM"; // ID video di YouTube
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Abilita EdgeToEdge per un'esperienza utente a schermo intero
         EdgeToEdge.enable(this);
-        EdgeToEdge.enable(this);
-        // Imposta il layout della tua activity
+        // Imposta il layout associato a questa activity
         setContentView(R.layout.activity_other);
+
+        // Gestisce gli insets delle finestre per supportare schermi a tutto schermo
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
 
         // Inizializzazione dei componenti della UI
         WebView stileVitaYoutubeWebview = findViewById(R.id.stile_vita_youtube_webview);
@@ -50,16 +54,19 @@ public class OtherActivity extends AppCompatActivity {
         stileVitaYoutubeWebview.loadUrl("https://www.youtube.com/embed/" + HEALTHY_LIFESTYLE_VIDEO_ID + "?autoplay=1&vq=small");
 
         // Gestione click bottone "Altri documenti e riferimenti utili"
-        btnAltriDoc.setOnClickListener(view -> {
-            // Intent per passare a OtherDocumentsActivity
-            Intent intent = new Intent(OtherActivity.this, OtherDocumentsActivity.class);
-            startActivity(intent);
-        });
+        btnAltriDoc.setOnClickListener(view -> startActivityWithIntent(OtherDocumentsActivity.class));
 
         // Gestione click bottone "Valutazioni"
-        btnValutazioni.setOnClickListener(view -> {
-            Intent intent = new Intent(OtherActivity.this, EvaluationsActivity.class);
-            startActivity(intent);
-        });
+        btnValutazioni.setOnClickListener(view -> startActivityWithIntent(EvaluationsActivity.class));
+    }
+
+    /**
+     * Avvia una nuova attività in base alla classe passata come parametro.
+     *
+     * @param targetActivity La classe dell'attività da avviare.
+     */
+    private void startActivityWithIntent(Class<?> targetActivity) {
+        Intent intent = new Intent(OtherActivity.this, targetActivity);
+        startActivity(intent);
     }
 }

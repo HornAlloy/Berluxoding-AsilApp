@@ -1,62 +1,83 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+/**
+ * La classe {@code Patologia} rappresenta una patologia diagnosticata a un paziente.
+ * Contiene informazioni come il nome della patologia, la data della diagnosi e il medico
+ * che ha effettuato la diagnosi.
+ */
 public class Patologia {
     /**
-     * La patologia si identifica con il nome
+     * Il nome della patologia.
      */
     private String nome;
-    private String dataDiagnosi;
+
     /**
-     * Medico che ha diagnosticato la patologia.
+     * La data in cui è stata effettuata la diagnosi.
+     */
+    private String dataDiagnosi;
+
+    /**
+     * Il medico che ha diagnosticato la patologia.
      */
     private String diagnosta;
 
     /**
-     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     * Costruttore di default necessario per le chiamate a DataSnapshot.getValue(Patologia.class).
      */
-    public Patologia () {
-
+    public Patologia() {
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce la data della diagnosi della patologia.
+     *
+     * @return La data della diagnosi.
      */
-    public String getDataDiagnosi () {
+    public String getDataDiagnosi() {
         return dataDiagnosi;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta la data della diagnosi della patologia.
+     *
+     * @param dataDiagnosi La data da impostare per la diagnosi.
      */
-    public void setDataDiagnosi (String dataDiagnosi) {
+    public void setDataDiagnosi(String dataDiagnosi) {
         this.dataDiagnosi = dataDiagnosi;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce il nome della patologia.
+     *
+     * @return Il nome della patologia.
      */
-    public String getNome () {
+    public String getNome() {
         return nome;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta il nome della patologia.
+     *
+     * @param nome Il nome da impostare per la patologia.
      */
-    public void setNome (String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Restituisce il nome del medico che ha diagnosticato la patologia.
+     *
+     * @return Il nome del medico.
      */
-    public String getDiagnosta () {
+    public String getDiagnosta() {
         return diagnosta;
     }
 
     /**
-     * Necessario per il funzionamento del database
+     * Imposta il nome del medico che ha diagnosticato la patologia.
+     *
+     * @param diagnosta Il nome del medico da impostare.
      */
-    public void setDiagnosta (String diagnosta) {
+    public void setDiagnosta(String diagnosta) {
         this.diagnosta = diagnosta;
     }
 }

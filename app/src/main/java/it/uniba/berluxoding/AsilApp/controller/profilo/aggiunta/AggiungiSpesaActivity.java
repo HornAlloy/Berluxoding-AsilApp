@@ -29,6 +29,12 @@ import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
 import it.uniba.berluxoding.AsilApp.model.Spesa;
 
+/**
+ * La classe {@code AggiungiSpesaActivity} estende {@code AppCompatActivity} e rappresenta l'attività
+ * che consente agli utenti di aggiungere una nuova spesa al sistema.
+ * In questa attività, gli utenti possono inserire dettagli come articolo, costo, data e ora
+ * della spesa, e salvarli nel database Firebase.
+ */
 public class AggiungiSpesaActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase, userRef;
@@ -38,8 +44,15 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
     private long backPressedTime;
     private Toast backToast;
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente,
+     * inclusi i campi di input e il spinner per la selezione della tipologia di spesa.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_aggiungi_spesa);
@@ -52,7 +65,6 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUser());
 
-        //etAmbito = findViewById(R.id.editTextAmbito);
         spTipologia = findViewById(R.id.spTipologia);
         etArticolo = findViewById(R.id.editTextArticolo);
         etCosto = findViewById(R.id.editTextCosto);
@@ -71,7 +83,6 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         salva.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the Save button");
             save();
-
         });
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -89,12 +100,20 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Termina l'attività corrente e apre {@code ListaSpeseActivity}.
+     */
     private void terminate() {
         Intent intent = new Intent(this, ListaSpeseActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Salva le informazioni della spesa nel database Firebase.
+     * Questo metodo crea un oggetto {@code Spesa}, lo popola con i dati forniti
+     * e lo salva nel database.
+     */
     public void save() {
         String TAG = "AGGIUNGI_SPESA_ACTIVITY";
         Log.d(TAG, "save");
@@ -125,62 +144,52 @@ public class AggiungiSpesaActivity extends AppCompatActivity {
         mDatabase.updateChildren(childUpdates);
         Log.d(TAG, "spesa salvata");
         Intent openPage = new Intent(AggiungiSpesaActivity.this, ListaSpeseActivity.class);
-        // passo all'attivazione dell'activity page1.java
         startActivity(openPage);
         finish();
     }
 
-    private String getUser () {
+    /**
+     * Restituisce l'ID dell'utente attualmente autenticato.
+     *
+     * @return L'ID dell'utente corrente.
+     */
+    private String getUser() {
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    /**
+     * Valida i dati inseriti dall'utente per assicurarsi che tutti i campi obbligatori siano riempiti.
+     *
+     * @return {@code true} se il modulo è valido, {@code false} altrimenti.
+     */
     private boolean validateForm() {
         boolean result = true;
-        if (TextUtils.isEmpty(etArticolo.getText().toString())) {
-            etArticolo.setError("Required");
-            result = false;
-        } else {
-            etArticolo.setError(null);
-        }
-        if (TextUtils.isEmpty(etCosto.getText().toString())) {
-            etCosto.setError("Required");
-            result = false;
-        } else {
-            etCosto.setError(null);
-        }
 
-        if (TextUtils.isEmpty(anno.getText().toString())) {
-            anno.setError("Required");
-            result = false;
-        } else {
-            anno.setError(null);
-        }
-        if (TextUtils.isEmpty(mese.getText().toString())) {
-            mese.setError("Required");
-            result = false;
-        } else {
-            mese.setError(null);
-        }
+        result &= validateEt(etArticolo);
+        result &= validateEt(etCosto);
+        result &= validateEt(anno);
+        result &= validateEt(mese);
+        result &= validateEt(giorno);
+        result &= validateEt(ora);
+        result &= validateEt(minuto);
 
-        if (TextUtils.isEmpty(giorno.getText().toString())) {
-            giorno.setError("Required");
-            result = false;
-        } else {
-            giorno.setError(null);
-        }
-        if (TextUtils.isEmpty(ora.getText().toString())) {
-            ora.setError("Required");
-            result = false;
-        } else {
-            ora.setError(null);
-        }
-
-        if (TextUtils.isEmpty(minuto.getText().toString())) {
-            minuto.setError("Required");
-            result = false;
-        } else {
-            minuto.setError(null);
-        }
         return result;
     }
+
+    /**
+     * Verifica se un campo di testo è vuoto e, in tal caso, imposta un messaggio di errore.
+     *
+     * @param et Il campo di testo da validare.
+     * @return true se il campo non è vuoto, false altrimenti.
+     */
+    private boolean validateEt(EditText et) {
+        if (TextUtils.isEmpty(et.getText().toString())) {
+            et.setError("Required");
+            return false;
+        } else {
+            et.setError(null);
+            return true;
+        }
+    }
+
 }

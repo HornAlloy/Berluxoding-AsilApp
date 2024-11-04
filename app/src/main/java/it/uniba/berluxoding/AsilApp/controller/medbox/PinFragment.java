@@ -27,32 +27,51 @@ import java.util.Objects;
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
+
 /**
- * A simple {@link Fragment} subclass.
+ * PinFragment è un Fragment che gestisce l'input dell'utente per un PIN
+ * e verifica il PIN inserito rispetto a quello memorizzato in un database Firebase.
+ * Fa parte dell'applicazione Medbox, consentendo agli utenti di
+ * richiedere l'accesso a strumenti medici specifici in modo sicuro.
  */
 public class PinFragment extends Fragment implements OnDataReceived<String> {
 
-    private EditText pinEditText;
-    private Button submitButton;
-    private ProgressBar progressBar;
-    private DatabaseReference pinPath;
-    private DatabaseReference richiestaRef;
-    private String strumento;
-    private static final String TAG = "PinFragment";
+    private EditText pinEditText;  // Campo di input per l'inserimento del PIN da parte dell'utente
+    private Button submitButton;     // Pulsante per inviare il PIN
+    private ProgressBar progressBar; // Barra di progresso per indicare che il processo è in corso
+    private DatabaseReference pinPath; // Riferimento al percorso del database per il PIN
+    private DatabaseReference richiestaRef; // Riferimento al percorso del database per le richieste
+    private String strumento; // Nome dello strumento a cui si sta accedendo
+    private static final String TAG = "PinFragment"; // Tag per il logging
 
+    /**
+     * Inflaziona il layout per questo fragment.
+     *
+     * @param inflater           LayoutInflater per inflazionare la vista
+     * @param container          ViewGroup a cui l'interfaccia utente di questo fragment deve essere collegata
+     * @param savedInstanceState Bundle contenente lo stato salvato precedentemente del fragment
+     * @return Vista per l'interfaccia utente del fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_pin, container, false);
     }
 
+    /**
+     * Inizializza i componenti dell'interfaccia utente e imposta i riferimenti al database.
+     * Inoltre, recupera il nome dello strumento dagli argomenti del fragment.
+     *
+     * @param view               La vista del fragment
+     * @param savedInstanceState Bundle contenente lo stato salvato precedentemente del fragment
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         pinEditText = view.findViewById(R.id.pinEditText);
         submitButton = view.findViewById(R.id.submitButton);
         progressBar = view.findViewById(R.id.progressBar);
 
-        // Inizializzazione del riferimento al database
+        // Inizializza i riferimenti al database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         pinPath = mDatabase.child("AsilApp").child(getUid()).child("anagrafica").child("pin");
         richiestaRef = mDatabase.child("medbox").child("richiesta");
@@ -63,13 +82,13 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             Log.d("strumento = ", strumento);
         }
 
-
-            submitButton.setOnClickListener(v -> {
+        // Imposta il listener per il pulsante di invio del PIN
+        submitButton.setOnClickListener(v -> {
             String pin = pinEditText.getText().toString().trim();
 
             // Verifica se il PIN non è vuoto
             if (!pin.isEmpty()) {
-                // Disabilita il bottone e mostra il ProgressBar per evitare ulteriori azioni fino a ottenere il risultato
+                // Disabilita il pulsante e mostra la barra di progresso per evitare ulteriori azioni fino a ottenere il risultato
                 submitButton.setEnabled(false);
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -99,13 +118,21 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
                 // Errore di lettura dal database
                 Log.e(TAG, "Errore nel recuperare il PIN dal database: " + databaseError.getMessage());
 
-                // Rende il bottone di invio di nuovo abilitato e nasconde il ProgressBar
+                // Rende il pulsante di invio di nuovo abilitato e nasconde la barra di progresso
                 submitButton.setEnabled(true);
                 progressBar.setVisibility(View.GONE);
             }
         });
     }
 
+    /**
+     * Metodo chiamato quando il PIN memorizzato viene ricevuto dal database.
+     * Confronta il PIN inserito dall'utente con quello memorizzato.
+     * Se il PIN è corretto, invia una richiesta al database e passa al
+     * fragment di attesa; altrimenti, mostra un messaggio di errore.
+     *
+     * @param storedPin Il PIN memorizzato nel database, recuperato tramite callback.
+     */
     @Override
     public void onDataReceived(String storedPin) {
         String enteredPin = pinEditText.getText().toString().trim();
@@ -115,7 +142,6 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             // Il PIN inserito è corretto
             Bundle args = new Bundle();
             args.putString("userId", getUid());
-            // fragment.setArguments(args);
 
             // Creiamo un HashMap per inviare i dati della richiesta
             HashMap<String, Object> richiestaMap = new HashMap<>();
@@ -135,13 +161,22 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             Toast.makeText(getContext(), "PIN errato. Riprova.", Toast.LENGTH_SHORT).show();
         }
 
-        // Rende il bottone di invio di nuovo abilitato e nasconde il ProgressBar
+        // Rende il pulsante di invio di nuovo abilitato e nasconde la barra di progresso
         submitButton.setEnabled(true);
         progressBar.setVisibility(View.GONE);
     }
 
+    /**
+     * Restituisce l'UID (Unique Identifier) dell'utente attualmente loggato.
+     * Questo metodo è utilizzato per identificare in modo univoco l'utente nel
+     * database Firebase e per eseguire operazioni relative a quell'utente.
+     *
+     * @return L'UID dell'utente loggato, ottenuto da FirebaseAuth.
+     *         Se l'utente non è loggato, genera un'eccezione di tipo NullPointerException.
+     */
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
+
 }

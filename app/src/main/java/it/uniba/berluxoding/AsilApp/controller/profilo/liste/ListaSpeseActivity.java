@@ -43,6 +43,11 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliSpesaAct
 import it.uniba.berluxoding.AsilApp.model.Spesa;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.SpesaViewHolder;
 
+/**
+ * La classe {@code ListaSpeseActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che gestisce e visualizza una lista di spese. Utilizza un adapter Firebase
+ * per recuperare e visualizzare i dati delle spese in un RecyclerView.
+ */
 public class ListaSpeseActivity extends AppCompatActivity {
 
     private DatabaseReference userRef;
@@ -56,18 +61,28 @@ public class ListaSpeseActivity extends AppCompatActivity {
     // Variabile per tenere traccia del totale
     private double totaleSpese = 0.0;
 
-
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente,
+     * configurato il riferimento al database Firebase e impostato lo spinner
+     * per la selezione della tipologia di spesa.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_spese);
+
+        // Gestione degli insets di sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Inizializzazione del database Firebase
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
 
@@ -84,7 +99,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
         spTipologia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Quando viene selezionato un elemento nello spinner, aggiorna la query
+                // Aggiorna la query quando viene selezionato un elemento nello spinner
                 String selectedFilter = parentView.getItemAtPosition(position).toString();
                 Log.d(TAG, "Filtro selezionato: " + selectedFilter);
                 calcolaTotaleSpese(getQuery(userRef));
@@ -114,7 +129,9 @@ public class ListaSpeseActivity extends AppCompatActivity {
         });
     }
 
-    // Metodo per aggiornare la query e ricaricare i dati quando lo spinner cambia
+    /**
+     * Metodo per aggiornare la query e ricaricare i dati quando lo spinner cambia.
+     */
     private void updateQueryBasedOnSelection() {
         Query updatedQuery = getQuery(userRef); // Ottieni la nuova query basata sul filtro
 
@@ -128,24 +145,28 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 .setQuery(updatedQuery, Spesa.class)
                 .build();
 
-        //setTotaleSpese();
         // Ricrea l'adapter e collega il RecyclerView
         creaListaElementi(options);
     }
 
-    // Metodo per creare la lista degli elementi nel RecyclerView
+    /**
+     * Crea e configura la lista di elementi da visualizzare nel RecyclerView
+     * utilizzando un adapter Firebase per recuperare i dati delle spese.
+     *
+     * @param options Le opzioni per l'adapter FirebaseRecycler.
+     */
     private void creaListaElementi(FirebaseRecyclerOptions<Spesa> options) {
         // Imposta l'adapter
         mAdapter = new FirebaseRecyclerAdapter<>(options) {
             @NonNull
             @Override
-            public SpesaViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
+            public SpesaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new SpesaViewHolder(inflater.inflate(R.layout.item_spesa, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder (@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
+            protected void onBindViewHolder(@NonNull SpesaViewHolder viewHolder, int position, @NonNull final Spesa model) {
                 model.setData(convertDateFormat(model.getData()));
                 viewHolder.bindToSpesa(model, v -> mostraDettagli(model), v -> eliminaSpesa(model));
                 Log.d(TAG, "Binding avvenuto!");
@@ -157,26 +178,33 @@ public class ListaSpeseActivity extends AppCompatActivity {
         mAdapter.startListening();
     }
 
+    /**
+     * Converte la data in formato {@code yyyy/MM/dd} in formato {@code dd/MM/yyyy}.
+     *
+     * @param dateStr La data in formato di input.
+     * @return La data formattata nel nuovo formato.
+     */
     private String convertDateFormat(String dateStr) {
-        // Definire il formato di input e output
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);// Formato di input con Locale US
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);// Formato di output con Locale ITALIAN
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
 
         String formattedDate = null;
         try {
-            // Parsing della data in formato yyyy/MM/dd
             Date date = inputFormat.parse(dateStr);
-            // Formattazione della data in formato dd/MM/yyyy
             formattedDate = outputFormat.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return formattedDate; // Restituisce la data nel nuovo formato
+        return formattedDate;
     }
 
+    /**
+     * Calcola il totale delle spese basato su una query specificata.
+     *
+     * @param spesaQuery La query per recuperare i dati delle spese.
+     */
     private void calcolaTotaleSpese(Query spesaQuery) {
-
         spesaQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -192,7 +220,7 @@ public class ListaSpeseActivity extends AppCompatActivity {
                 }
 
                 // Aggiorna il TextView con il totale delle spese
-                tvTotaleSpese.setText(String.format(Locale.getDefault(),"%.2f", totaleSpese));
+                tvTotaleSpese.setText(String.format(Locale.getDefault(), "%.2f", totaleSpese));
                 Log.d(TAG, "Totale spese calcolato: " + totaleSpese);
             }
 
@@ -203,31 +231,43 @@ public class ListaSpeseActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene avviata.
+     * Qui si inizializza la query per recuperare i dati delle spese
+     * e si avvia l'ascolto delle modifiche nel database.
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
-        // Inizia con la query predefinita quando l'activity viene avviata
         Query spesaQuery = getQuery(userRef);
         options = new FirebaseRecyclerOptions.Builder<Spesa>()
                 .setQuery(spesaQuery, Spesa.class)
                 .build();
 
-        //setTotaleSpese();
         creaListaElementi(options);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene fermata.
+     * Qui si interrompe l'ascolto delle modifiche nel database Firebase.
+     */
     @Override
     protected void onStop() {
         super.onStop();
 
-        // Ferma l'ascolto dei dati Firebase quando l'activity viene fermata
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
     }
 
-    // Metodo per ottenere la query da Firebase in base alla selezione dello spinner
+    /**
+     * Restituisce la query per recuperare le spese dal database
+     * in base alla selezione dello spinner.
+     *
+     * @param queryReference Riferimento al nodo del database da cui eseguire la query.
+     * @return La query per le spese in base all'ambito selezionato.
+     */
     public Query getQuery(DatabaseReference queryReference) {
         String ambito = spTipologia.getSelectedItem().toString();
         Query query;
@@ -242,28 +282,42 @@ public class ListaSpeseActivity extends AppCompatActivity {
         return query;
     }
 
+    /**
+     * Restituisce l'UID dell'utente attualmente loggato.
+     *
+     * @return L'UID dell'utente loggato.
+     */
     private String getUid() {
-        // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    /**
+     * Mostra i dettagli della spesa selezionata.
+     *
+     * @param model Il modello della spesa di cui mostrare i dettagli.
+     */
     private void mostraDettagli(Spesa model) {
-        // Mostra i dettagli della spesa
         Intent intent = new Intent(this, DettagliSpesaActivity.class);
         intent.putExtra("spesaId", model.getId());
         startActivity(intent);
     }
 
+    /**
+     * Elimina la spesa specificata dal database Firebase.
+     *
+     * @param model Il modello della spesa da eliminare.
+     */
     private void eliminaSpesa(Spesa model) {
-        // Elimina la spesa dal database Firebase
         DatabaseReference spesaRef = userRef.child("spese").child(model.getId());
         spesaRef.removeValue();
         spesaRef = userRef.child("spese-ambito").child(model.getAmbito()).child(model.getId());
         spesaRef.removeValue();
     }
 
+    /**
+     * Apre l'attività per aggiungere una nuova spesa.
+     */
     private void aggiungiSpesa() {
-        // Apre l'activity per aggiungere una nuova spesa
         Intent intent = new Intent(this, AggiungiSpesaActivity.class);
         startActivity(intent);
         finish();

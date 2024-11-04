@@ -11,55 +11,56 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.HomeActivity;
 
+/**
+ * Activity che mostra informazioni e fornisce accesso a diverse altre attività tramite pulsanti.
+ * Questa classe gestisce l'interfaccia utente associata e le interazioni con i pulsanti.
+ */
 public class InformationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Abilita EdgeToEdge
+        // Abilita EdgeToEdge per un'esperienza utente a schermo intero
         EdgeToEdge.enable(this);
         // Imposta il layout associato a questa activity
         setContentView(R.layout.activity_information);
 
-        // Gestisci la finestra insets per schermi a tutto schermo
+        // Gestisce gli insets delle finestre per supportare schermi a tutto schermo
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Associa ImageButton a variabili
+        // Associa i pulsanti dell'interfaccia utente a variabili
         ImageButton imgBtnAltro = findViewById(R.id.imgBtnAltro);
         ImageButton imgBtnCentro = findViewById(R.id.imgBtnCentro);
         ImageButton imgBtnUtente = findViewById(R.id.imgBtnUtente);
         ImageButton imgBtnLuogo = findViewById(R.id.imgBtnLuogo);
 
-        // Set OnClickListener per imgBtnAltro
-        imgBtnAltro.setOnClickListener(v -> {
-            // Avvia "AltroActivity" (activity_other.xml)
-            Intent intent = new Intent(InformationActivity.this, OtherActivity.class);
-            startActivity(intent);
-        });
+        // Imposta un listener per il pulsante imgBtnAltro
+        imgBtnAltro.setOnClickListener(v -> startActivityWithIntent(OtherActivity.class));
 
-        // Set OnClickListener per imgBtnCentro
-        imgBtnCentro.setOnClickListener(v -> {
-            // Avvia "CentroActivity" (activity_center.xml)
-            Intent intent = new Intent(InformationActivity.this, CenterActivity.class);
-            startActivity(intent);
-        });
+        // Imposta un listener per il pulsante imgBtnCentro
+        imgBtnCentro.setOnClickListener(v -> startActivityWithIntent(CenterActivity.class));
 
-        // Set OnClickListener per imgBtnUtente (da definire in seguito)
-        imgBtnUtente.setOnClickListener(v -> {
-            Intent intent = new Intent(InformationActivity.this, UserActivity.class);
-            startActivity(intent);
-        });
+        // Imposta un listener per il pulsante imgBtnUtente (da definire in seguito)
+        imgBtnUtente.setOnClickListener(v -> startActivityWithIntent(UserActivity.class));
 
-        // Set OnClickListener per imgBtnLuogo
-        imgBtnLuogo.setOnClickListener(v -> {
-            // Avvia "LuogoActivity" (activity_place.xml)
-            Intent intent = new Intent(InformationActivity.this, PlaceActivity.class);
-            startActivity(intent);
-        });
+        // Imposta un listener per il pulsante imgBtnLuogo
+        imgBtnLuogo.setOnClickListener(v -> startActivityWithIntent(PlaceActivity.class));
+    }
+
+    /**
+     * Avvia una nuova attività in base alla classe passata come parametro.
+     *
+     * @param targetActivity La classe dell'attività da avviare.
+     */
+    private void startActivityWithIntent(Class<?> targetActivity) {
+        Intent intent = new Intent(InformationActivity.this, targetActivity);
+        startActivity(intent);
     }
 }
+

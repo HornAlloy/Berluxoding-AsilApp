@@ -42,35 +42,53 @@ import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliMisurazi
 import it.uniba.berluxoding.AsilApp.model.Misurazione;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.MisurazioneViewHolder;
 
+/**
+ * La classe {@code ListaMisurazioniActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che visualizza una lista di misurazioni. Utilizza un adapter Firebase per
+ * gestire e visualizzare i dati delle misurazioni in un RecyclerView.
+ */
 public class ListaMisurazioniActivity extends AppCompatActivity {
 
     private FirebaseRecyclerAdapter<Misurazione, MisurazioneViewHolder> mAdapter;
-
     private DatabaseReference userRef;
 
-    //private List<Misurazione> misurazioniList = new ArrayList<>();
-
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente
+     * e viene configurato il riferimento al database Firebase.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_misurazioni);
+
+        // Gestione degli insets di sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Inizializzazione del database Firebase
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
     }
 
+    /**
+     * Crea e configura la lista di elementi da visualizzare nel RecyclerView
+     * utilizzando un adapter Firebase per recuperare i dati delle misurazioni.
+     *
+     * @param misurazioneQuery La query per recuperare i dati delle misurazioni dal database.
+     */
     private void creaListaElementi(Query misurazioneQuery) {
         RecyclerView mRecycler = findViewById(R.id.listaMisurazioni);
         mRecycler.setHasFixedSize(true);
-
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
+        // Configurazione del layout manager
         LinearLayoutManager mManager = new LinearLayoutManager(this);
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
@@ -89,30 +107,35 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         mAdapter = new FirebaseRecyclerAdapter<>(options) {
             @NonNull
             @Override
-            public MisurazioneViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
+            public MisurazioneViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new MisurazioneViewHolder(inflater.inflate(R.layout.item_misurazione, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder (@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
+            protected void onBindViewHolder(@NonNull MisurazioneViewHolder viewHolder, int position, @NonNull final Misurazione model) {
                 getRef(position);
 
+                // Conversione della data in un formato leggibile
                 model.setData(convertDateFormat(model.getData()));
-                // Bind del model al ViewHolder
+                // Associa il modello al ViewHolder
                 viewHolder.bindToMisurazione(model, v -> mostraDettagli(model));
-                //misurazioniList.add(model);
             }
         };
 
         mRecycler.setAdapter(mAdapter);
     }
 
+    /**
+     * Converte una data da un formato di input a un formato di output più leggibile.
+     *
+     * @param dateStr La data in formato di input "yyyy/MM/dd".
+     * @return La data formattata in "dd/MM/yyyy".
+     */
     private String convertDateFormat(String dateStr) {
-        //Definire il formato di input e output
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);// Formato di input con Locale US
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);// Formato di output con Locale ITALIAN
-
+        // Definire il formato di input e output
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
 
         String formattedDate = null;
         try {
@@ -127,15 +150,17 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         return formattedDate; // Restituisce la data nel nuovo formato
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene avviata.
+     * Qui si inizializza la query per recuperare i dati delle misurazioni
+     * e si avvia l'ascolto delle modifiche nel database.
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
         Query misurazioneQuery = getQuery(userRef);
-
         creaListaElementi(misurazioneQuery);
-
-        //ordinaMisurazioniPerDataEOra(misurazioniList);
 
         // Inizia l'ascolto dei dati Firebase
         if (mAdapter != null) {
@@ -143,6 +168,10 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene fermata.
+     * Qui si interrompe l'ascolto delle modifiche nel database Firebase.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -152,59 +181,41 @@ public class ListaMisurazioniActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Restituisce l'UID dell'utente attualmente autenticato.
+     *
+     * @return L'UID dell'utente corrente.
+     */
     private String getUid() {
-        // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    /**
+     * Restituisce la query per recuperare le misurazioni dal database.
+     *
+     * @param queryReference Riferimento al nodo del database da cui eseguire la query.
+     * @return La query per le misurazioni ordinate per data.
+     */
     public Query getQuery(DatabaseReference queryReference) {
-        // My top posts by number of stars
-
         return queryReference.child("misurazioni").orderByChild("data");
     }
 
+    /**
+     * Mostra i dettagli di una misurazione specifica in una nuova attività.
+     *
+     * @param model Il modello della misurazione da visualizzare.
+     */
     private void mostraDettagli(Misurazione model) {
-        // Mostra i dettagli della misurazione
         Intent intent = new Intent(this, DettagliMisurazioneActivity.class);
         intent.putExtra("misurazioneId", model.getId());
         startActivity(intent);
     }
 
+    /**
+     * Avvia l'attività per aggiungere una nuova misurazione.
+     */
     private void aggiungiMisurazione() {
         Intent intent = new Intent(this, MedboxActivity.class);
         startActivity(intent);
     }
-
-
-//    // Formatter per convertire la stringa in LocalDate e LocalTime
-//    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-//
-//    // Metodo per ordinare una lista di misurazioni per data e orario (dalla più recente alla meno recente)
-//    private void ordinaMisurazioniPerDataEOra(List<Misurazione> misurazioni) {
-//        Collections.sort(misurazioni, (m1, m2) -> {
-//            // Converte la data da stringa a LocalDate
-//            LocalDate data1 = LocalDate.parse(m1.getData(), DATE_FORMATTER);
-//            LocalDate data2 = LocalDate.parse(m2.getData(), DATE_FORMATTER);
-//
-//            // Confronta le date
-//            int dataCompare = data2.compareTo(data1);
-//
-//            // Se le date sono uguali, confronta gli orari
-//            if (dataCompare == 0) {
-//                LocalTime orario1 = LocalTime.parse(m1.getOrario(), TIME_FORMATTER);
-//                LocalTime orario2 = LocalTime.parse(m2.getOrario(), TIME_FORMATTER);
-//                return orario2.compareTo(orario1); // ordine decrescente per l'orario
-//            }
-//
-//            return dataCompare; // ordine decrescente per la data
-//        });
-//    }
-
-
-
-
-
-
-
 }

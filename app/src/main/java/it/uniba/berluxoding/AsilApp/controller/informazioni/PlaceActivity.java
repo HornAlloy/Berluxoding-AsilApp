@@ -14,21 +14,26 @@ import androidx.core.view.WindowInsetsCompat;
 
 import it.uniba.berluxoding.AsilApp.R;
 
+/**
+ * Activity che visualizza una mappa di Google Maps con i centri di accoglienza per migranti.
+ */
 public class PlaceActivity extends AppCompatActivity {
-
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Abilita EdgeToEdge per un'esperienza utente a schermo intero
         EdgeToEdge.enable(this);
+        // Imposta il layout associato a questa activity
         setContentView(R.layout.activity_place);
+
+        // Gestisce gli insets delle finestre per supportare schermi a tutto schermo
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         // Trova la WebView nel layout
         WebView wvMaps = findViewById(R.id.wvMaps);

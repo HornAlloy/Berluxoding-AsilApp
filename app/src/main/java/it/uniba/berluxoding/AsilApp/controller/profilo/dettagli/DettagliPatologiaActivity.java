@@ -23,14 +23,26 @@ import java.util.Objects;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Patologia;
 
+/**
+ * La classe {@code DettagliPatologiaActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che mostra i dettagli di una patologia specifica.
+ * Gli utenti possono visualizzare informazioni come il nome della patologia,
+ * la data della diagnosi e il nome del medico che ha effettuato la diagnosi.
+ */
 public class DettagliPatologiaActivity extends AppCompatActivity {
 
     private TextView nomeV, dataV, diagnostaV;
     final private String TAG = "DETTAGLI_PATOLOGIA_ACTIVITY";
 
-
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente e viene
+     * recuperato l'ID della patologia passato tramite l'intent.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dettagli_patologia);
@@ -51,12 +63,16 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
         DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("patologie")
                 .child(Objects.requireNonNull(patologiaId));
 
-
-
+        // Recupera i dettagli della patologia
         getPatologia(dataRef);
-
     }
 
+    /**
+     * Recupera i dettagli della patologia dal database Firebase
+     * e aggiorna l'interfaccia utente con queste informazioni.
+     *
+     * @param dataRef Riferimento al nodo del database contenente i dettagli della patologia.
+     */
     private void getPatologia(DatabaseReference dataRef) {
         dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -65,7 +81,7 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     Patologia patologia = dataSnapshot.getValue(Patologia.class);
 
-                    // Popola le TextView con i dettagli della spesa
+                    // Popola le TextView con i dettagli della patologia
                     if (patologia != null) {
                         nomeV.setText(patologia.getNome());
                         dataV.setText(patologia.getDataDiagnosi());
@@ -75,14 +91,19 @@ public class DettagliPatologiaActivity extends AppCompatActivity {
                     Log.e(TAG, "Patologia non trovata!");
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Errore nel caricamento della patologia", databaseError.toException());
             }
         });
-
     }
 
+    /**
+     * Restituisce l'UID dell'utente attualmente autenticato.
+     *
+     * @return L'UID dell'utente corrente.
+     */
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();

@@ -26,23 +26,28 @@ import java.util.Map;
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
+/**
+ * L'attività {@code MedboxActivity} gestisce l'interfaccia utente per la selezione
+ * degli strumenti medici e la navigazione verso il frammento di inserimento PIN.
+ */
 public class MedboxActivity extends AppCompatActivity {
 
     private final String TAG = "MEDBOXAPP_ACTIVITY";
 
-    Button strumento1, strumento2, strumento3;
+    private Button strumento1, strumento2, strumento3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_medbox);
+
+        // Gestisce le finestre di sistema per il padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         // Inizializzazione del database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -52,7 +57,13 @@ public class MedboxActivity extends AppCompatActivity {
         getStrumentiData(mStrumenti, this::aggiornaStrumentiUI);
     }
 
-    // Metodo che recupera i dati e invoca il callback una volta che i dati sono pronti
+    /**
+     * Recupera i nomi degli strumenti dal database e invoca il callback fornito
+     * una volta completato il recupero dei dati.
+     *
+     * @param ref  Il riferimento al nodo del database da cui recuperare i dati.
+     * @param dati Il callback da invocare con i dati ricevuti.
+     */
     private void getStrumentiData(DatabaseReference ref, final OnDataReceived<String[]> dati) {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,7 +87,12 @@ public class MedboxActivity extends AppCompatActivity {
         });
     }
 
-    // Metodo per aggiornare la UI con i nomi degli strumenti e impostare i listener
+    /**
+     * Aggiorna l'interfaccia utente con i nomi degli strumenti e imposta i listener
+     * per i pulsanti corrispondenti.
+     *
+     * @param strumentiArray L'array dei nomi degli strumenti da visualizzare.
+     */
     private void aggiornaStrumentiUI(String[] strumentiArray) {
         strumento1 = findViewById(R.id.button);
         strumento2 = findViewById(R.id.button2);
@@ -105,13 +121,23 @@ public class MedboxActivity extends AppCompatActivity {
         strumento3.setOnClickListener(listener);
     }
 
+    /**
+     * Nasconde i pulsanti degli strumenti, rendendo l'interfaccia utente più pulita
+     * dopo che un pulsante è stato premuto.
+     */
     private void changeFrame() {
         strumento1.setVisibility(View.GONE);
         strumento2.setVisibility(View.GONE);
         strumento3.setVisibility(View.GONE);
     }
 
-    // Metodo per sostituire i fragment
+    /**
+     * Sostituisce il frammento corrente con un nuovo frammento, passando i dati
+     * attraverso un Bundle.
+     *
+     * @param fragment Il frammento da sostituire.
+     * @param bundle   I dati da passare al nuovo frammento.
+     */
     protected void replaceFragment(Fragment fragment, Bundle bundle) {
         fragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -31,33 +31,51 @@ import it.uniba.berluxoding.AsilApp.model.Patologia;
 import it.uniba.berluxoding.AsilApp.controller.profilo.viewholder.PatologiaViewHolder;
 
 
+/**
+ * La classe {@code ListaPatologieActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che visualizza una lista di patologie. Utilizza un adapter Firebase per
+ * gestire e visualizzare i dati delle patologie in un RecyclerView.
+ */
 public class ListaPatologieActivity extends AppCompatActivity {
     private final String TAG = "LISTA_PATOLOGIE_ACTIVITY";
 
     private FirebaseRecyclerAdapter<Patologia, PatologiaViewHolder> mAdapter;
+    private DatabaseReference userRef;
 
-    DatabaseReference userRef;
-//    private Button btn;
-
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente
+     * e viene configurato il riferimento al database Firebase.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_patologie);
+
+        // Gestione degli insets di sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Inizializzazione del database Firebase
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("AsilApp").child(getUid());
     }
 
+    /**
+     * Crea e configura la lista di elementi da visualizzare nel RecyclerView
+     * utilizzando un adapter Firebase per recuperare i dati delle patologie.
+     *
+     * @param patologiaQuery La query per recuperare i dati delle patologie dal database.
+     */
     private void creaListaElementi(Query patologiaQuery) {
         RecyclerView mRecycler = findViewById(R.id.listaPatologie);
         mRecycler.setHasFixedSize(true);
-
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         // Configura il LayoutManager
@@ -65,8 +83,6 @@ public class ListaPatologieActivity extends AppCompatActivity {
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
-
-
 
         // Configura FirebaseRecyclerOptions
         FirebaseRecyclerOptions<Patologia> options = new FirebaseRecyclerOptions.Builder<Patologia>()
@@ -77,33 +93,36 @@ public class ListaPatologieActivity extends AppCompatActivity {
         mAdapter = new FirebaseRecyclerAdapter<>(options) {
             @NonNull
             @Override
-            public PatologiaViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup, int i) {
+            public PatologiaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new PatologiaViewHolder(inflater.inflate(R.layout.item_patologia, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder (@NonNull PatologiaViewHolder viewHolder, int position, @NonNull final Patologia model) {
+            protected void onBindViewHolder(@NonNull PatologiaViewHolder viewHolder, int position, @NonNull final Patologia model) {
                 getRef(position);
 
+                // Associa il modello al ViewHolder
                 viewHolder.bindToPatologia(model, v -> mostraDettagli(model));
             }
         };
 
         // Collega l'adapter al RecyclerView
         mRecycler.setAdapter(mAdapter);
-
         Log.d(TAG, "View created!");
-
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene avviata.
+     * Qui si inizializza la query per recuperare i dati delle patologie
+     * e si avvia l'ascolto delle modifiche nel database.
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
         // Ottieni la query dal database Firebase
         Query patologiaQuery = getQuery(userRef);
-
         creaListaElementi(patologiaQuery);
 
         // Inizia l'ascolto dei dati Firebase
@@ -112,6 +131,10 @@ public class ListaPatologieActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene fermata.
+     * Qui si interrompe l'ascolto delle modifiche nel database Firebase.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -121,15 +144,30 @@ public class ListaPatologieActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Restituisce la query per recuperare le patologie dal database.
+     *
+     * @param queryReference Riferimento al nodo del database da cui eseguire la query.
+     * @return La query per le patologie ordinate per chiave.
+     */
     public Query getQuery(DatabaseReference queryReference) {
         return queryReference.child("patologie").orderByKey();
     }
 
+    /**
+     * Restituisce l'UID dell'utente attualmente autenticato.
+     *
+     * @return L'UID dell'utente corrente.
+     */
     private String getUid() {
-        // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    /**
+     * Mostra i dettagli di una patologia specifica in una nuova attività.
+     *
+     * @param model Il modello della patologia da visualizzare.
+     */
     private void mostraDettagli(Patologia model) {
         // Mostra i dettagli della patologia
         Intent intent = new Intent(this, DettagliPatologiaActivity.class);

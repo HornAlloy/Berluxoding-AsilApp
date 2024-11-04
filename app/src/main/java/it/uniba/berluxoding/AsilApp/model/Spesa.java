@@ -3,67 +3,141 @@ package it.uniba.berluxoding.AsilApp.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * La classe {@code Spesa} rappresenta una spesa effettuata da un utente.
+ * Contiene informazioni relative alla spesa, come la data, l'orario,
+ * il costo, l'ambito e l'articolo associato.
+ */
 public class Spesa {
-    private String id;
-    private String data;
-    private String orario;
-    private String costo;
-    private String ambito;
-    private String articolo;
+    private String id;        // L'identificativo unico della spesa
+    private String data;      // La data della spesa
+    private String orario;    // L'orario della spesa
+    private String costo;     // Il costo della spesa
+    private String ambito;    // L'ambito della spesa
+    private String articolo;   // L'articolo acquistato
 
     /**
-     * Default constructor required for calls to DataSnapshot.getValue(User.class)
+     * Costruttore di default necessario per le chiamate a DataSnapshot.getValue(Spesa.class).
      */
     public Spesa() {}
 
-    public void setId (String id) {
+    /**
+     * Imposta l'identificativo unico della spesa.
+     *
+     * @param id L'identificativo da impostare.
+     */
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getId () {
+    /**
+     * Restituisce l'identificativo unico della spesa.
+     *
+     * @return L'identificativo della spesa.
+     */
+    public String getId() {
         return id;
     }
 
-    public String getData () {
+    /**
+     * Restituisce la data della spesa.
+     *
+     * @return La data della spesa.
+     */
+    public String getData() {
         return data;
     }
 
-    public void setData (String data) {
+    /**
+     * Imposta la data della spesa.
+     *
+     * @param data La data da impostare.
+     */
+    public void setData(String data) {
         this.data = data;
     }
 
-    public String getCosto () {
+    /**
+     * Restituisce il costo della spesa.
+     *
+     * @return Il costo della spesa.
+     */
+    public String getCosto() {
         return costo;
     }
 
-    public void setCosto (String costo) {
+    /**
+     * Imposta il costo della spesa.
+     *
+     * @param costo Il costo da impostare.
+     */
+    public void setCosto(String costo) {
         this.costo = costo;
     }
 
-    public String getAmbito () {
+    /**
+     * Restituisce l'ambito della spesa.
+     *
+     * @return L'ambito della spesa.
+     */
+    public String getAmbito() {
         return ambito;
     }
 
-    public void setAmbito (String ambito) {
+    /**
+     * Imposta l'ambito della spesa.
+     *
+     * @param ambito L'ambito da impostare.
+     */
+    public void setAmbito(String ambito) {
         this.ambito = ambito;
     }
 
-    public String getOrario () {
+    /**
+     * Restituisce l'orario della spesa.
+     *
+     * @return L'orario della spesa.
+     */
+    public String getOrario() {
         return orario;
     }
 
-    public void setOrario (String orario) {
+    /**
+     * Imposta l'orario della spesa.
+     *
+     * @param orario L'orario da impostare.
+     */
+    public void setOrario(String orario) {
         this.orario = orario;
     }
 
-    public String getArticolo () {
+    /**
+     * Restituisce l'articolo associato alla spesa.
+     *
+     * @return L'articolo della spesa.
+     */
+    public String getArticolo() {
         return articolo;
     }
 
-    public void setArticolo (String articolo) {
+    /**
+     * Imposta l'articolo associato alla spesa.
+     *
+     * @param articolo L'articolo da impostare.
+     */
+    public void setArticolo(String articolo) {
         this.articolo = articolo;
     }
 
+    /**
+     * Converte l'oggetto Spesa in una mappa di chiavi e valori.
+     * Questa mappa può essere utilizzata per interagire con il database.
+     *
+     * @return Una mappa contenente i dati della spesa.
+     */
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);

@@ -13,27 +13,30 @@ import android.webkit.WebViewClient;
 
 import it.uniba.berluxoding.AsilApp.R;
 
+/**
+ * Activity che visualizza un video di YouTube relativo ai tipi di utenti.
+ */
 public class UserActivity extends AppCompatActivity {
 
-    // Riferimento al TextView
-
-    // L'ID del video YouTube
+    // ID del video di YouTube
     private static final String USER_VIDEO_ID = "A_05YMRASzU"; // ID video di YouTube
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Abilita EdgeToEdge per un'esperienza utente a schermo intero
         EdgeToEdge.enable(this);
+        // Imposta il layout associato a questa activity
         setContentView(R.layout.activity_user);
+
+        // Gestisce gli insets delle finestre per supportare schermi a tutto schermo
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-         // Assicurati che il nome del layout XML sia corretto
 
-        // Inizializzazione dei componenti della UI
-        // Riferimento alla WebView
+        // Inizializzazione della WebView
         WebView tipiUtentiWebview = findViewById(R.id.tipi_utenti_webview);
 
         // Configura il WebView per mostrare il contenuto di YouTube

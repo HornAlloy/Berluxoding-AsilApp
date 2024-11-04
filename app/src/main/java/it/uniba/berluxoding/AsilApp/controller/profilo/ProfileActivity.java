@@ -23,11 +23,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.HomeActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaSpeseActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaMisurazioniActivity;
 import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaPatologieActivity;
 import it.uniba.berluxoding.AsilApp.model.Utente;
 
+/**
+ * La classe {@code ProfileActivity} estende {@code AppCompatActivity} e rappresenta l'attività
+ * che mostra il profilo dell'utente. In questa attività, vengono visualizzati i dettagli dell'utente
+ * recuperati da Firebase, come nome, cognome, data di nascita e paese di provenienza.
+ * Inoltre, fornisce pulsanti per accedere ad altre attività relative a patologie, misurazioni e spese.
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
@@ -37,8 +44,15 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView tv3;
     private TextView tv4;
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente e viene recuperato
+     * l'oggetto utente dal database Firebase.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
@@ -62,26 +76,23 @@ public class ProfileActivity extends AppCompatActivity {
 
         bt1.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the patologies button");
-            Intent openPage = new Intent(ProfileActivity.this, ListaPatologieActivity.class);
-            // passo all'attivazione dell'activity page1.java
-            startActivity(openPage);
-
+            startActivityWithIntent(ListaPatologieActivity.class);
         });
         bt2.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the misurations button");
-            Intent openPage = new Intent(ProfileActivity.this, ListaMisurazioniActivity.class);
-            // passo all'attivazione dell'activity page1.java
-            startActivity(openPage);
+            startActivityWithIntent(ListaMisurazioniActivity.class);
         });
         bt3.setOnClickListener(v -> {
             Log.d("BUTTONS", "User tapped the expenses button");
-            Intent openPage = new Intent(ProfileActivity.this, ListaSpeseActivity.class);
-            // passo all'attivazione dell'activity page1.java
-            startActivity(openPage);
+            startActivityWithIntent(ListaSpeseActivity.class);
         });
     }
 
-    private void getUtente () {
+    /**
+     * Recupera i dati dell'utente dal database Firebase e aggiorna
+     * l'interfaccia utente con le informazioni ottenute.
+     */
+    private void getUtente() {
         mDatabase.child("AsilApp").child(getUser()).child("anagrafica").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -93,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.d("FirebaseData", "Nome: " + utente.getNome());
                             Log.d("FirebaseData", "Cognome: " + utente.getCognome());
                             Log.d("FirebaseData", "Luogo di Nascita: " + utente.getLuogoProvenienza());
-                            Log.d("FirebaseData", "Data di Nascita" + utente.getDataNascita());
+                            Log.d("FirebaseData", "Data di Nascita: " + utente.getDataNascita());
                             tv1.setText(utente.getNome());
                             tv2.setText(utente.getCognome());
                             tv3.setText(utente.getDataNascita());
@@ -111,8 +122,22 @@ public class ProfileActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Restituisce l'ID dell'utente attualmente autenticato.
+     *
+     * @return L'ID dell'utente corrente.
+     */
     private String getUser() {
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
+    /**
+     * Avvia una nuova attività in base alla classe passata come parametro.
+     *
+     * @param targetActivity La classe dell'attività da avviare.
+     */
+    private void startActivityWithIntent(Class<?> targetActivity) {
+        Intent intent = new Intent(ProfileActivity.this, targetActivity);
+        startActivity(intent);
+    }
 }

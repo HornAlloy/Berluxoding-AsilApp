@@ -23,11 +23,24 @@ import java.util.Objects;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Spesa;
 
+/**
+ * La classe {@code DettagliSpesaActivity} estende {@code AppCompatActivity} e rappresenta
+ * l'attività che mostra i dettagli di una spesa specifica.
+ * Gli utenti possono visualizzare informazioni come l'ambito,
+ * l'articolo, il costo e la data e l'orario della spesa.
+ */
 public class DettagliSpesaActivity extends AppCompatActivity {
 
     private TextView txtAmbito, txArticolo, txtCosto, txtGiorno, txtMese, txtAnno, txtOra, txtMinuto;
     final private String TAG = "DETTAGLI_SPESA_ACTIVITY";
 
+    /**
+     * Questo metodo viene chiamato quando l'attività viene creata.
+     * Qui vengono inizializzati i componenti dell'interfaccia utente e viene
+     * recuperato l'ID della spesa passato tramite l'intent.
+     *
+     * @param savedInstanceState Lo stato salvato dell'attività, se presente.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +53,7 @@ public class DettagliSpesaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // Collegamento delle TextView dell'interfaccia
         txtAmbito = findViewById(R.id.txtAmbito);
         txArticolo = findViewById(R.id.txArticolo);
@@ -49,9 +63,10 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         txtAnno = findViewById(R.id.txtAnno);
         txtOra = findViewById(R.id.txtOra);
         txtMinuto = findViewById(R.id.txtMinuto);
-        //btnIndietro = findViewById(R.id.btnIndietro);
+
         // Recupera lo spesaId passato tramite l'intent
         String spesaId = getIntent().getStringExtra("spesaId");
+
         // Inizializzazione Firebase Database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference dataRef = mDatabase.child("AsilApp").child(getUid()).child("spese").child(Objects.requireNonNull(spesaId));
@@ -59,7 +74,13 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         // Popola i dettagli della spesa
         loadSpesaDetails(dataRef);
     }
-    // Metodo per caricare i dettagli della spesa da Firebase
+
+    /**
+     * Carica i dettagli della spesa dal database Firebase
+     * e aggiorna l'interfaccia utente con queste informazioni.
+     *
+     * @param dataRef Riferimento al nodo del database contenente i dettagli della spesa.
+     */
     private void loadSpesaDetails(DatabaseReference dataRef) {
         dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,6 +100,7 @@ public class DettagliSpesaActivity extends AppCompatActivity {
                         txtGiorno.setText(dataParts[0]);
                         txtMese.setText(dataParts[1]);
                         txtAnno.setText(dataParts[2]);
+
                         // Dividi l'orario nel formato ora/minuto
                         String[] orarioParts = spesa.getOrario().split(":");
                         txtOra.setText(orarioParts[0]);
@@ -88,6 +110,7 @@ public class DettagliSpesaActivity extends AppCompatActivity {
                     Log.e(TAG, "Spesa non trovata!");
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Errore nel caricamento della spesa", databaseError.toException());
@@ -95,6 +118,11 @@ public class DettagliSpesaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Restituisce l'UID dell'utente attualmente autenticato.
+     *
+     * @return L'UID dell'utente corrente.
+     */
     private String getUid() {
         // Restituisce l'UID dell'utente attualmente loggato
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();

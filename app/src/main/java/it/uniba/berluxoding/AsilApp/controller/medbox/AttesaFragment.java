@@ -22,14 +22,17 @@ import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.controller.profilo.dettagli.DettagliMisurazioneActivity;
 
+
 /**
- * A simple {@link Fragment} subclass.
+ * Il frammento {@code AttesaFragment} gestisce l'attesa per ricevere una risposta
+ * dal database Firebase e passa alla schermata dei dettagli della misurazione.
  */
 public class AttesaFragment extends Fragment implements OnDataReceived<String> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflazione del layout per questo frammento
         return inflater.inflate(R.layout.fragment_attesa, container, false);
     }
 
@@ -37,6 +40,7 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
+        // Riferimento al nodo del database per ricevere la risposta
         DatabaseReference path = FirebaseDatabase.getInstance().getReference("medbox/risposta");
 
         // Mostra il progresso dell'attesa
@@ -45,16 +49,21 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
         setListener(path);
     }
 
-    private void setListener (DatabaseReference listenerPath) {
+    /**
+     * Imposta un listener sul percorso del database fornito per ricevere
+     * la risposta relativa alla misurazione.
+     *
+     * @param listenerPath Il percorso del database su cui impostare il listener.
+     */
+    private void setListener(DatabaseReference listenerPath) {
         // Listener per ricevere la risposta
         listenerPath.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-
                     String misurazioneId = dataSnapshot.child("misurazioneId").getValue(String.class);
 
-                    Log.d("Firebase", "Risposta ricevuta: userId=" + ", risultato=" + misurazioneId);
+                    Log.d("Firebase", "Risposta ricevuta: risultato=" + misurazioneId);
 
                     listenerPath.removeEventListener(this);
 
@@ -67,7 +76,6 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("Firebase", "Errore nel recupero della risposta: " + databaseError.getMessage());
@@ -75,9 +83,12 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
         });
     }
 
-
-
-    // Metodo per ricevere il misurazioneId dal database
+    /**
+     * Metodo per ricevere il misurazioneId dal database e avviare
+     * una nuova attività con i dettagli della misurazione.
+     *
+     * @param misurazioneId L'ID della misurazione ricevuto dal database.
+     */
     @Override
     public void onDataReceived(String misurazioneId) {
         // Passaggio alla nuova Activity con il misurazioneId

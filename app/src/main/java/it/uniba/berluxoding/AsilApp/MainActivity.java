@@ -25,22 +25,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import it.uniba.berluxoding.AsilApp.controller.LoginActivity;
 
-public class  MainActivity extends AppCompatActivity {
+/**
+ * Classe principale dell'applicazione che gestisce l'avvio e l'inizializzazione dell'interfaccia utente.
+ * Estende {@link AppCompatActivity} e implementa il metodo {@link #onCreate(Bundle)} per gestire
+ * il ciclo di vita dell'attività.
+ */
+public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Metodo chiamato all'avvio dell'attività. Configura l'interfaccia utente in modalità Edge-to-Edge,
+     * imposta il layout principale e avvia l'activity di login dopo un ritardo di 2 secondi.
+     *
+     * @param savedInstanceState Il bundle che contiene lo stato salvato dell'attività, se presente.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Abilita la modalità Edge-to-Edge per questa attività.
         EdgeToEdge.enable(this);
+
+        // Imposta il layout principale dell'attività.
         setContentView(R.layout.activity_main);
 
-
+        // Avvia l'activity LoginActivity dopo un ritardo di 2 secondi.
         new Handler().postDelayed(() -> {
 
-            // definisco l'intenzione di aprire l'Activity "Page1.java"
+            // Crea un'intenzione per aprire l'activity LoginActivity
             Intent openPage = new Intent(MainActivity.this, LoginActivity.class);
-            // passo all'attivazione dell'activity page1.java
+
+            // Avvia l'activity LoginActivity
             startActivity(openPage);
+
+            // Termina l'attuale activity MainActivity
             finish();
         }, 2000);
     }
 }
+
