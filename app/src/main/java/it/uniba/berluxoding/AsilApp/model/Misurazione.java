@@ -120,7 +120,6 @@ public class Misurazione {
      * Converte una data da un formato di input a un formato di output più leggibile.
      *
      * @param dateStr La data in formato di input "yyyy/MM/dd".
-     * @return La data formattata in "dd/MM/yyyy".
      */
     private void convertDateFormat(String dateStr) {
         // Definire il formato di input e output
@@ -138,12 +137,15 @@ public class Misurazione {
             Log.d("CONVERT_DATE_FORMAT", "Data formattata = " + formattedDate);
             Log.d("CONVERT_DATE_FORMAT", "Data = " + date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e("CONVERSIONE_DATA", "Fallita la modifica della data nel formato dd/MM/yyyy");
         }
 
         data = formattedDate;
     }
 
+    /**
+     * Verifica che la data sia nel formato {@code dd/MM/yyyy} altrimenti chiama il metodo convertDateFormat
+     */
     public void checkDate() {
         if (!dataItaliana) {
             convertDateFormat(data);

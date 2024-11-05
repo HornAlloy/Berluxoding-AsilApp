@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import it.uniba.berluxoding.AsilApp.R;
+import it.uniba.berluxoding.AsilApp.controller.profilo.liste.ListaMisurazioniActivity;
 import it.uniba.berluxoding.AsilApp.model.Misurazione;import android.content.Intent;
 import android.view.View; // Importa questa libreria
 
@@ -68,6 +70,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
 
         // Recupera il misurazioneId passato tramite l'intent
         misurazioneId = getIntent().getStringExtra("misurazioneId");
+        backButton();
 
         // Popola i dettagli della misurazione
         getMisurazione();
@@ -150,6 +153,21 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configura la gestione della pressione del tasto indietro.
+     * Ritorna alla lista delle misurazioni, in modo da permettere all'utente di poter confrontare la misurazione con le altre.
+     * Termina l'esecuzione dell'activity corrente.
+     */
+    private void backButton() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed () {
+                Intent intent = new Intent(DettagliMisurazioneActivity.this, ListaMisurazioniActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 
 }
 

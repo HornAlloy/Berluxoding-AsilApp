@@ -116,5 +116,6 @@ public class AttesaFragment extends Fragment implements OnDataReceived<String> {
         Intent intent = new Intent(getContext(), DettagliMisurazioneActivity.class);
         intent.putExtra("misurazioneId", misurazioneId);
         startActivity(intent);
+        requireActivity().finish();
     }
 }

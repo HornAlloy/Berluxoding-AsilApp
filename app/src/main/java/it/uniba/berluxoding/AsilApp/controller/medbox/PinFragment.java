@@ -214,7 +214,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             public void handleOnBackPressed() {
                 MedboxActivity activity = (MedboxActivity) getActivity();
                 if (activity != null) {
-                    activity.resumeActivity();
+                    activity.showButtons();
                 }
                 // Controlla se ci sono Fragment nel back stack
                 if (requireActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {

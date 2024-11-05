@@ -107,7 +107,7 @@ public class MedboxActivity extends AppCompatActivity {
             String strumentoName = clickedButton.getText().toString();
             Log.d(TAG, strumentoName + " button pressed!");
 
-            changeFrame();
+            hideButtons();
 
             // Crea un bundle e salvaci lo strumento selezionato
             Bundle bundle = new Bundle();
@@ -126,7 +126,7 @@ public class MedboxActivity extends AppCompatActivity {
      * Nasconde i pulsanti degli strumenti, rendendo l'interfaccia utente più pulita
      * dopo che un pulsante è stato premuto.
      */
-    private void changeFrame() {
+    private void hideButtons () {
         strumento1 = findViewById(R.id.button);
         strumento2 = findViewById(R.id.button2);
         strumento3 = findViewById(R.id.button3);
@@ -136,7 +136,7 @@ public class MedboxActivity extends AppCompatActivity {
         strumento3.setVisibility(View.GONE);
     }
 
-    protected void resumeActivity() {
+    protected void showButtons () {
         strumento1 = findViewById(R.id.button);
         strumento2 = findViewById(R.id.button2);
         strumento3 = findViewById(R.id.button3);

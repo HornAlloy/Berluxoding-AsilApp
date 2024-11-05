@@ -1,5 +1,7 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -166,12 +168,15 @@ public class Spesa {
             Date date = inputFormat.parse(dateStr);
             formattedDate = outputFormat.format(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e("CONVERSIONE_DATA", "Fallita la modifica della data nel formato dd/MM/yyyy");
         }
 
         data = formattedDate;
     }
 
+    /**
+     * Verifica che la data sia nel formmato {@code dd/MM/yyyy} altrimenti chiama il metodo convertDateFormat
+     */
     public void checkDate () {
         if (!dataItaliana) {
             convertDateFormat(data);
