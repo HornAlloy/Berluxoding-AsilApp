@@ -24,6 +24,7 @@ import it.uniba.berluxoding.AsilApp.R;
 import it.uniba.berluxoding.AsilApp.model.Misurazione;import android.content.Intent;
 import android.view.View; // Importa questa libreria
 
+
 /**
  * La classe {@code DettagliMisurazioneActivity} estende {@code AppCompatActivity} e rappresenta
  * l'attività che mostra i dettagli di una misurazione specifica.
@@ -70,6 +71,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
 
         // Popola i dettagli della misurazione
         getMisurazione();
+
     }
 
     /**
@@ -147,5 +149,7 @@ public class DettagliMisurazioneActivity extends AppCompatActivity {
             Log.e(TAG, "Gmail non è installato", ex);
         }
     }
+
+
 }
 

@@ -1,5 +1,7 @@
 package it.uniba.berluxoding.AsilApp.model;
 
+
+
 /**
  * La classe {@code Patologia} rappresenta una patologia diagnosticata a un paziente.
  * Contiene informazioni come il nome della patologia, la data della diagnosi e il medico
@@ -80,4 +82,5 @@ public class Patologia {
     public void setDiagnosta(String diagnosta) {
         this.diagnosta = diagnosta;
     }
+
 }

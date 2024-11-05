@@ -1,6 +1,6 @@
 package it.uniba.berluxoding.AsilApp.controller.medbox;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -26,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Objects;
 
-import it.uniba.berluxoding.AsilApp.controller.HomeActivity;
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
@@ -70,7 +69,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
      * @param savedInstanceState Bundle contenente lo stato salvato precedentemente del fragment
      */
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         backPressed();
