@@ -1,6 +1,5 @@
 package it.uniba.berluxoding.AsilApp.controller.medbox;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -26,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Objects;
 
-import it.uniba.berluxoding.AsilApp.controller.HomeActivity;
 import it.uniba.berluxoding.AsilApp.interfacce.OnDataReceived;
 import it.uniba.berluxoding.AsilApp.R;
 
@@ -70,7 +68,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
      * @param savedInstanceState Bundle contenente lo stato salvato precedentemente del fragment
      */
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         backPressed();
@@ -92,7 +90,6 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             Log.d("strumento = ", strumento);
         }
 
-        checkAnswer();
         // Imposta il listener per il pulsante di invio del PIN
         submitButton.setOnClickListener(v -> {
             String pin = pinEditText.getText().toString().trim();
@@ -120,8 +117,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String storedPin = dataSnapshot.getValue(String.class);  // Recupera il PIN memorizzato
 
-                // Utilizza il callback per passare il PIN memorizzato
-                onDataReceived(storedPin);
+                checkAnswer(storedPin);
             }
 
             @Override
@@ -191,7 +187,7 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
         return Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
-    private void checkAnswer() {
+    private void checkAnswer(String storedPin) {
         rispostaRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange (@NonNull DataSnapshot snapshot) {
@@ -200,6 +196,8 @@ public class PinFragment extends Fragment implements OnDataReceived<String> {
                 } else {
                     rispostaRef.removeEventListener(this);
                 }
+                // Utilizza il callback per passare il PIN memorizzato
+                onDataReceived(storedPin);
             }
 
             @Override
