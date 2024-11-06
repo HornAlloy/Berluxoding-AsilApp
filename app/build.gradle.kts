@@ -41,8 +41,6 @@ android {
 }
 
 dependencies {
-    //implementation(project(":internal:lintchecks"))
-    //implementation(project(":internal:chooserx"))
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
